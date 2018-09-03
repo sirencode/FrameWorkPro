@@ -1,0 +1,34 @@
+project.ext {
+    dependenciesMethod = { obj, dps ->
+        dps.each { entry ->
+            def value = entry.value
+            if (value instanceof List) {
+                value.each { result ->
+                    executeDds obj, result, rootProject.allDependencies.get(entry.key), entry.key
+                }
+            } else {
+                executeDds obj, value, rootProject.allDependencies.get(entry.key), entry.key
+            }
+        }
+    }
+}
+
+void executeDds(obj, type, library, key) {
+    if (type == 'apt') {
+        obj.apt library
+    } else if (type == 'annotationProcessor') {
+        obj.annotationProcessor library
+    } else if (type == 'implementation') {
+        //equal old compile
+        obj.implementation library
+    } else if (type == 'compileOnly') {
+        //equal old provided
+        obj.compileOnly library
+    } else if (type == 'testImplementation') {
+        obj.testImplementation library
+    } else if (type == 'debugImplementation') {
+        obj.debugImplementation library
+    } else if (type == 'androidTestImplementation') {
+        obj.androidTestImplementation library
+    }
+}
