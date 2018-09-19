@@ -9,7 +9,7 @@ android {
         targetSdkVersion globalConfiguration.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions ("versionCode")
     }
     buildTypes {
         release {
@@ -24,9 +24,26 @@ android {
     dataBinding {
         enabled = true
     }
-}
 
-dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    project.ext.dependenciesMethod delegate, rootProject.ext.appDps
+    productFlavors {
+        productA {
+            applicationId 'com.syh.producta'
+            manifestPlaceholders = [
+                    app_name : "ProductA",
+                    app_icon : "@mipmap/a",
+            ]
+        }
+        productB {
+            applicationId 'com.syh.productb'
+            manifestPlaceholders = [
+                    app_name : "ProductB",
+                    app_icon : "@mipmap/b",
+            ]
+        }
+    }
+
+    dependencies {
+        implementation fileTree(dir: 'libs', include: ['*.jar'])
+        project.ext.dependenciesMethod delegate, rootProject.ext.appDps
+    }
 }
