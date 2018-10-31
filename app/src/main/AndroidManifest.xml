@@ -15,6 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="${app_icon}"
         android:label="${app_name}"

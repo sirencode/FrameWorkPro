@@ -44,6 +44,7 @@ android {
 
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
+        productAApi project(':thirdLib')
         project.ext.dependenciesMethod delegate, rootProject.ext.appDps
     }
 }

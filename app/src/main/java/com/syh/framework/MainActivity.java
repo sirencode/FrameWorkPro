@@ -30,6 +30,7 @@ import com.syh.framework.util.BaseDialog;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
 import com.syh.framework.util.LogUtil;
+import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.WebViewActivity;
@@ -82,10 +83,16 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_shadow).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShadowAct.class)));
         findViewById(R.id.btn_show_databus).setOnClickListener(v -> LiveDataBusDemo.start(MainActivity.this));
         findViewById(R.id.btn_start_sound).setOnClickListener(v -> playTone(MainActivity.this,100));
+        findViewById(R.id.btn_sub_string).setOnClickListener(v -> ToastUtil.showToast(this,StringUtil.getLengthSub("sshshshhshh设计师",12)));
     }
 
 
     private void showDialog() {
+        LogUtil.LogD("StringUtil","StringUtil"+ StringUtil.getLengthSub("shenyonghe是个1，硬性",16));
+        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",17));
+        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",18));
+        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",19));
+        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",20));
         new DialogBuild(this).setTitle("是否删除？")
                 .setContent("删除的视频无法再恢复")
 //                .setSigle("确定")

@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FrameWorkPro.iml" filepath="$PROJECT_DIR$/FrameWorkPro.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdLib/thirdLib.iml" filepath="$PROJECT_DIR$/thirdLib/thirdLib.iml" />
     </modules>
   </component>
 </project>
