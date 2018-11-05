@@ -19,20 +19,22 @@ public class ScreenSwitchUtils {
     private Sensor sensor;
     private Activity mActivity;
     private static final int ORIENTATION_SUCCESS = 1;
-    private static final int ANGLE = 60;
+    private static final int angle = 60; // 角度差，和时间差共同控制了灵敏度
+    private static final int lastTime = 0;
+    private static final int gap = 1000;
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (msg.what == ORIENTATION_SUCCESS) {
                 int orientation = msg.arg1;
-                if (orientation > ANGLE && orientation < (180 - ANGLE) && orientationNE(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE)) {
+                if (orientation > angle && orientation < (180 - angle) && orientationNE(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE)) {
                     mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE);
-                } else if (orientation > (180 - ANGLE) && orientation < (270 - ANGLE) && orientationNE(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT)) {
+                } else if (orientation > (180 - angle) && orientation < (270 - angle) && orientationNE(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT)) {
                     mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_REVERSE_PORTRAIT);
-                } else if (orientation > (270 - ANGLE) && orientation < (360 - ANGLE) && orientationNE(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)) {
+                } else if (orientation > (270 - angle) && orientation < (360 - angle) && orientationNE(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE)) {
                     mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-                } else if ((orientation > (360 - ANGLE) && orientation < 360 && orientationNE(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)) || (orientation > 0 && orientation < 45 && orientationNE(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT))) {
+                } else if ((orientation > (360 - angle) && orientation < 360 && orientationNE(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)) || (orientation > 0 && orientation < 45 && orientationNE(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT))) {
                     mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
                 }
             }
@@ -41,6 +43,14 @@ public class ScreenSwitchUtils {
 
     private boolean orientationNE(int orientation) {
         return mActivity.getResources().getConfiguration().orientation != orientation;
+    }
+
+    /**
+     * 控制两次切换之间的时间差
+     * @return
+     */
+    private boolean checkTime() {
+        return System.currentTimeMillis() - lastTime >= gap;
     }
 
     public ScreenSwitchUtils(Context context) {
