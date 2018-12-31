@@ -13,6 +13,7 @@ import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,9 +28,11 @@ import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
+import com.syh.framework.util.ClickProxy;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
 import com.syh.framework.util.LogUtil;
+import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
@@ -45,11 +48,13 @@ public class MainActivity extends BaseActivity {
     private ImageView imageView2;
     private int count;
     private ToneGenerator toneGenerator;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = findViewById(R.id.tv_msg);
         imageView1 = findViewById(R.id.image1);
         imageView1.setOnClickListener(v -> {
             ApiFactory.getInstance().create(ServerDomainType.Home, HomeApi.class)
@@ -82,17 +87,26 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.tv_list).setOnClickListener(v -> startListAct());
         findViewById(R.id.btn_shadow).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShadowAct.class)));
         findViewById(R.id.btn_show_databus).setOnClickListener(v -> LiveDataBusDemo.start(MainActivity.this));
-        findViewById(R.id.btn_start_sound).setOnClickListener(v -> playTone(MainActivity.this,100));
-        findViewById(R.id.btn_sub_string).setOnClickListener(v -> ToastUtil.showToast(this,StringUtil.getLengthSub("sshshshhshh设计师",12)));
+        findViewById(R.id.btn_start_sound).setOnClickListener(v -> playTone(MainActivity.this, 100));
+        findViewById(R.id.btn_sub_string).setOnClickListener(v -> ToastUtil.showToast(this, StringUtil.getLengthSub("sshshshhshh设计师", 12)));
+        findViewById(R.id.btn_clickproxy).setOnClickListener(new ClickProxy(10000) {
+            @Override
+            public void checkClick(View view) {
+                ToastUtil.showToast(MainActivity.this, "clickproxy");
+            }
+        });
+        findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastUtil.showToast(this, "root == " + SecurityCheck.chechRoot()));
+        findViewById(R.id.btn_check_hook).setOnClickListener(v -> ToastUtil.showToast(this, "has hook app " + SecurityCheck.hocked(this)));
+        findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
     }
 
 
     private void showDialog() {
-        LogUtil.LogD("StringUtil","StringUtil"+ StringUtil.getLengthSub("shenyonghe是个1，硬性",16));
-        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",17));
-        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",18));
-        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",19));
-        LogUtil.LogD("StringUtil", "StringUtil"+StringUtil.getLengthSub("shenyonghe是个1，硬性",20));
+        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 16));
+        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 17));
+        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 18));
+        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 19));
+        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 20));
         new DialogBuild(this).setTitle("是否删除？")
                 .setContent("删除的视频无法再恢复")
 //                .setSigle("确定")
@@ -128,7 +142,7 @@ public class MainActivity extends BaseActivity {
         WebViewActivity.startWebAct("https://blog.csdn.net/carson_ho/article/details/52693322", this);
     }
 
-    private  void playTone(Context context, int mediaFileRawId) {
+    private void playTone(Context context, int mediaFileRawId) {
         try {
             if (toneGenerator == null) {
                 toneGenerator = new ToneGenerator(AudioManager.STREAM_NOTIFICATION, ToneGenerator.MAX_VOLUME);

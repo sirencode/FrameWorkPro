@@ -47,6 +47,7 @@ public class ScreenSwitchUtils {
 
     /**
      * 控制两次切换之间的时间差
+     *
      * @return
      */
     private boolean checkTime() {
@@ -134,4 +135,6 @@ public class ScreenSwitchUtils {
     public void stop() {
         sm.unregisterListener(listener);
     }
+
+
 }

@@ -30,6 +30,15 @@
 
 
         <Button
+            android:id="@+id/btn_setText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="SetText"
+            android:textSize="14dp" />
+
+        <Button
             android:id="@+id/tv_spact"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -81,6 +90,33 @@
             android:layout_margin="10dp"
             android:padding="15dp"
             android:text="SubString"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_clickproxy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="ClickProxy"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_check_root"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="CheckRoot"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_check_hook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="HasHookApp"
             android:textSize="14dp" />
 
     </LinearLayout>
