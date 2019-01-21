@@ -1,5 +1,7 @@
 package com.syh.framework.http;
 
+import com.syh.framework.util.DataCheckUtil;
+
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.observers.DisposableObserver;
 
@@ -15,6 +17,7 @@ public abstract class BaseSubscriber<T> extends DisposableObserver<T> {
         }
 
         try {
+            DataCheckUtil.checkValue(t);
             onSuccess(t);
         } catch (Throwable e) {
             Exceptions.throwIfFatal(e);

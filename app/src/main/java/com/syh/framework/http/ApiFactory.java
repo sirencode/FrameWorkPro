@@ -69,7 +69,7 @@ public class ApiFactory {
             Retrofit retrofit = new RetrofitBuilder()
                     .withDomain(DomainUtil.getDomain().get(serverDomainType))
                     .withDebug(enableLog)
-                    .withInterceptors(getInterceptors(serverDomainType))
+                    .withInterceptors(getDefaultInterceptors())
                     .withConvertFactory(converterFactory)
                     .build();
 
@@ -77,6 +77,12 @@ public class ApiFactory {
             apis.put(key, api);
         }
         return api;
+    }
+
+    private List<Interceptor> getDefaultInterceptors(){
+        List<Interceptor> list = new ArrayList<>();
+        list.add(new LogInterceptor());
+        return list;
     }
 
     private static final String KEY_TEMPLATE = "%s_%s";

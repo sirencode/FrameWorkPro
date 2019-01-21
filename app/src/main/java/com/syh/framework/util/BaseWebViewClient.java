@@ -39,13 +39,13 @@ public class BaseWebViewClient extends WebViewClient {
     @Override
     public void onPageStarted(WebView view, String url, Bitmap favicon) {
         super.onPageStarted(view, url, favicon);
-        LogUtil.LogD(TAG, "onPageStarted:" + url);
+        LogUtil.d(TAG, "onPageStarted:" + url);
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
         super.onPageFinished(view, url);
-        LogUtil.LogD(TAG, "onPageFinished:" + url);
+        LogUtil.d(TAG, "onPageFinished:" + url);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

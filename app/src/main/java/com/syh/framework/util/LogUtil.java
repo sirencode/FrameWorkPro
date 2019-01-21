@@ -20,7 +20,7 @@ public class LogUtil {
         log(LogType.LogA, tag, msg);
     }
 
-    public static void LogD(String tag, String msg) {
+    public static void d(String tag, String msg) {
         log(LogType.LogD, tag, msg);
     }
 

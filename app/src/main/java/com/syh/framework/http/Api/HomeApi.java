@@ -1,7 +1,7 @@
 package com.syh.framework.http.Api;
 
 
-import com.syh.framework.DataDemo;
+import com.syh.framework.http.model.DataDemo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

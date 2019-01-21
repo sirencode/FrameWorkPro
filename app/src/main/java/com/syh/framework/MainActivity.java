@@ -20,8 +20,10 @@ import android.widget.TextView;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
+import com.syh.framework.http.model.DataDemo;
 import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
+import com.syh.framework.http.model.User;
 import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
@@ -29,6 +31,7 @@ import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
 import com.syh.framework.util.ClickProxy;
+import com.syh.framework.util.DataCheckUtil;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
 import com.syh.framework.util.LogUtil;
@@ -65,7 +68,10 @@ public class MainActivity extends BaseActivity {
                         @Override
                         protected void onSuccess(DataDemo s) {
                             ToastUtil.showToast(MainActivity.this, s.getMessage());
-                            LogUtil.LogD("onSuccess", s.getMessage());
+                            LogUtil.d("onSuccess", s.getMessage());
+//                            s.setAaa(new DataDemo.AAA());
+//                            s.setUser(new User());
+//                            DataCheckUtil.checkValue(s);
                         }
 
                         @Override
@@ -102,11 +108,11 @@ public class MainActivity extends BaseActivity {
 
 
     private void showDialog() {
-        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 16));
-        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 17));
-        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 18));
-        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 19));
-        LogUtil.LogD("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 20));
+        LogUtil.d("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 16));
+        LogUtil.d("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 17));
+        LogUtil.d("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 18));
+        LogUtil.d("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 19));
+        LogUtil.d("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 20));
         new DialogBuild(this).setTitle("是否删除？")
                 .setContent("删除的视频无法再恢复")
 //                .setSigle("确定")
