@@ -1,13 +1,14 @@
 package com.syh.framework.http.model;
 
 import com.syh.framework.annotions.ChekValue;
+import com.syh.framework.annotions.NeedCheck;
 
 import java.util.List;
 
 /**
  * Created bg shenyonghe on 2018/5/22.
  */
-public class DataDemo {
+public class DataDemo extends NeedCheck {
     private String message;
     private String nu;
     private String ischeck;
@@ -128,7 +129,7 @@ public class DataDemo {
         this.com = com;
     }
 
-    public static class AAA{
+    public static class AAA extends NeedCheck{
         @ChekValue
         String name;
 

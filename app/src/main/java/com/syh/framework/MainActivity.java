@@ -23,7 +23,6 @@ import com.syh.framework.http.BaseSubscriber;
 import com.syh.framework.http.model.DataDemo;
 import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
-import com.syh.framework.http.model.User;
 import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
@@ -31,7 +30,7 @@ import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
 import com.syh.framework.util.ClickProxy;
-import com.syh.framework.util.DataCheckUtil;
+import com.syh.framework.annotions.DataCheckManager;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
 import com.syh.framework.util.LogUtil;
@@ -70,8 +69,7 @@ public class MainActivity extends BaseActivity {
                             ToastUtil.showToast(MainActivity.this, s.getMessage());
                             LogUtil.d("onSuccess", s.getMessage());
 //                            s.setAaa(new DataDemo.AAA());
-//                            s.setUser(new User());
-//                            DataCheckUtil.checkValue(s);
+                            DataCheckManager.checkValue(s,"query");
                         }
 
                         @Override

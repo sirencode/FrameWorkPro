@@ -1,6 +1,6 @@
 package com.syh.framework.http;
 
-import com.syh.framework.util.DataCheckUtil;
+import com.syh.framework.annotions.DataCheckManager;
 
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.observers.DisposableObserver;
@@ -17,7 +17,7 @@ public abstract class BaseSubscriber<T> extends DisposableObserver<T> {
         }
 
         try {
-            DataCheckUtil.checkValue(t);
+            DataCheckManager.checkValue(t,"统一处理空字段");
             onSuccess(t);
         } catch (Throwable e) {
             Exceptions.throwIfFatal(e);
