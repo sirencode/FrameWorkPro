@@ -1,6 +1,6 @@
 package com.syh.framework.http.model;
 
-import com.syh.framework.annotions.ChekValue;
+import com.syh.framework.annotions.ChekNull;
 import com.syh.framework.annotions.NeedCheck;
 
 import java.util.List;
@@ -8,30 +8,43 @@ import java.util.List;
 /**
  * Created bg shenyonghe on 2018/5/22.
  */
-public class DataDemo extends NeedCheck {
+public class DataDemo implements NeedCheck {
     private String message;
     private String nu;
     private String ischeck;
     private String condition;
     private String com;
-    @ChekValue
+    @ChekNull
     private String shenTest;
 
     private int anInt;
 
-    private Integer bbb;
+    private Integer bbb = new Integer(100000);
 
-    @ChekValue
-    private String shenTests[];
+//    @ChekNull
+    private String shenTests[] = {"1","2"};
 
-    @ChekValue
+    private String sets[] = {"1","2"};
+
+//    @ChekNull
     private List<String> shenTestss;
 
-    @ChekValue
+    @ChekNull
+    private List<User> users;
+
+    @ChekNull
     private AAA aaa;
 
-    @ChekValue
+//    @ChekNull
     private User user;
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
 
     public User getUser() {
         return user;
@@ -129,9 +142,31 @@ public class DataDemo extends NeedCheck {
         this.com = com;
     }
 
-    public static class AAA extends NeedCheck{
-        @ChekValue
+    public static class AAA implements NeedCheck{
+        @ChekNull
         String name;
+
+        @ChekNull
+        String age;
+
+        @ChekNull
+        User users;
+
+        public User getUsers() {
+            return users;
+        }
+
+        public void setUsers(User users) {
+            this.users = users;
+        }
+
+        public String getAge() {
+            return age;
+        }
+
+        public void setAge(String age) {
+            this.age = age;
+        }
 
         public String getName() {
             return name;

@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,8 @@ import com.syh.framework.http.BaseSubscriber;
 import com.syh.framework.http.model.DataDemo;
 import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
+import com.syh.framework.http.model.HttpBaseResult;
+import com.syh.framework.http.model.User;
 import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
@@ -40,6 +43,9 @@ import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.WebViewActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -52,6 +58,8 @@ public class MainActivity extends BaseActivity {
     private ToneGenerator toneGenerator;
     private TextView textView;
 
+    private HttpBaseResult<List<DataDemo>> dataDemo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,13 +71,28 @@ public class MainActivity extends BaseActivity {
                     .getTest("yuantong", "11111111111")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new BaseSubscriber<DataDemo>() {
+                    .subscribe(new BaseSubscriber<HttpBaseResult<List<DataDemo>>>() {
                         @Override
-                        protected void onSuccess(DataDemo s) {
+                        protected void onSuccess(HttpBaseResult<List<DataDemo>> s) {
                             ToastUtil.showToast(MainActivity.this, s.getMessage());
                             LogUtil.d("onSuccess", s.getMessage());
-//                            s.setAaa(new DataDemo.AAA());
-                            DataCheckManager.checkValue(s,"query");
+                            DataDemo dataDemo = null;
+                            for (int i = 0; i < 100; i++) {
+                                dataDemo = new DataDemo();
+//                                dataDemo.setShenTest("shen" + i);
+                                DataDemo.AAA aaa = new DataDemo.AAA();
+                                User user = new User();
+//                                user.setAaa(aaa);
+                                aaa.setUsers(user);
+                                List<User> users = new ArrayList<>();
+                                users.add(user);
+                                users.add(user);
+                                dataDemo.setUsers(users);
+                                dataDemo.setAaa(aaa);
+                                s.getData().add(dataDemo);
+                            }
+                            DataCheckManager.checkValue(s.getData(), s.getRequest());
+//                            DataCheckManager.checkValue(s.getData().get(0), s.getRequest());
                         }
 
                         @Override
@@ -104,6 +127,14 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
     }
 
+    private void check() {
+//        if (TextUtils.isEmpty(dataDemo.getData().getShenTest())) {
+//            dataDemo.getData().setShenTest("shen");
+//        } else {
+//            dataDemo.getData().setShenTest(null);
+//        }
+        DataCheckManager.checkValue(dataDemo, "query");
+    }
 
     private void showDialog() {
         LogUtil.d("StringUtil", "StringUtil" + StringUtil.getLengthSub("shenyonghe是个1，硬性", 16));

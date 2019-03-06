@@ -2,6 +2,8 @@ package com.syh.framework.http;
 
 import android.util.Log;
 
+import com.google.gson.Gson;
+import com.syh.framework.http.model.HttpBaseResult;
 import com.syh.framework.util.LogUtil;
 
 import java.io.IOException;
@@ -40,8 +42,11 @@ public class LogInterceptor implements Interceptor {
         }
         LogUtil.d(TAG, "| Response:" + content);
         LogUtil.d(TAG, "----------End:" + duration + "毫秒----------");
+        Gson gson = new Gson();
+        HttpBaseResult result = gson.fromJson(content,HttpBaseResult.class);
+        result.setRequest(request.toString());
         return response.newBuilder()
-                .body(okhttp3.ResponseBody.create(mediaType, content))
+                .body(okhttp3.ResponseBody.create(mediaType, gson.toJson(result)))
                 .build();
     }
 }

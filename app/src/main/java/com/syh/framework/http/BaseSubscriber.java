@@ -1,6 +1,7 @@
 package com.syh.framework.http;
 
 import com.syh.framework.annotions.DataCheckManager;
+import com.syh.framework.http.model.HttpBaseResult;
 
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.observers.DisposableObserver;
@@ -17,7 +18,9 @@ public abstract class BaseSubscriber<T> extends DisposableObserver<T> {
         }
 
         try {
-            DataCheckManager.checkValue(t,"统一处理空字段");
+//            if (t instanceof HttpBaseResult) {
+//                DataCheckManager.checkValue(((HttpBaseResult) t).getData(),((HttpBaseResult) t).getRequest());
+//            }
             onSuccess(t);
         } catch (Throwable e) {
             Exceptions.throwIfFatal(e);
