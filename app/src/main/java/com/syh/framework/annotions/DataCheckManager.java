@@ -25,6 +25,8 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DataCheckManager {
     /**
@@ -64,7 +66,7 @@ public class DataCheckManager {
                         for (int i = 0; i < ((Collection) o).size(); i++) {
                             String result = check(((Collection) o).toArray()[i]);
                             if (!TextUtils.isEmpty(result)) {
-                                map.put(((Collection) o).toArray()[i].getClass().getSimpleName()+ "." + i, result);
+                                map.put(((Collection) o).toArray()[i].getClass().getSimpleName() + "." + i, result);
                             }
                         }
                     }
@@ -98,8 +100,34 @@ public class DataCheckManager {
         @Override
         public int compare(String str1, String str2) {
 
-            return str1.compareTo(str2);
+            int str1Num = getInt(str1);
+            int str2Num = getInt(str2);
+            if (str1Num > str2Num) {
+                return 1;
+            } else if (str1Num < str2Num) {
+                return -1;
+            } else {
+                return 0;
+            }
         }
+    }
+
+    private static int getInt(String key) {
+        int result = 0;
+        try {
+            if (!TextUtils.isEmpty(key)) {
+                String regEx = "[^0-9]";
+                Pattern p = Pattern.compile(regEx);
+                Matcher m = p.matcher(key);
+                String num = m.replaceAll("").trim();
+                if (!TextUtils.isEmpty(num)) {
+                    result = Integer.parseInt(num);
+                }
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
     private static boolean needCheck(Object o) {
