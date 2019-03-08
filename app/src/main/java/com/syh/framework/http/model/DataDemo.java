@@ -19,6 +19,11 @@ public class DataDemo implements NeedCheck {
 
     private int anInt;
 
+    private boolean a;
+    private boolean b;
+    private boolean c;
+    private boolean d;
+
     private Integer bbb = new Integer(100000);
 
 //    @ChekNull
