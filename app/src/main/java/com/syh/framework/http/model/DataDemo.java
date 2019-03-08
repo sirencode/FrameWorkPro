@@ -38,6 +38,10 @@ public class DataDemo implements NeedCheck {
 //    @ChekNull
     private User user;
 
+    private User user1;
+
+    private User user12;
+
     public List<User> getUsers() {
         return users;
     }

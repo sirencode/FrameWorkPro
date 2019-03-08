@@ -28,11 +28,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * create by shenyonghe on 2019/3/7
+ **/
 public class DataCheckManager {
-    /**
-     * 开关控制是否需要校验
-     */
+
+    //开关控制是否需要校验
     private static boolean open = true;
+
+    // 线程池大小
+    private static final int THREAD_COUNT = 2;
 
     public static void setOpen(boolean isOpen) {
         open = isOpen;
@@ -44,21 +49,25 @@ public class DataCheckManager {
 
     private static ExecutorService singleES;
 
+    /**
+     * 返回map request.0 = 请求体系信息 key = 类名，下标代表位置（从1开始，0位置放请求体）
+     * {request.0=Request{method=GET, url=https://www.kuaidi100.com/query?type=yuantong&postid=11111111111, tag=null}, DataDemo1=AAA.age,AAA.name,User.aaa,User.phoneNum,DataDemo.shenTest}
+     * @param o
+     * @param path
+     */
     public static void checkValue(Object o, String path) {
         if (needCheck(o)) {
             if (singleES == null) {
-                singleES = newFixedThreadPool(1);
+                singleES = newFixedThreadPool(THREAD_COUNT);
             }
             singleES.execute(() -> {
                 try {
                     Map<String, String> map = new HashMap<>();
-                    StringBuffer msg = new StringBuffer("");
-                    String head = "接口" + path + "返回对象" + o.getClass().getName() + "空数据如下：";
                     if (o.getClass().isArray() && !o.getClass().isPrimitive() && Array.getLength(o) > 0 && Array.get(o, 0) instanceof NeedCheck) {
                         for (int i = 0; i < Array.getLength(o); i++) {
                             String result = check(Array.get(o, i));
                             if (!TextUtils.isEmpty(result)) {
-                                map.put(Array.get(o, i).getClass().getSimpleName() + "." + i, result);
+                                map.put(Array.get(o, i).getClass().getSimpleName() + "." + (i + 1), result);
                             }
                         }
                     }
@@ -66,18 +75,19 @@ public class DataCheckManager {
                         for (int i = 0; i < ((Collection) o).size(); i++) {
                             String result = check(((Collection) o).toArray()[i]);
                             if (!TextUtils.isEmpty(result)) {
-                                map.put(((Collection) o).toArray()[i].getClass().getSimpleName() + "." + i, result);
+                                map.put(((Collection) o).toArray()[i].getClass().getSimpleName() + "." + (i + 1), result);
                             }
                         }
                     }
                     if (o instanceof NeedCheck) {
                         String result = check(o);
                         if (!TextUtils.isEmpty(result)) {
-                            map.put(o.getClass().getSimpleName(), result);
+                            map.put(o.getClass().getSimpleName() + 1, result);
                         }
                     }
                     if (map.size() > 0) {
-                        LogUtil.d("DataCheckUtil", head + "\n" + shortMap(map).toString());
+                        map.put("request.0", path);
+                        LogUtil.d("DataCheckUtil", shortMap(map).toString());
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -89,13 +99,13 @@ public class DataCheckManager {
     }
 
     private static Map<String, String> shortMap(Map<String, String> baseMap) {
-        Map<String, String> sortMap = new TreeMap<String, String>(
-                new MapKeyComparator());
+        Map<String, String> sortMap = new TreeMap<>(
+                new MapNumComparator());
         sortMap.putAll(baseMap);
         return sortMap;
     }
 
-    static class MapKeyComparator implements Comparator<String> {
+    static class MapNumComparator implements Comparator<String> {
 
         @Override
         public int compare(String str1, String str2) {

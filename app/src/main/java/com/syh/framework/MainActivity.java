@@ -92,7 +92,7 @@ public class MainActivity extends BaseActivity {
                                 s.getData().add(dataDemo);
                             }
                             DataCheckManager.checkValue(s.getData(), s.getRequest());
-//                            DataCheckManager.checkValue(s.getData().get(0), s.getRequest());
+                            DataCheckManager.checkValue(s.getData().get(0), s.getRequest());
                         }
 
                         @Override

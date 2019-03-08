@@ -5,6 +5,7 @@ import android.util.LruCache;
 import com.syh.framework.util.unsafe.UnSafeProxy;
 
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 
 public class FieldLruCache {
 
@@ -12,7 +13,7 @@ public class FieldLruCache {
     final static int maxMemory = (int) (Runtime.getRuntime().maxMemory());
 
     static {
-        classLruCache = new LruCache<Class<?>, Field[]>(maxMemory / 32){
+        classLruCache = new LruCache<Class<?>, Field[]>(maxMemory / 32) {
             @Override
             protected int sizeOf(Class<?> key, Field[] value) {
                 return getObjectSize(value);
@@ -21,22 +22,26 @@ public class FieldLruCache {
     }
 
     public static Field[] get(Class<?> cl) {
-        Field[] fields = null;
-        fields = classLruCache.get(cl);
-        return fields;
+        return classLruCache.get(cl);
     }
 
-    public synchronized static void save(Class<?> cl,Field[] fields) {
-        classLruCache.put(cl,fields);
+    public synchronized static void save(Class<?> cl, Field[] fields) {
+        classLruCache.put(cl, fields);
     }
 
     public static int getObjectSize(Field[] fields) {
-        int size = 0;
+        int maxSize = 0;
+        int offset;
         for (Field field : fields) {
-            size += UnSafeProxy.objectFieldOffset(field);
+            if ((field.getModifiers() & Modifier.STATIC) == 0) {
+                offset = (int) UnSafeProxy.objectFieldOffset(field);
+                LogUtil.d("offset", "offset::" + offset);
+                maxSize = maxSize > offset ? maxSize : offset;
+            }
         }
-        LogUtil.d("FieldLruCache","FieldLruCache::"+size);
-        return size;
+        maxSize = (maxSize / 8 + 1) * 8;
+        LogUtil.d("FieldLruCache", "FieldLruCache::" + maxSize);
+        return maxSize;
     }
 
 }
