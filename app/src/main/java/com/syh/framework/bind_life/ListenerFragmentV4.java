@@ -6,7 +6,7 @@ import android.support.v4.app.Fragment;
 
 public class ListenerFragmentV4 extends Fragment {
     private LifeListener mlistener;
-    public static final String ListenerFragmentTag = "ListenerFragment";
+    public static final String ListenerFragmentTag = "ListenerFragmentV4";
 
     public ListenerFragmentV4() {
 
