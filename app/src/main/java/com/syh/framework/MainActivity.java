@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.syh.framework.bind_life.LifeCycleManager;
+import com.syh.framework.bind_life.LifeListener;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
@@ -120,6 +122,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void checkClick(View view) {
                 ToastUtil.showToast(MainActivity.this, "clickproxy");
+                bindLife();
+                bindLife2();
             }
         });
         findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastUtil.showToast(this, "root == " + SecurityCheck.chechRoot()));
@@ -134,6 +138,84 @@ public class MainActivity extends BaseActivity {
 //            dataDemo.getData().setShenTest(null);
 //        }
         DataCheckManager.checkValue(dataDemo, "query");
+    }
+
+    private void bindLife() {
+        LifeCycleManager.bindLife(this, new LifeListener() {
+            @Override
+            public void onStart() {
+                LogUtil.d("LifeListener","onStart");
+            }
+
+            @Override
+            public void onStop() {
+                LogUtil.d("LifeListener","onStop");
+            }
+
+            @Override
+            public void onCreate() {
+                LogUtil.d("LifeListener","onCreate");
+            }
+
+            @Override
+            public void onPause() {
+                LogUtil.d("LifeListener","onPause");
+            }
+
+            @Override
+            public void onResume() {
+                LogUtil.d("LifeListener","onResume");
+            }
+
+            @Override
+            public void onDestroy() {
+                LogUtil.d("LifeListener","onDestroy");
+            }
+
+            @Override
+            public void onFragmentHiddenChanged(boolean isHidden) {
+
+            }
+        });
+    }
+
+    private void bindLife2() {
+        LifeCycleManager.bindLife(this, new LifeListener() {
+            @Override
+            public void onStart() {
+                LogUtil.d("LifeListener2","onStart");
+            }
+
+            @Override
+            public void onStop() {
+                LogUtil.d("LifeListener2","onStop");
+            }
+
+            @Override
+            public void onCreate() {
+                LogUtil.d("LifeListener2","onCreate");
+            }
+
+            @Override
+            public void onPause() {
+                LogUtil.d("LifeListener2","onPause");
+            }
+
+            @Override
+            public void onResume() {
+                LogUtil.d("LifeListener2","onResume");
+            }
+
+            @Override
+            public void onDestroy() {
+                LogUtil.d("LifeListener2","onDestroy");
+            }
+
+            @Override
+            public void onFragmentHiddenChanged(boolean isHidden) {
+
+            }
+        });
     }
 
     private void showDialog() {
