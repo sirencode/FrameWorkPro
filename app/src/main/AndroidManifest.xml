@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.syh.framework">
 
     <!-- 读取外部存储的权限 -->
@@ -20,7 +21,8 @@
         android:icon="${app_icon}"
         android:label="${app_name}"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +49,11 @@
 
         <activity
             android:name=".test.LiveDataBusDemo"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".largeImage.LargeImageViewActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 

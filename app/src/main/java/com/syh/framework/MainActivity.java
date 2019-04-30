@@ -28,6 +28,7 @@ import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
 import com.syh.framework.http.model.HttpBaseResult;
 import com.syh.framework.http.model.User;
+import com.syh.framework.largeImage.LargeImageViewActivity;
 import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
@@ -129,6 +130,9 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastUtil.showToast(this, "root == " + SecurityCheck.chechRoot()));
         findViewById(R.id.btn_check_hook).setOnClickListener(v -> ToastUtil.showToast(this, "has hook app " + SecurityCheck.hocked(this)));
         findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
+        findViewById(R.id.btn_largeimg).setOnClickListener(v -> {
+            startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class));
+        });
     }
 
     private void check() {

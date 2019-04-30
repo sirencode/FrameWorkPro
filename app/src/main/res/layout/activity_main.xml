@@ -119,6 +119,15 @@
             android:text="HasHookApp"
             android:textSize="14dp" />
 
+        <Button
+            android:id="@+id/btn_largeimg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="LargeImg"
+            android:textSize="14dp" />
+
     </LinearLayout>
 
 </ScrollView>
