@@ -130,9 +130,8 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastUtil.showToast(this, "root == " + SecurityCheck.chechRoot()));
         findViewById(R.id.btn_check_hook).setOnClickListener(v -> ToastUtil.showToast(this, "has hook app " + SecurityCheck.hocked(this)));
         findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
-        findViewById(R.id.btn_largeimg).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class));
-        });
+        findViewById(R.id.btn_largeimg).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class)));
+        findViewById(R.id.btn_scroll).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollerActivity.class)));
     }
 
     private void check() {

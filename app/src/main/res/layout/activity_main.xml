@@ -128,6 +128,15 @@
             android:text="LargeImg"
             android:textSize="14dp" />
 
+        <Button
+            android:id="@+id/btn_scroll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="ScrollLay"
+            android:textSize="14dp" />
+
     </LinearLayout>
 
 </ScrollView>
