@@ -11,7 +11,6 @@ import android.os.Looper;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
@@ -44,7 +43,7 @@ import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
-import com.syh.framework.util.WebViewActivity;
+import com.syh.framework.web.WebViewActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -132,6 +131,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
         findViewById(R.id.btn_largeimg).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class)));
         findViewById(R.id.btn_scroll).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollerActivity.class)));
+        findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
     }
 
     private void check() {
@@ -259,7 +259,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void startWebAct() {
-        WebViewActivity.startWebAct("https://blog.csdn.net/carson_ho/article/details/52693322", this);
+        WebViewActivity.startWebAct("file:////android_asset/test.html", this,true);
     }
 
     private void playTone(Context context, int mediaFileRawId) {

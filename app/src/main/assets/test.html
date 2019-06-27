@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,viewport-fit=cover"/>
+    <script>
+
+        //关闭h5页面
+        function closeCurPage()
+        {
+            window.android.closeCurPage();
+        }
+    </script>
+</head>
+<body>
+
+<div>
+    <a onclick="closeCurPage()" href="">关闭当前页</a> <br>
+    <a href="openshen://vip.shen.com/common/webview_activity?url=https://blog.csdn.net/androidmsky/article/details/54316327">跳转H5</a>
+    <br><br>
+
+</div>
+<script>
+    document.getElementById('#reload').on('click',function(){
+         window.reload()
+         closeCurPage()
+    })
+
+</script>
+</body>
+</html>

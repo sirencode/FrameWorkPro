@@ -31,7 +31,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".util.WebViewActivity"
+            android:name=".web.WebViewActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
@@ -61,6 +61,25 @@
             android:name=".ScrollerActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".DropdownAct"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".web.RouterActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/TransparentActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="openshen" />
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>

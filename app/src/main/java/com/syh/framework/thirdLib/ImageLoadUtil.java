@@ -1,16 +1,20 @@
 package com.syh.framework.thirdLib;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.UIParameter;
 
 /**
  * Created bg shenyonghe on 2018/5/21.
  */
 public class ImageLoadUtil {
+
+    private static final String TAG = "ImageLoadUtil";
 
     /**
      * 简单加载图片
@@ -20,6 +24,10 @@ public class ImageLoadUtil {
      * @param imageView
      */
     public static void loadImageView(Context context, String path, ImageView imageView) {
+        if (context == null || TextUtils.isEmpty(path) || imageView == null) {
+            LogUtil.LogE(TAG,TAG + "参数错误");
+            return;
+        }
         Glide.with(context).load(path).into(imageView);
     }
 
