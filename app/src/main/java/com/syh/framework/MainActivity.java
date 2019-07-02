@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
@@ -43,6 +44,8 @@ import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
+import com.syh.framework.util.toast.CustomToast;
+import com.syh.framework.util.toast.ToastFactory;
 import com.syh.framework.web.WebViewActivity;
 
 import java.util.ArrayList;
@@ -122,11 +125,12 @@ public class MainActivity extends BaseActivity {
             @Override
             public void checkClick(View view) {
                 ToastUtil.showToast(MainActivity.this, "clickproxy");
+                ToastFactory.getInstance(getApplicationContext()).makeTextShow("clickproxy",Toast.LENGTH_LONG);
                 bindLife();
                 bindLife2();
             }
         });
-        findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastUtil.showToast(this, "root == " + SecurityCheck.chechRoot()));
+        findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastFactory.getInstance(getApplicationContext()).makeTextShow("root == " + SecurityCheck.chechRoot(),Toast.LENGTH_LONG));
         findViewById(R.id.btn_check_hook).setOnClickListener(v -> ToastUtil.showToast(this, "has hook app " + SecurityCheck.hocked(this)));
         findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
         findViewById(R.id.btn_largeimg).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class)));
@@ -147,32 +151,32 @@ public class MainActivity extends BaseActivity {
         LifeCycleManager.bindLife(this, new LifeListener() {
             @Override
             public void onStart() {
-                LogUtil.d("LifeListener","onStart");
+                LogUtil.d("LifeListener", "onStart");
             }
 
             @Override
             public void onStop() {
-                LogUtil.d("LifeListener","onStop");
+                LogUtil.d("LifeListener", "onStop");
             }
 
             @Override
             public void onCreate() {
-                LogUtil.d("LifeListener","onCreate");
+                LogUtil.d("LifeListener", "onCreate");
             }
 
             @Override
             public void onPause() {
-                LogUtil.d("LifeListener","onPause");
+                LogUtil.d("LifeListener", "onPause");
             }
 
             @Override
             public void onResume() {
-                LogUtil.d("LifeListener","onResume");
+                LogUtil.d("LifeListener", "onResume");
             }
 
             @Override
             public void onDestroy() {
-                LogUtil.d("LifeListener","onDestroy");
+                LogUtil.d("LifeListener", "onDestroy");
             }
 
             @Override
@@ -186,32 +190,32 @@ public class MainActivity extends BaseActivity {
         LifeCycleManager.bindLife(this, new LifeListener() {
             @Override
             public void onStart() {
-                LogUtil.d("LifeListener2","onStart");
+                LogUtil.d("LifeListener2", "onStart");
             }
 
             @Override
             public void onStop() {
-                LogUtil.d("LifeListener2","onStop");
+                LogUtil.d("LifeListener2", "onStop");
             }
 
             @Override
             public void onCreate() {
-                LogUtil.d("LifeListener2","onCreate");
+                LogUtil.d("LifeListener2", "onCreate");
             }
 
             @Override
             public void onPause() {
-                LogUtil.d("LifeListener2","onPause");
+                LogUtil.d("LifeListener2", "onPause");
             }
 
             @Override
             public void onResume() {
-                LogUtil.d("LifeListener2","onResume");
+                LogUtil.d("LifeListener2", "onResume");
             }
 
             @Override
             public void onDestroy() {
-                LogUtil.d("LifeListener2","onDestroy");
+                LogUtil.d("LifeListener2", "onDestroy");
             }
 
             @Override
@@ -259,7 +263,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void startWebAct() {
-        WebViewActivity.startWebAct("file:////android_asset/test.html", this,true);
+        WebViewActivity.startWebAct("file:////android_asset/test.html", this, true);
     }
 
     private void playTone(Context context, int mediaFileRawId) {
