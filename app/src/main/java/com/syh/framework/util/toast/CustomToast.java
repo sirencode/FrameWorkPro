@@ -227,24 +227,9 @@ public class CustomToast implements IToast {
 
     }
 
-    private final Runnable mShow = new Runnable() {
-        @Override
-        public void run() {
-            handleShow();
-        }
-    };
+    private final Runnable mShow = () -> handleShow();
 
-    private final Runnable mHide = new Runnable() {
-        @Override
-        public void run() {
-            handleHide();
-        }
-    };
+    private final Runnable mHide = () -> handleHide();
 
-    private final static Runnable mActivite = new Runnable() {
-        @Override
-        public void run() {
-            activeQueue();
-        }
-    };
+    private final static Runnable mActivite = () -> activeQueue();
 }
