@@ -132,7 +132,7 @@ public class MainActivity extends BaseActivity {
         });
         findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastFactory.getInstance(getApplicationContext()).makeTextShow("root == " + SecurityCheck.chechRoot(),Toast.LENGTH_LONG));
         findViewById(R.id.btn_check_hook).setOnClickListener(v -> ToastUtil.showToast(this, "has hook app " + SecurityCheck.hocked(this)));
-        findViewById(R.id.btn_setText).setOnClickListener(v -> textView.setText("hello"));
+        findViewById(R.id.btn_setText).setOnClickListener(v -> setTextViewText("hello"));
         findViewById(R.id.btn_largeimg).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class)));
         findViewById(R.id.btn_scroll).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollerActivity.class)));
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
@@ -145,6 +145,10 @@ public class MainActivity extends BaseActivity {
 //            dataDemo.getData().setShenTest(null);
 //        }
         DataCheckManager.checkValue(dataDemo, "query");
+    }
+
+    public void setTextViewText(String string) {
+        textView.setText(string);
     }
 
     private void bindLife() {
