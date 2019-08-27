@@ -2,6 +2,7 @@ package com.syh.framework.list;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created bg shenyonghe on 2018/6/7.
  */
-public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class BaseQuickAdapter<T extends DiffKey> extends RecyclerView.Adapter<BaseViewHolder> {
 
     public List<T> datas;
     public Context context;
@@ -52,6 +53,9 @@ public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<BaseViewH
         return datas == null ? 0 : datas.size();
     }
 
+    public List<T> getDatas() {
+        return datas;
+    }
 
     /**
      * 数据重置
@@ -59,9 +63,12 @@ public abstract class BaseQuickAdapter<T> extends RecyclerView.Adapter<BaseViewH
      * @param list
      */
     public void setDatas(@NonNull List<T> list) {
+        final BaseDiffUtil diffCallback = new BaseDiffUtil((List<DiffKey>) this.datas, (List<DiffKey>) list);
+        final DiffUtil.DiffResult diffResult = DiffUtil.calculateDiff(diffCallback);
         this.datas.clear();
         this.datas = list == null ? new ArrayList<>() : list;
-        notifyDataSetChanged();
+        diffResult.dispatchUpdatesTo(this);
+//        notifyDataSetChanged();
     }
 
     /**

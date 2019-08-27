@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created bg shenyonghe on 2018/6/8.
  */
-public class MyQuickAdapter extends BaseQuickAdapter<String> {
+public class MyQuickAdapter extends BaseQuickAdapter<ItemDemo> {
 
     private static final HashMap<Integer, Integer> map;
 
@@ -21,18 +21,18 @@ public class MyQuickAdapter extends BaseQuickAdapter<String> {
         map.put(1, R.layout.item_test2_list);
     }
 
-    public MyQuickAdapter(List<String> data) {
+    public MyQuickAdapter(List<ItemDemo> data) {
         super(map, data);
     }
 
     @Override
     public int getItemViewType(int position) {
-        return position % 2 == 0 ? 0 : 1;
+        return 1;
     }
 
     @Override
-    public void convert(BaseViewHolder holder, String s) {
+    public void convert(BaseViewHolder holder, ItemDemo s) {
         TextView title = holder.getView(R.id.tv_title);
-        title.setText(s);
+        title.setText(s.getName());
     }
 }

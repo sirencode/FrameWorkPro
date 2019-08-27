@@ -2,6 +2,7 @@ package com.syh.framework.list;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -17,6 +18,9 @@ import java.util.List;
 public class ListActivity extends BaseActivity {
 
     private RecyclerView recyclerView;
+    private SwipeRefreshLayout refreshLayout;
+    private MyQuickAdapter adapter;
+    private int num = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -27,16 +31,37 @@ public class ListActivity extends BaseActivity {
 
     private void initRV() {
         recyclerView = findViewById(R.id.recycler_view);
+        refreshLayout = findViewById(R.id.refreshLay);
+        refreshLayout.setOnRefreshListener(() -> {
+            refreshList();
+        });
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MyQuickAdapter adapter = new MyQuickAdapter(getData());
+        adapter = new MyQuickAdapter(getData());
         recyclerView.setAdapter(adapter);
     }
 
-    private List<String> getData() {
-        List<String> list = new ArrayList<>();
+    private List<ItemDemo> getData() {
+        List<ItemDemo> list = new ArrayList<>();
         for (int i = 0; i < 20; i++) {
-            list.add("hello" + i);
+            ItemDemo itemDemo = new ItemDemo();
+            itemDemo.setName("shen" + i);
+            itemDemo.setKeyNum(i + "key");
+            list.add(itemDemo);
         }
         return list;
+    }
+
+
+    private List<ItemDemo> getRefreshData() {
+        List<ItemDemo> list = getData();
+        list.remove(4);
+        list.remove(5);
+        list.remove(6);
+        return list;
+    }
+
+    private void refreshList() {
+        adapter.setDatas(getRefreshData());
+        refreshLayout.setRefreshing(false);
     }
 }
