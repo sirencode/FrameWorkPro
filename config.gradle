@@ -2,7 +2,7 @@ ext {
     android = [
             compileSdkVersion: 27,
             applicationId    : 'com.example.shenyonghe.framework',
-            minSdkVersion    : 15,
+            minSdkVersion    : 19,
             targetSdkVersion : 23
     ]
 

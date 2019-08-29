@@ -1,13 +1,19 @@
 package com.syh.framework;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -20,6 +26,7 @@ import android.widget.Toast;
 
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
+import com.syh.framework.generated.callback.OnClickListener;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
@@ -136,6 +143,24 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_largeimg).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class)));
         findViewById(R.id.btn_scroll).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollerActivity.class)));
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
+        findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
+    }
+
+     private void checkLive(){
+        int alwaysFinish = Settings.Global.getInt(getContentResolver(), Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0);
+        if(alwaysFinish == 1) {
+            Dialog dialog = null;
+            dialog = new AlertDialog.Builder(this)
+                    .setMessage(
+                            "由于您已开启'不保留活动',导致i呼部分功能无法正常使用.我们建议您点击左下方'设置'按钮,在'开发者选项'中关闭'不保留活动'功能.")
+                    .setNegativeButton("取消", (dialog1, which) -> dialog1.dismiss()).setPositiveButton("设置", (dialog12, which) -> {
+                        Intent intent = new Intent(
+                                Settings.ACTION_APPLICATION_DEVELOPMENT_SETTINGS);
+                        startActivity(intent);
+                    }).create();
+            dialog.show();
+
+        }
     }
 
     private void check() {
