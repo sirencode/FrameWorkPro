@@ -1,6 +1,8 @@
 package com.syh.framework.util;
 
 import android.app.Activity;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v4.app.FragmentActivity;
@@ -16,4 +18,16 @@ public class BaseActivity extends Activity {
         UIParameter.setWindowStatusBarColor(this);
     }
 
+    @Override
+    public Resources getResources() {
+        Resources res = super.getResources();
+        if (res != null) {
+            Configuration config = res.getConfiguration();
+            if (config != null && config.fontScale != 1.0f) {
+                config.fontScale = 1.0f;
+                res.updateConfiguration(config, res.getDisplayMetrics());
+            }
+        }
+        return res;
+    }
 }

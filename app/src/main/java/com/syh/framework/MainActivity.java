@@ -66,11 +66,8 @@ public class MainActivity extends BaseActivity {
     private static final String TAG = "MainActivity";
     private ImageView imageView1;
     private ImageView imageView2;
-    private int count;
     private ToneGenerator toneGenerator;
     private TextView textView;
-
-    private HttpBaseResult<List<DataDemo>> dataDemo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,6 +122,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.tv_spact).setOnClickListener(v -> startSpAct());
         findViewById(R.id.tv_list).setOnClickListener(v -> startListAct());
         findViewById(R.id.btn_shadow).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShadowAct.class)));
+        findViewById(R.id.btn_time_wheel).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, TimeWheelAct.class)));
         findViewById(R.id.btn_show_databus).setOnClickListener(v -> LiveDataBusDemo.start(MainActivity.this));
         findViewById(R.id.btn_start_sound).setOnClickListener(v -> playTone(MainActivity.this, 100));
         findViewById(R.id.btn_sub_string).setOnClickListener(v -> ToastUtil.showToast(this, StringUtil.getLengthSub("sshshshhshh设计师", 12)));
@@ -161,15 +159,6 @@ public class MainActivity extends BaseActivity {
             dialog.show();
 
         }
-    }
-
-    private void check() {
-//        if (TextUtils.isEmpty(dataDemo.getData().getShenTest())) {
-//            dataDemo.getData().setShenTest("shen");
-//        } else {
-//            dataDemo.getData().setShenTest(null);
-//        }
-        DataCheckManager.checkValue(dataDemo, "query");
     }
 
     public void setTextViewText(String string) {
