@@ -1,13 +1,19 @@
 package com.syh.framework.algorithm.leetcode;
 
-import com.syh.framework.algorithm.sort.SortUtil;
-
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Stack;
 
 /**
  * Created by shenyonghe on 2019-11-07.
  */
 public class Shuzu {
+
+    private static Random rand = new Random();
 
     /**
      * 题目描述：
@@ -73,6 +79,7 @@ public class Shuzu {
                 nums[p + 1] = nums[q];
                 p++;
             }
+            q++;
             q++;
         }
         return p + 1;
@@ -265,6 +272,13 @@ public class Shuzu {
         }
     }
 
+    public static int[] shuffle(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            swap(i, rand.nextInt(array.length - i) + i, array);
+        }
+        return array;
+    }
+
     /**
      * 环状替换
      *
@@ -340,42 +354,356 @@ public class Shuzu {
         return digits;
     }
 
+    /**
+     * 给定两个数组，编写一个函数来计算它们的交集。
+     *
+     * @param nums1
+     * @param nums2
+     * @return
+     */
+    public static int[] intersect(int[] nums1, int[] nums2) {
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        List<Integer> list = new ArrayList<>();
+        int p1 = 0, p2 = 0;
+        while (p1 < nums1.length && p2 < nums2.length) {
+            if (nums1[p1] < nums2[p2]) p1++;
+            else if (nums1[p1] > nums2[p2]) p2++;
+            else {
+                list.add(nums1[p1]);
+                p1++;
+                p2++;
+            }
+        }
+        int[] res = new int[list.size()];
+        for (int i = 0; i < res.length; i++) res[i] = list.get(i);
+        return res;
+    }
+
+    /**
+     * 判断一个 9x9 的数独是否有效。只需要根据以下规则，验证已经填入的数字是否有效即可。
+     * 1 数字 1-9 在每一行只能出现一次。
+     * 2 数字 1-9 在每一列只能出现一次。
+     * 3 数字 1-9 在每一个以粗实线分隔的 3x3 宫内只能出现一次。
+     *
+     * @param board
+     * @return
+     */
+    public static boolean isValidSudoku(char[][] board) {
+        for (int i = 0; i < 9; i++) {
+            // hori, veti, sqre分别表示行、列、小宫
+            int hori = 0, veti = 0, sqre = 0;
+            for (int j = 0; j < 9; j++) {
+                // 由于传入为char，需要转换为int，减48
+                int h = board[i][j] - 48;
+                int v = board[j][i] - 48;
+                int s = board[3 * (i / 3) + j / 3][3 * (i % 3) + j % 3] - 48;
+                // "."的ASCII码为46，故小于0代表着当前符号位"."，不用讨论
+                if (h > 0) {
+                    hori = sodokuer(h, hori);
+                }
+                if (v > 0) {
+                    veti = sodokuer(v, veti);
+                }
+                if (s > 0) {
+                    sqre = sodokuer(s, sqre);
+                }
+                if (hori == -1 || veti == -1 || sqre == -1) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean isValidSudoku_(char[][] board) {
+        int[] row = new int[9];
+        int[] col = new int[9];
+        int[] sub = new int[9];
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                //当前字符是'.'则跳过, 直接进入下一轮循环
+                if (board[i][j] == '.')
+                    continue;
+                //处理行
+                if (!valid(row, i, board[i][j] - 48))
+                    return false;
+                //处理列
+                if (!valid(col, j, board[i][j] - 48))
+                    return false;
+                //处理子数独
+                int index = i / 3 * 3 + j / 3; // 分成9块数据{{0,3,6},{1,4,7},{2,5,8}}
+                if (!valid(sub, index, board[i][j] - 48))
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    private static int sodokuer(int n, int val) {
+        return ((val >> n) & 1) == 1 ? -1 : val ^ (1 << n);
+    }
+
+    public static boolean valid(int[] arr, int i, int cur) {
+        //cur出现过, 返回false
+        if (((arr[i] >> cur) & 1) == 1)
+            return false;
+        //cur没出现过, 标记为出现过对应位标识对应数字，8= *1*******
+        arr[i] = arr[i] | (1 << cur);
+        return true;
+    }
+
+    /**
+     * 给定一个 n × n 的二维矩阵表示一个图像。将图像顺时针旋转 90 度。
+     *
+     * @param matrix
+     */
+    public static void rotate(int[][] matrix) {
+        if (matrix.length == 0 || matrix.length != matrix[0].length) {
+            return;
+        }
+        int nums = matrix.length;
+        for (int i = 0; i < nums; i++) {
+            for (int j = 0; j < nums - i; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[nums - 1 - j][nums - 1 - i];
+                matrix[nums - 1 - j][nums - 1 - i] = temp;
+            }
+        }
+        for (int i = 0; i < (nums >> 1); i++) {
+            for (int j = 0; j < nums; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[nums - 1 - i][j];
+                matrix[nums - 1 - i][j] = temp;
+            }
+        }
+    }
+
+    /**
+     * 寻找数组的中心索引
+     * 给定一个整数类型的数组 nums，请编写一个能够返回数组“中心索引”的方法。
+     * 我们是这样定义数组中心索引的：数组中心索引的左侧所有元素相加的和等于右侧所有元素相加的和。
+     *
+     * @param nums
+     * @return
+     */
+    public static int pivotIndex(int[] nums) {
+        int leftsum = 0;
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        for (int i = 0; i < nums.length; i++) {
+            if (leftsum == sum - leftsum - nums[i]) return i;
+            leftsum += nums[i];
+        }
+        return -1;
+    }
+
+    /**
+     * 在一个给定的数组nums中，总是存在一个最大元素。
+     * 查找数组中的最大元素是否至少是数组中每个其他数字的两倍。
+     * 如果是，则返回最大元素的索引，否则返回-1。
+     *
+     * @param nums
+     * @return
+     */
+    public static int dominantIndex(int[] nums) {
+        int secondMax = 0;
+        int max = nums[0];
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] > max) {
+                secondMax = max;
+                max = nums[i];
+                index = i;
+            }
+        }
+
+        for (int i = index + 1; i < nums.length; i++) {
+            if (nums[i] > secondMax) {
+                secondMax = nums[i];
+            }
+        }
+        return max >= 2 * secondMax ? index : -1;
+    }
+
+    /**
+     * 对角线遍历
+     * 给定一个含有 M x N 个元素的矩阵（M 行，N 列），请以对角线遍历的顺序返回这个矩阵中的所有元素。
+     * 输入：
+     * [
+     * [ 1, 2, 3 ],
+     * [ 4, 5, 6 ],
+     * [ 7, 8, 9 ]
+     * ]
+     * <p>
+     * 输出:  [1,2,4,7,5,3,6,8,9] - 00 01 10 20 11 02 12 21 22
+     *
+     * @param matrix
+     * @return
+     */
+    public static int[] findDiagonalOrder(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return new int[0];
+        }
+        int iNum = matrix.length;
+        int jNum = matrix[0].length;
+        int[] result = new int[iNum * jNum];
+        boolean isUp = true;
+        int resultIndex = 0;
+        int iIndex = 0, jIndex = 0;
+        while (iIndex < iNum && jIndex < jNum) { //边界控制
+            if (isUp) {
+                while (iIndex >= 0 && jIndex >= 0 && iIndex < iNum && jIndex < jNum) { //遍历上升的所有数
+                    result[resultIndex++] = matrix[iIndex--][jIndex++];
+                }
+                iIndex++;
+                jIndex--; //revert，上面退出循环后多改变了一次，要先还原到up的最后一个元素的index状态
+                if (jIndex + 1 < jNum) { //先j+1；
+                    jIndex++;
+                } else { //j会超过边界，此时i+1;
+                    iIndex++;
+                }
+                isUp = false;
+            } else {
+                while (iIndex >= 0 && jIndex >= 0 && iIndex < iNum && jIndex < jNum) {//遍历下降的所有数
+                    result[resultIndex++] = matrix[iIndex++][jIndex--];
+                }
+                iIndex--;
+                jIndex++;//revert，和up的解释相同
+                if (iIndex + 1 < iNum) {//先i+1
+                    iIndex++;
+                } else {//i会超出边界，此时j+1
+                    jIndex++;
+                }
+                isUp = true;
+            }
+        }
+        return result;
+    }
+
+    public static List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> list = new ArrayList<>();
+        if (matrix == null || matrix.length == 0) return list;
+        int m = matrix.length;
+        int n = matrix[0].length;
+        int i = 0;
+        //统计矩阵从外向内的层数，如果矩阵非空，那么它的层数至少为1层
+        int count = (Math.min(m, n) + 1) / 2;
+        //从外部向内部遍历，逐层打印数据
+        while (i < count) {
+            for (int j = i; j < n - i; j++) {
+                list.add(matrix[i][j]);
+            }
+            for (int j = i + 1; j < m - i; j++) {
+                list.add(matrix[j][(n - 1) - i]);
+            }
+
+            for (int j = (n - 1) - (i + 1); j >= i && (m - 1 - i != i); j--) {
+                list.add(matrix[(m - 1) - i][j]);
+            }
+            for (int j = (m - 1) - (i + 1); j >= i + 1 && (n - 1 - i) != i; j--) {
+                list.add(matrix[j][i]);
+            }
+            i++;
+        }
+        return list;
+    }
+
+    /**
+     * 数组拆分 I
+     * 给定长度为 2n 的数组, 你的任务是将这些数分成 n 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。
+     *
+     * @param nums
+     * @return
+     */
+    public static int arrayPairSum(int[] nums) {
+        Arrays.sort(nums);
+        int sum = 0;
+        for (int i = 0; i < nums.length; i += 2) {
+            sum += nums[i];
+        }
+        return sum;
+    }
+
+    /**
+     * 最大连续1的个数
+     * 给定一个二进制数组， 计算其中最大连续1的个数。
+     *
+     * @param nums
+     * @return
+     */
+    public static int findMaxConsecutiveOnes(int[] nums) {
+        int max = 0;
+        int currentmax = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 1) {
+                if (currentmax == -1) {
+                    max++;
+                } else {
+                    currentmax++;
+                }
+            } else {
+                max = Math.max(max, currentmax);
+                currentmax = 0;
+            }
+        }
+        max = Math.max(max, currentmax);
+        return max;
+    }
+
     public static void main(String[] args) {
-        int[] nums = new int[]{0, 0, 1};
-        moveZeroes(nums);
-        int[] remove = new int[]{0, 1, 2, 2, 3, 0, 4, 2};
-        removeElement(remove, 2);
-        System.out.println(Arrays.toString(remove));
-
-        int[] removeDup = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
-        System.out.println(removeDuplicatesTwo(removeDup));
-        System.out.println(Arrays.toString(removeDup));
-
-        int[] color = new int[]{2, 0, 2, 1, 1, 0};
-        sortColors(color);
-        System.out.println(Arrays.toString(color));
-        int[] findk = new int[]{3, 2, 1, 5, 6, 4};
-        System.out.println(findKthLargest(findk, 2));
-        System.out.println(Arrays.toString(findk));
-        int[] height = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
-        System.out.println(maxArea(height));
-        int[] minsub = new int[]{2, 3, 1, 2, 4, 3};
-        System.out.println(minSubArrayLen(7, minsub));
-
-        int[] prices = new int[]{2, 1, 2, 0, 2};
-        System.out.println(maxProfit(prices));
-
-        int[] rotates = new int[]{1, 2, 3, 4, 5, 6, 7};
-        rotateG(rotates, 3);
-        System.out.println(Arrays.toString(rotates));
-
-        int[] repet = new int[]{1, 2, 3, 1};
-        System.out.println(containsDuplicate(repet));
-
-        int[] single = new int[]{4, 1, 2, 1, 2};
-        System.out.println(singleNumber(single));
-
-        int[] plusOne = new int[]{9, 9, 9, 9};
-        System.out.println(Arrays.toString(plusOne(plusOne)));
+//        int[] nums = new int[]{0, 0, 1};
+//        moveZeroes(nums);
+//        int[] remove = new int[]{0, 1, 2, 2, 3, 0, 4, 2};
+//        removeElement(remove, 2);
+//        System.out.println(Arrays.toString(remove));
+//
+//        int[] removeDup = new int[]{0, 0, 1, 1, 1, 2, 2, 3, 3, 4};
+//        System.out.println(removeDuplicatesTwo(removeDup));
+//        System.out.println(Arrays.toString(removeDup));
+//
+//        int[] color = new int[]{2, 0, 2, 1, 1, 0};
+//        sortColors(color);
+//        System.out.println(Arrays.toString(color));
+//        int[] findk = new int[]{3, 2, 1, 5, 6, 4};
+//        System.out.println(findKthLargest(findk, 2));
+//        System.out.println(Arrays.toString(findk));
+//        int[] height = new int[]{1, 8, 6, 2, 5, 4, 8, 3, 7};
+//        System.out.println(maxArea(height));
+//        int[] minsub = new int[]{2, 3, 1, 2, 4, 3};
+//        System.out.println(minSubArrayLen(7, minsub));
+//
+//        int[] prices = new int[]{2, 1, 2, 0, 2};
+//        System.out.println(maxProfit(prices));
+//
+//        int[] rotates = new int[]{1, 2, 3, 4, 5, 6, 7};
+//        rotateG(rotates, 3);
+//        System.out.println(Arrays.toString(rotates));
+//
+//        int[] repet = new int[]{1, 2, 3, 1};
+//        System.out.println(containsDuplicate(repet));
+//
+//        int[] single = new int[]{4, 1, 2, 1, 2};
+//        System.out.println(singleNumber(single));
+//
+//        int[] plusOne = new int[]{9, 9, 9, 9};
+//        System.out.println(Arrays.toString(plusOne(plusOne)));
+//
+        int[][] matrix = new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+//        rotate(matrix);
+//        for (int i = 0; i < matrix.length; i++) {
+//            System.out.println(Arrays.toString(matrix[i]));
+//        }
+//        System.out.println(Arrays.toString(shuffle(single)));
+//        int[] pov1 = new int[]{1, 7, 3, 6, 5, 6};
+//        int[] pov2 = new int[]{1, 2, 3};
+//        System.out.println(pivotIndex(pov1));
+//        System.out.println(pivotIndex(pov2));
+        System.out.println(Arrays.toString(findDiagonalOrder(matrix)));
+        MathA.soutList(spiralOrder(matrix));
+        int[] maxlx = new int[]{1, 1, 1, 1, 0, 1};
+        System.out.println(findMaxConsecutiveOnes(maxlx));
     }
 }
