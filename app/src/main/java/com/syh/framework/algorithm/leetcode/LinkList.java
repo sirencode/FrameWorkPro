@@ -349,13 +349,62 @@ public class LinkList {
      * 在返回结果后，两个链表仍须保持原有的结构。
      * 可假定整个链表结构中没有循环。
      * 程序尽量满足 O(n) 时间复杂度，且仅用 O(1) 内存。
+     * 可以理解成两个人速度一致， 走过的路程一致。那么肯定会同一个时间点到达终点。如果到达终点的最后一段路两人都走的话，那么这段路上俩人肯定是肩并肩手牵手的。
      *
      * @param headA
      * @param headB
      * @return
      */
-    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-        return null;
+    public static ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        if (headA == null || headB == null) return null;
+        ListNode pA = headA, pB = headB;
+        while (pA != pB) {
+            pA = pA == null ? headB : pA.next;
+            pB = pB == null ? headA : pB.next;
+        }
+        return pA;
+    }
+
+    /**
+     * 移除链表元素
+     * 删除链表中等于给定值 val 的所有节点。
+     *
+     * @param head
+     * @param val
+     * @return
+     */
+    public static ListNode removeElements(ListNode head, int val) {
+        ListNode dumb = new ListNode(0);
+        dumb.next = head;
+        ListNode iter = dumb;
+        while (iter.next != null) {
+            ListNode curr = iter.next;
+            if (curr.val == val) {
+                iter.next = curr.next;
+                continue;
+            }
+            iter = iter.next;
+        }
+        return dumb.next;
+    }
+
+    /**
+     * 奇偶链表
+     * 给定一个单链表，把所有的奇数节点和偶数节点分别排在一起。请注意，这里的奇数节点和偶数节点指的是节点编号的奇偶性，而不是节点的值的奇偶性。
+     * @param head
+     * @return
+     */
+    public static ListNode oddEvenList(ListNode head) {
+        if (head == null) return null;
+        ListNode odd = head, even = head.next, evenHead = even;
+        while (even != null && even.next != null) {
+            odd.next = even.next;
+            odd = odd.next;
+            even.next = odd.next;
+            even = even.next;
+        }
+        odd.next = evenHead;
+        return head;
     }
 
     public static void main(String[] args) {
@@ -368,5 +417,9 @@ public class LinkList {
         System.out.println(hasCyclePoint(buildcircleNode()));
         soutListNode(swapPairs(head2));
         System.out.println(detectCycle(buildcircleNode()).val);
+        List<ListNode> nodes = buildIntersetionNode();
+        System.out.println(getIntersectionNode(nodes.get(0), nodes.get(1)).val);
+        soutListNode(removeElements(head,4));
+        soutListNode(oddEvenList(head));
     }
 }

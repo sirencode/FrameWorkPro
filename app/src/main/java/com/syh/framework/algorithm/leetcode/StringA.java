@@ -2,9 +2,13 @@ package com.syh.framework.algorithm.leetcode;
 
 import android.text.TextUtils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * Created by shenyonghe on 2019-11-11.
@@ -257,7 +261,7 @@ public class StringA {
     public static String addBinary(String a, String b) {
         StringBuilder ans = new StringBuilder();
         int ca = 0;
-        for(int i = a.length() - 1, j = b.length() - 1;i >= 0 || j >= 0; i--, j--) {
+        for (int i = a.length() - 1, j = b.length() - 1; i >= 0 || j >= 0; i--, j--) {
             int sum = ca;
             sum += i >= 0 ? a.charAt(i) - '0' : 0;
             sum += j >= 0 ? b.charAt(j) - '0' : 0;
@@ -266,6 +270,56 @@ public class StringA {
         }
         ans.append(ca == 1 ? ca : "");
         return ans.reverse().toString();
+    }
+
+    /**
+     * 无重复字符的最长子串
+     * 给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+     *
+     * @param s
+     * @return
+     */
+    public static int lengthOfLongestSubstring(String s) {
+        int len = s.length();
+        if (s == null || len == 0) return 0;
+        Set<Character> set = new HashSet<>();
+        int max = 0, i = 0, j = 0;
+        while (i < len && j < len) {
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j++));
+                max = Math.max(max, j - i);
+            } else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return max;
+    }
+
+    /**
+     * 最长回文子串
+     * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
+     * @param s
+     * @return
+     */
+    public static String longestPalindrome(String s) {
+        if (s == null || s.length() == 0) return "";
+        String result = "";
+        for (int i = 0; i < s.length(); i++) {
+
+        }
+        return "";
+    }
+
+    public static String preProcess(String s) {
+        int n = s.length();
+        if (n == 0) {
+            return "^$";
+        }
+        String ret = "^";
+        for (int i = 0; i < n; i++)
+            ret += "#" + s.charAt(i);
+        ret += "#$";
+        return ret;
     }
 
     public static void main(String[] args) {

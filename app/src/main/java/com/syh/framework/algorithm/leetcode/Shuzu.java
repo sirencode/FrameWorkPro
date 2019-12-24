@@ -3,9 +3,11 @@ package com.syh.framework.algorithm.leetcode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.Stack;
 
 /**
@@ -651,6 +653,164 @@ public class Shuzu {
         }
         max = Math.max(max, currentmax);
         return max;
+    }
+
+    /**
+     * 多数元素
+     * 给定一个大小为 n 的数组，找到其中的多数元素。多数元素是指在数组中出现次数大于 ⌊ n/2 ⌋ 的元素。
+     * 你可以假设数组是非空的，并且给定的数组总是存在多数元素。
+     * 输入: [3,2,3]
+     * 输出: 3
+     * 输入: [2,2,1,1,1,2,2]
+     * 输出: 2
+     *
+     * @param nums
+     * @return
+     */
+    public static int majorityElement(int[] nums) {
+        int count = 0;
+        Integer candidate = null;
+
+        for (int num : nums) {
+            if (count == 0) {
+                candidate = num;
+            }
+            count += (num == candidate) ? 1 : -1;
+        }
+
+        return candidate;
+    }
+
+    /**
+     * 搜索二维矩阵 II
+     * 编写一个高效的算法来搜索 m x n 矩阵 matrix 中的一个目标值 target。该矩阵具有以下特性：
+     * 每行的元素从左到右升序排列。
+     * 每列的元素从上到下升序排列。
+     *
+     * @param matrix
+     * @param target
+     * @return
+     */
+    public static boolean searchMatrix(int[][] matrix, int target) {
+        int row = matrix.length - 1;
+        int column = 0;
+        while (row >= 0 && column < matrix[0].length) {
+            if (matrix[row][column] > target) {
+                row--;
+            } else if (matrix[row][column] < target) {
+                column++;
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 鸡蛋掉落
+     * 你将获得 K 个鸡蛋，并可以使用一栋从 1 到 N  共有 N 层楼的建筑。
+     * 每个蛋的功能都是一样的，如果一个蛋碎了，你就不能再把它掉下去。
+     * 你知道存在楼层 F ，满足 0 <= F <= N 任何从高于 F 的楼层落下的鸡蛋都会碎，从 F 楼层或比它低的楼层落下的鸡蛋都不会破。
+     * 每次移动，你可以取一个鸡蛋（如果你有完整的鸡蛋）并把它从任一楼层 X 扔下（满足 1 <= X <= N）。
+     * 你的目标是确切地知道 F 的值是多少。
+     * <p>
+     * 提示
+     * 1 <= K <= 100
+     * 1 <= N <= 10000
+     *
+     * @param K
+     * @param N
+     * @return
+     */
+    public static int superEggDrop(int K, int N) {
+        int[][] dp = new int[K + 1][N + 1];
+        for (int m = 1; m <= N; m++) {
+            dp[0][m] = 0; // zero egg
+            for (int k = 1; k <= K; k++) {
+                dp[k][m] = dp[k][m - 1] + dp[k - 1][m - 1] + 1;
+                if (dp[k][m] >= N) {
+                    return m;
+                }
+            }
+        }
+        return N;
+    }
+
+    /**
+     * 三数之和
+     * 给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。
+     * 注意：答案中不可以包含重复的三元组。
+     *
+     * @param nums
+     * @return
+     */
+    public static List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> lists = new ArrayList<>();
+        int len = nums.length;
+        if (nums == null || len < 3) return lists;
+        Arrays.sort(nums);
+        for (int i = 0; i < len; i++) {
+            if (nums[i] > 0) break;
+            if (i > 0 && nums[i] == nums[i - 1]) continue;
+            int L = i + 1;
+            int R = len - 1;
+            while (L < R) {
+                int sum = nums[i] + nums[L] + nums[R];
+                if (sum == 0) {
+                    lists.add(Arrays.asList(nums[i], nums[L], nums[R]));
+                    while (L < R && nums[L] == nums[L + 1]) L++;
+                    while (L < R && nums[R] == nums[R - 1]) R--;
+                    L++;
+                    R--;
+                } else if (sum < 0) {
+                    L++;
+                } else {
+                    R--;
+                }
+            }
+        }
+        return lists;
+    }
+
+    /**
+     * 矩阵置零
+     * 给定一个 m x n 的矩阵，如果一个元素为 0，则将其所在行和列的所有元素都设为 0。请使用原地算法。
+     * 输入:
+     * [
+     * [1,1,1],
+     * [1,0,1],
+     * [1,1,1]
+     * ]
+     * 输出:
+     * [
+     * [1,0,1],
+     * [0,0,0],
+     * [1,0,1]
+     * ]
+     *
+     * @param matrix
+     */
+    public static void setZeroes(int[][] matrix) {
+        int R = matrix.length;
+        int C = matrix[0].length;
+        Set<Integer> rows = new HashSet<>();
+        Set<Integer> cols = new HashSet<>();
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                if (matrix[i][j] == 0) {
+                    rows.add(i);
+                    cols.add(j);
+                }
+            }
+        }
+
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
+                if (rows.contains(i) || cols.contains(j)) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {

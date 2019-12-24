@@ -1,6 +1,10 @@
 package com.syh.framework.algorithm.leetcode;
 
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -10,12 +14,12 @@ import java.util.Stack;
  * Created by shenyonghe on 2019-11-18.
  */
 public class Tree {
-    public static class TreeNode {
-        int val;
+    public static class TreeNode<T> {
+        T val;
         public TreeNode left;
         public TreeNode right;
 
-        TreeNode(int x) {
+        TreeNode(T x) {
             val = x;
         }
     }
@@ -150,7 +154,7 @@ public class Tree {
      * @param upper
      * @return
      */
-    public static boolean isValidBST(TreeNode node, Integer lower, Integer upper) {
+    public static boolean isValidBST(TreeNode<Integer> node, Integer lower, Integer upper) {
         if (node == null) return true;
         int val = node.val;
         if (lower != null && val <= lower) return false;
@@ -209,7 +213,7 @@ public class Tree {
      * @param root
      * @return
      */
-    public static List<List<Integer>> levelOrder(TreeNode root) {
+    public static List<List<Integer>> levelOrder(TreeNode<Integer> root) {
         List<List<Integer>> levels = new ArrayList<>();
         if (root == null) return levels;
         Queue<TreeNode> queue = new LinkedList<>();
@@ -219,7 +223,7 @@ public class Tree {
             levels.add(new ArrayList<>());
             int level_length = queue.size();
             for (int i = 0; i < level_length; ++i) {
-                TreeNode node = queue.remove();
+                TreeNode<Integer> node = queue.remove();
                 levels.get(level).add(node.val);
                 if (node.left != null) queue.add(node.left);
                 if (node.right != null) queue.add(node.right);
@@ -241,6 +245,7 @@ public class Tree {
     /**
      * 将一个按照升序排列的有序数组，转换为一棵高度平衡二叉搜索树。
      * 二分
+     *
      * @param nums
      * @return
      */
@@ -258,7 +263,7 @@ public class Tree {
         return root;
     }
 
-    public static LinkedList<TreeNode> generate_trees(int start,int end) {
+    public static LinkedList<TreeNode> generate_trees(int start, int end) {
         LinkedList<TreeNode> all_trees = new LinkedList<TreeNode>();
         if (start > end) {
             all_trees.add(null);
@@ -285,20 +290,44 @@ public class Tree {
      * 输入: 3
      * 输出:
      * [
-     *   [1,null,3,2],
-     *   [3,2,null,1],
-     *   [3,1,null,null,2],
-     *   [2,1,3],
-     *   [1,null,2,null,3]
+     * [1,null,3,2],
+     * [3,2,null,1],
+     * [3,1,null,null,2],
+     * [2,1,3],
+     * [1,null,2,null,3]
      * ]
+     *
      * @param n
      * @return
      */
     public static List<TreeNode> generateTrees(int n) {
         if (n == 0) {
-            return new LinkedList<TreeNode>();
+            return new ArrayList<>();
         }
         return generate_trees(1, n);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+        List<TreeNode> res = new ArrayList<>();
+        HashMap<String, Integer> map = new HashMap<>();
+        if (root == null) return res;
+        saveRoute(root, res, map);
+        return res;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private static String saveRoute(TreeNode node, List<TreeNode> res, HashMap<String, Integer> map) {
+        if (node == null) return "";
+        //自底向上获取每个节点的序列化值
+        String route = node.val + "," + saveRoute(node.left, res, map) + "," + saveRoute(node.right, res, map);
+        //将结果放入map，判断是否有相同子树
+        //避免出现多次相同子树
+        if (map.get(route) != null && map.get(route) == 1) {
+            res.add(node);
+        }
+        map.put(route, map.getOrDefault(route, 0) + 1);
+        return route;
     }
 
     public static void main(String[] args) {
