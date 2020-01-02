@@ -3,7 +3,7 @@ package com.syh.framework.design_patters.behavior_type.interpreter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Context {
+public class MyContext {
     private Map<Variable, Boolean> map = new HashMap<>();
 
     public void assign(Variable var, boolean value) {

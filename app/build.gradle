@@ -12,6 +12,11 @@ android {
         flavorDimensions ("versionCode")
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
@@ -25,26 +30,25 @@ android {
         enabled = true
     }
 
-    productFlavors {
-        productA {
-            applicationId 'com.syh.producta'
-            manifestPlaceholders = [
-                    app_name : "ProductA",
-                    app_icon : "@mipmap/a",
-            ]
-        }
-        productB {
-            applicationId 'com.syh.productb'
-            manifestPlaceholders = [
-                    app_name : "ProductB",
-                    app_icon : "@mipmap/b",
-            ]
-        }
-    }
+//    productFlavors {
+//        productA {
+//            applicationId 'com.syh.producta'
+//            manifestPlaceholders = [
+//                    app_name : "ProductA",
+//                    app_icon : "@mipmap/a",
+//            ]
+//        }
+//        productB {
+//            applicationId 'com.syh.productb'
+//            manifestPlaceholders = [
+//                    app_name : "ProductB",
+//                    app_icon : "@mipmap/b",
+//            ]
+//        }
+//    }
 
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
-        productAApi project(':thirdLib')
         project.ext.dependenciesMethod delegate, rootProject.ext.appDps
     }
 }

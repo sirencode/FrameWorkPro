@@ -6,7 +6,7 @@ import com.syh.framework.design_patters.behavior_type.command.Receiver;
 import com.syh.framework.design_patters.behavior_type.command.ShutdownCommand;
 import com.syh.framework.design_patters.behavior_type.interpreter.And;
 import com.syh.framework.design_patters.behavior_type.interpreter.Constant;
-import com.syh.framework.design_patters.behavior_type.interpreter.Context;
+import com.syh.framework.design_patters.behavior_type.interpreter.MyContext;
 import com.syh.framework.design_patters.behavior_type.interpreter.Expression;
 import com.syh.framework.design_patters.behavior_type.interpreter.Not;
 import com.syh.framework.design_patters.behavior_type.interpreter.Or;
@@ -144,7 +144,7 @@ public class BehaviorTest {
 
         System.out.println();
         System.out.println("解释器模式:");
-        Context context = new Context();
+        MyContext context = new MyContext();
         Variable xVariable = new Variable("X");
         Variable yVariable = new Variable("Y");
         Constant constant = new Constant(true);

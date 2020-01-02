@@ -25,7 +25,7 @@ public class ImageLoadUtil {
      */
     public static void loadImageView(Context context, String path, ImageView imageView) {
         if (context == null || TextUtils.isEmpty(path) || imageView == null) {
-            LogUtil.LogE(TAG,TAG + "参数错误");
+            LogUtil.e(TAG,TAG + "参数错误");
             return;
         }
         Glide.with(context).load(path).into(imageView);

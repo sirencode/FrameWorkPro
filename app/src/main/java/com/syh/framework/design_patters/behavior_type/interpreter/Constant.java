@@ -6,7 +6,7 @@ public class Constant extends Expression {
         this.value = value;
     }
     @Override
-    public boolean interpret(Context ctx) {
+    public boolean interpret(MyContext ctx) {
         return value;
     }
 

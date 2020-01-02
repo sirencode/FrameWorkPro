@@ -6,7 +6,7 @@ public class Variable extends Expression {
         this.name = name;
     }
     @Override
-    public boolean interpret(Context ctx) {
+    public boolean interpret(MyContext ctx) {
         return ctx.lookup(this);
     }
 

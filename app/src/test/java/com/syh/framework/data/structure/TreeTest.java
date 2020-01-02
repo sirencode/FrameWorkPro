@@ -8,19 +8,20 @@ import static org.junit.Assert.*;
 
 /**
  * Created by shenyonghe on 2019-12-24.
- * // 结构如下：(由下往上建立)
- * //            A
- * //       B         C
- * //    D         E     F
- * //  G   H         I
- * 前序：A B D G H C E I F
- * 中序：G D H B A E I C F
- * 后序：G H D B I E F C A
  */
 public class TreeTest {
 
     private Tree<String> tree;
 
+    // 结构如下：(由下往上建立)
+    //            A
+    //       B         C
+    //    D         E     F
+    //  G   H         I
+    //
+    // 前序：A B D G H C E I F
+    // 中序：G D H B A E I C F
+    // 后序：G H D B I E F C A
     @Before
     public void init() {
         tree = Tree.init();

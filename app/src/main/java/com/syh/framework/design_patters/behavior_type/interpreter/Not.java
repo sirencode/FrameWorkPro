@@ -6,7 +6,7 @@ public class Not extends Expression {
         this.exp = exp;
     }
     @Override
-    public boolean interpret(Context ctx) {
+    public boolean interpret(MyContext ctx) {
         return !exp.interpret(ctx);
     }
 

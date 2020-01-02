@@ -3,17 +3,14 @@ package com.syh.framework;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -26,7 +23,6 @@ import android.widget.Toast;
 
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
-import com.syh.framework.generated.callback.OnClickListener;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
@@ -51,7 +47,6 @@ import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
-import com.syh.framework.util.toast.CustomToast;
 import com.syh.framework.util.toast.ToastFactory;
 import com.syh.framework.web.WebViewActivity;
 
@@ -130,23 +125,24 @@ public class MainActivity extends BaseActivity {
             @Override
             public void checkClick(View view) {
                 ToastUtil.showToast(MainActivity.this, "clickproxy");
-                ToastFactory.getInstance(getApplicationContext()).makeTextShow("clickproxy",Toast.LENGTH_LONG);
+                ToastFactory.getInstance(getApplicationContext()).makeTextShow("clickproxy", Toast.LENGTH_LONG);
                 bindLife();
                 bindLife2();
             }
         });
-        findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastFactory.getInstance(getApplicationContext()).makeTextShow("root == " + SecurityCheck.chechRoot(),Toast.LENGTH_LONG));
+        findViewById(R.id.btn_check_root).setOnClickListener(v -> ToastFactory.getInstance(getApplicationContext()).makeTextShow("root == " + SecurityCheck.chechRoot(), Toast.LENGTH_LONG));
         findViewById(R.id.btn_check_hook).setOnClickListener(v -> ToastUtil.showToast(this, "has hook app " + SecurityCheck.hocked(this)));
         findViewById(R.id.btn_setText).setOnClickListener(v -> setTextViewText("hello"));
         findViewById(R.id.btn_largeimg).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, LargeImageViewActivity.class)));
         findViewById(R.id.btn_scroll).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollerActivity.class)));
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
         findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
+        findViewById(R.id.btn_load_so).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SoLoadActivity.class)));
     }
 
-     private void checkLive(){
+    private void checkLive() {
         int alwaysFinish = Settings.Global.getInt(getContentResolver(), Settings.Global.ALWAYS_FINISH_ACTIVITIES, 0);
-        if(alwaysFinish == 1) {
+        if (alwaysFinish == 1) {
             Dialog dialog = null;
             dialog = new AlertDialog.Builder(this)
                     .setMessage(

@@ -6,7 +6,7 @@ public abstract class Expression {
      * @param ctx
      * @return
      */
-    public abstract boolean interpret(Context ctx);
+    public abstract boolean interpret(MyContext ctx);
     /**
      * 校验两个表达式在结构上是否相同
      */

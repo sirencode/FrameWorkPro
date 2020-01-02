@@ -7,7 +7,7 @@ public class And extends Expression {
         this.right = right;
     }
     @Override
-    public boolean interpret(Context ctx) {
+    public boolean interpret(MyContext ctx) {
         return left.interpret(ctx) && right.interpret(ctx);
     }
 

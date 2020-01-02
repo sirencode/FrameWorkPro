@@ -16,7 +16,7 @@ public class LogUtil {
         return LogUtil.canLog;
     }
 
-    public static void LogA(String tag, String msg) {
+    public static void a(String tag, String msg) {
         log(LogType.LogA, tag, msg);
     }
 
@@ -24,15 +24,15 @@ public class LogUtil {
         log(LogType.LogD, tag, msg);
     }
 
-    public static void LogE(String tag, String msg) {
+    public static void e(String tag, String msg) {
         log(LogType.LogE, tag, msg);
     }
 
-    public static void LogI(String tag, String msg) {
+    public static void i(String tag, String msg) {
         log(LogType.LogI, tag, msg);
     }
 
-    public static void LogW(String tag, String msg) {
+    public static void w(String tag, String msg) {
         log(LogType.LogW, tag, msg);
     }
 

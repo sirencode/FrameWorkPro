@@ -28,15 +28,15 @@ public class SecurityCheck {
                 for (String file : obj.split(":")) {
                     File file1 = new File(file, "su");
                     if (file1.exists()) {
-                        LogUtil.LogA("RootPath", file);
+                        LogUtil.a("RootPath", file);
                         return true;
                     }
                 }
             } else if (new File("/system/bin/su").exists()) {
-                LogUtil.LogA("RootPath", "/system/bin/su");
+                LogUtil.a("RootPath", "/system/bin/su");
                 return true;
             } else if (new File("/system/xbin/su").exists()) {
-                LogUtil.LogA("RootPath", "/system/xbin/su");
+                LogUtil.a("RootPath", "/system/xbin/su");
                 return true;
             }
         } catch (Exception e) {
