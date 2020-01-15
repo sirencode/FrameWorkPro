@@ -43,6 +43,7 @@ import com.syh.framework.annotions.DataCheckManager;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
 import com.syh.framework.util.LogUtil;
+import com.syh.framework.util.NativeLoadePathUtil;
 import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
@@ -137,7 +138,14 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_scroll).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollerActivity.class)));
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
         findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
-        findViewById(R.id.btn_load_so).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, SoLoadActivity.class)));
+        findViewById(R.id.btn_load_so).setOnClickListener(v -> showSoLoad());
+    }
+
+    private void showSoLoad(){
+        NativeLoadePathUtil.installSoDir(this);
+        SoloadDialog dialog = new SoloadDialog();
+        dialog.show(getFragmentManager(),"soload");
+        dialog.setCancelable(false);
     }
 
     private void checkLive() {

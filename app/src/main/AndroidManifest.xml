@@ -82,10 +82,6 @@
             android:screenOrientation="portrait" />
 
         <activity
-            android:name=".SoLoadActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
             android:name=".web.RouterActivity"
             android:launchMode="singleTask"
             android:theme="@style/TransparentActivity">

@@ -9,9 +9,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:text="动态下载so"
         android:textColor="@color/colorAccent"
-        android:layout_gravity="center_horizontal"
         android:textSize="16sp" />
 
     <LinearLayout
@@ -87,4 +87,30 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="Check" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="取消"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+
+        <Button
+            android:id="@+id/btn_finish"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.0"
+            android:text="完成"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </LinearLayout>
 </LinearLayout>

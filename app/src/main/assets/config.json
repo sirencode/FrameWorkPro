@@ -1,0 +1,15 @@
+{
+  "status":"ok",
+  "data":{
+    "arm_type":"arm64",
+    "type":"pano_xixun",
+    "libs":[
+      {
+        "name":"libc++_shared.so"
+      },
+      {
+        "name":"libarvopencv4.so"
+      }
+    ]
+  }
+}

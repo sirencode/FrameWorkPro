@@ -32,7 +32,6 @@ public class MyApp extends Application {
                         .readTimeout(15_000) // set read timeout.
                 ))
                 .commit();
-        NativeLoadePathUtil.installSoDir(this);
         instance = this;
     }
 

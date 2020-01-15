@@ -52,3 +52,7 @@ android {
         project.ext.dependenciesMethod delegate, rootProject.ext.appDps
     }
 }
+
+dependencies {
+    implementation 'org.jetbrains:annotations:15.0'
+}

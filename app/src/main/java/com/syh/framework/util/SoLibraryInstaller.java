@@ -7,57 +7,50 @@ import java.io.File;
 import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.util.Arrays;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import dalvik.system.DexFile;
 import dalvik.system.PathClassLoader;
 
 /**
- * Created by shenyonghe on 2019-12-31.
+ * so 动态加载，扩展 so 的加载目录
  */
-public class NativeLoadePathUtil {
-    private static final String TAG = NativeLoadePathUtil.class.getSimpleName();
+public class SoLibraryInstaller {
+    private static final String TAG = SoLibraryInstaller.class.getSimpleName();
 
     /**
      * 将 so 所在的目录放入PathClassLoader里的nativeLibraryDirectories中
      *
      * @param context
      */
-    public static void installSoDir(Context context) {
+    public static boolean installSoDir(Context context, String dir) {
         LogUtil.i(TAG, "installSoDir");
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) {
             LogUtil.e(TAG, "installSoDir sdk_int = " + Build.VERSION.SDK_INT);
-            return;
+            return false;
         }
-        File soDirFile = new File(context.getDir("lib", Context.MODE_PRIVATE).getPath() + File.separator + "lib" );
-        if (!soDirFile.exists()) {
-            soDirFile.mkdirs();
-        }
-        LogUtil.d("installSoDir", "installSoDir==>" + soDirFile.getPath());
+
+        File soDirFile = new File(dir);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // private final NativeLibraryElement[] nativeLibraryPathElements;
-            v26Install(soDirFile, context);
+            return v26Install(soDirFile, context);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // private final Element[] nativeLibraryPathElements;
-            v23Install(soDirFile, context);
+            return v23Install(soDirFile, context);
         } else {
             // private final File[] nativeLibraryDirectories;
-            v19Install(soDirFile, context);
+            return v19Install(soDirFile, context);
         }
-    }
-
-    public static String getZipPath(Context context) {
-        return context.getDir("lib", Context.MODE_PRIVATE).getPath();
     }
 
     /**
-     * private final File[] nativeLibraryDirectories;
      *
+     * private final File[] nativeLibraryDirectories;
      * @param soDirFile
      * @param context
      */
-    private static void v19Install(File soDirFile, Context context) {
+    private static boolean v19Install(File soDirFile, Context context) {
         LogUtil.i(TAG, "v19Install");
         PathClassLoader pathClassLoader = (PathClassLoader) context.getClassLoader();
         Object pathList = getPathList(pathClassLoader);
@@ -75,26 +68,33 @@ public class NativeLoadePathUtil {
                     newList[0] = soDirFile;
                     nativeLibraryDirectoriesField.set(pathList, newList);
                 }
-            } catch (Exception e) {
+                LogUtil.i(TAG, "v19Install successfully");
+                return true;
+            } catch (NoSuchFieldException e) {
+                LogUtil.e(TAG, "v19Install - " + e.toString());
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
                 LogUtil.e(TAG, "v19Install - " + e.toString());
                 e.printStackTrace();
             }
         } else {
             LogUtil.e(TAG, "v19Install pathList = null");
         }
+
+        LogUtil.i(TAG, "v19Install failure");
+        return false;
     }
 
     /**
      * private final Element[] nativeLibraryPathElements;
-     *
      * @param soDirFile
      * @param context
      */
-    private static void v23Install(File soDirFile, Context context) {
+    private static boolean v23Install(File soDirFile, Context context) {
         LogUtil.i(TAG, "v23Install");
         PathClassLoader pathClassLoader = (PathClassLoader) context.getClassLoader();
         Object pathList = getPathList(pathClassLoader);
-        if (pathList != null) {
+        if(pathList != null) {
             //获取当前类的属性
             try {
                 Field nativeLibraryPathField = pathList.getClass().getDeclaredField("nativeLibraryPathElements");
@@ -103,33 +103,48 @@ public class NativeLoadePathUtil {
                 Class<?> elementType = nativeLibraryPathField.getType().getComponentType();
                 Constructor<?> constructor = elementType.getConstructor(File.class, boolean.class, File.class, DexFile.class);
                 constructor.setAccessible(true);
-                Object element = constructor.newInstance(soDirFile);
+                Object element = constructor.newInstance(soDirFile, true, null, null);
+                // 放到系统目录之前
                 if (list instanceof List) {
                     ((List) list).add(0, element);
-                    LogUtil.e(TAG, "v23Install - " + element);
                 } else if(list instanceof Object[]) {
                     Object[] newList = (Object[]) Array.newInstance(elementType, ((Object[]) list).length + 1);
                     System.arraycopy(list, 0 , newList, 1, ((Object[]) list).length);
                     newList[0] = element;
                     nativeLibraryPathField.set(pathList, newList);
-                    LogUtil.e(TAG, "v23Install - " + Arrays.toString(newList));
                 }
-            } catch (Exception e) {
+                LogUtil.i(TAG, "v23Install successfully");
+                return true;
+            } catch (NoSuchFieldException e) {
+                LogUtil.e(TAG, "v23Install - " + e.toString());
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                LogUtil.e(TAG, "v23Install - " + e.toString());
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                LogUtil.e(TAG, "v23Install - " + e.toString());
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                LogUtil.e(TAG, "v23Install - " + e.toString());
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
                 LogUtil.e(TAG, "v23Install - " + e.toString());
                 e.printStackTrace();
             }
         } else {
             LogUtil.e(TAG, "v23Install pathList = null");
         }
+
+        LogUtil.i(TAG, "v23Install failure");
+        return false;
     }
 
     /**
      * private final NativeLibraryElement[] nativeLibraryPathElements;
-     *
      * @param soDirFile
      * @param context
      */
-    private static void v26Install(File soDirFile, Context context) {
+    private static boolean v26Install(File soDirFile, Context context) {
         LogUtil.i(TAG, "v26Install");
         PathClassLoader pathClassLoader = (PathClassLoader) context.getClassLoader();
         Object pathList = getPathList(pathClassLoader);
@@ -144,22 +159,37 @@ public class NativeLoadePathUtil {
                 Object element = constructor.newInstance(soDirFile);
                 if (list instanceof List) {
                     ((List) list).add(0, element);
-                    LogUtil.e(TAG, "v26Install - " + element);
                 } else if (list instanceof Object[]) {
                     Object[] newList = (Object[]) Array.newInstance(elementType, ((Object[]) list).length + 1);
                     System.arraycopy(list, 0, newList, 1, ((Object[]) list).length);
                     newList[0] = element;
                     nativeLibraryPathField.set(pathList, newList);
-                    LogUtil.e(TAG, "v26Install - " + Arrays.toString(newList));
                 }
 
-            } catch (Exception e) {
+                LogUtil.i(TAG, "v26Install successfully");
+                return true;
+            } catch (NoSuchFieldException e) {
+                LogUtil.e(TAG, "v26Install - " + e.toString());
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                LogUtil.e(TAG, "v26Install - " + e.toString());
+                e.printStackTrace();
+            } catch (NoSuchMethodException e) {
+                LogUtil.e(TAG, "v26Install - " + e.toString());
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                LogUtil.e(TAG, "v26Install - " + e.toString());
+                e.printStackTrace();
+            }  catch (InvocationTargetException e) {
                 LogUtil.e(TAG, "v26Install - " + e.toString());
                 e.printStackTrace();
             }
         } else {
             LogUtil.e(TAG, "v26Install pathList = null");
         }
+
+        LogUtil.i(TAG, "v26Install failure");
+        return false;
     }
 
     private static Object getPathList(Object classLoader) {
@@ -169,7 +199,13 @@ public class NativeLoadePathUtil {
             Field declaredField = cls.getDeclaredField("pathList");
             declaredField.setAccessible(true);
             return declaredField.get(classLoader);
-        } catch (Exception e) {
+        } catch (ClassNotFoundException e) {
+            LogUtil.e(TAG, "getPathList - " + e.toString());
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            LogUtil.e(TAG, "getPathList - " + e.toString());
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
             LogUtil.e(TAG, "getPathList - " + e.toString());
             e.printStackTrace();
         }
