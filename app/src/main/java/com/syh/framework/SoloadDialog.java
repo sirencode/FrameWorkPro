@@ -222,7 +222,7 @@ public class SoloadDialog extends DialogFragment {
             e.printStackTrace();
             result = TextUtils.isEmpty(e.getMessage()) ? "Exception" : e.getMessage();
         } catch (Throwable throwable) {
-//            DevUtil.e(TAG, "injectSo error" + throwable.getMessage());
+            LogUtil.e(TAG, "injectSo error" + throwable.getMessage());
             result = TextUtils.isEmpty(throwable.getMessage()) ? "throwable" : throwable.getMessage();
         }
         return result;

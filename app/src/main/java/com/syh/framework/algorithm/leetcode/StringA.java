@@ -295,20 +295,7 @@ public class StringA {
         return max;
     }
 
-    /**
-     * 最长回文子串
-     * 给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。
-     * @param s
-     * @return
-     */
-    public static String longestPalindrome(String s) {
-        if (s == null || s.length() == 0) return "";
-        String result = "";
-        for (int i = 0; i < s.length(); i++) {
 
-        }
-        return "";
-    }
 
     public static String preProcess(String s) {
         int n = s.length();

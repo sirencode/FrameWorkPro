@@ -20,4 +20,9 @@
         <attr name="topDrawableHeight" format="reference|dimension"/>
         <attr name="bottomDrawableHeight" format="reference|dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="SquareLayout">
+        <attr name="hwRate" format="float" />
+        <attr name="widthFixed" format="boolean" />
+    </declare-styleable>
 </resources>
