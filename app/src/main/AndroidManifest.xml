@@ -82,6 +82,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".DirectAct"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
             android:name=".web.RouterActivity"
             android:launchMode="singleTask"
             android:theme="@style/TransparentActivity">

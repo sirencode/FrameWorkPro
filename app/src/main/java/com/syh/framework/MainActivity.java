@@ -139,6 +139,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
         findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
         findViewById(R.id.btn_load_so).setOnClickListener(v -> showSoLoad());
+        findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,DirectAct.class)));
     }
 
     private void showSoLoad(){

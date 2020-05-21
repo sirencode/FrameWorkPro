@@ -19,7 +19,6 @@ public class LinkList {
         }
     }
 
-    //{4,5,1,9}
     public static ListNode buildDeleteNode() {
         ListNode node = new ListNode(1);
         node.next = new ListNode(2);
