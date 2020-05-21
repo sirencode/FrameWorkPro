@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,8 @@ import android.widget.Toast;
 
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
+import com.syh.framework.defense.DefenseActivity;
+import com.syh.framework.defense.TestService;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
@@ -139,13 +142,14 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
         findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
         findViewById(R.id.btn_load_so).setOnClickListener(v -> showSoLoad());
-        findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this,DirectAct.class)));
+        findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DirectAct.class)));
+        findViewById(R.id.btn_defense).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DefenseActivity.class)));
     }
 
-    private void showSoLoad(){
+    private void showSoLoad() {
         NativeLoadePathUtil.installSoDir(this);
         SoloadDialog dialog = new SoloadDialog();
-        dialog.show(getFragmentManager(),"soload");
+        dialog.show(getFragmentManager(), "soload");
         dialog.setCancelable(false);
     }
 
