@@ -34,6 +34,8 @@ import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
 import com.syh.framework.http.model.HttpBaseResult;
 import com.syh.framework.http.model.User;
+import com.syh.framework.img.ImageConfig;
+import com.syh.framework.img.ImageLoaderHelp;
 import com.syh.framework.largeImage.LargeImageViewActivity;
 import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
@@ -111,8 +113,9 @@ public class MainActivity extends BaseActivity {
         });
         imageView2 = findViewById(R.id.image2);
         imageView2.setOnClickListener(v -> showDialog());
-        ImageLoadUtil.loadFixSizeIV(this, "http://pic34.nipic.com/20131101/10633410_194949329000_2.png", 100, 100, imageView1);
+//        ImageLoadUtil.loadFixSizeIV(this, "http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png", 100, 100, imageView1);
         ImageLoadUtil.loadImageView(this, "http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png", imageView2);
+        ImageLoaderHelp.Companion.displayImg(imageView1,"http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png",null, ImageConfig.Companion.getImageConfig1());
 
         TextView textView = findViewById(R.id.tv_msg);
         textView.setOnClickListener(v -> startWebAct());
@@ -142,6 +145,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
         findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
         findViewById(R.id.btn_load_so).setOnClickListener(v -> showSoLoad());
+
         findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DirectAct.class)));
         findViewById(R.id.btn_defense).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DefenseActivity.class)));
     }

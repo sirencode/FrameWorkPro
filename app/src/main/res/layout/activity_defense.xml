@@ -37,4 +37,13 @@
         android:background="#ccc"
         android:text="不可模拟点击" />
 
+    <Button
+        android:id="@+id/btn_ui_long_click"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="15dp"
+        android:text="Long Time Click"
+        android:textSize="14dp" />
+
 </LinearLayout>
