@@ -6,6 +6,8 @@ import android.widget.TextView;
 
 import com.syh.framework.R;
 import com.syh.framework.util.SPHelper;
+import com.syh.framework.util.spwithtime.SPData;
+import com.syh.framework.util.spwithtime.SpTimeHelper;
 
 
 /**
@@ -14,7 +16,7 @@ import com.syh.framework.util.SPHelper;
 public class SPActivity extends Activity {
 
     private TextView infoView;
-    private SPHelper helper;
+    private SpTimeHelper helper;
     public static final String KEY = "test_key";
 
     @Override
@@ -25,7 +27,7 @@ public class SPActivity extends Activity {
     }
 
     private void initView() {
-        helper = new SPHelper(this, "test");
+        helper = new SpTimeHelper(this, "test");
         infoView = findViewById(R.id.tv_spinfo);
         findViewById(R.id.tv_save).setOnClickListener(v -> saveData());
         findViewById(R.id.tv_get).setOnClickListener(v -> getData());
@@ -33,7 +35,8 @@ public class SPActivity extends Activity {
     }
 
     private void saveData() {
-        helper.put(KEY, 123456);
+        SPData data = new SPData(11, 2, SpTimeHelper.MINUTE, System.currentTimeMillis());
+        helper.put(KEY, data);
     }
 
     private void getData() {
