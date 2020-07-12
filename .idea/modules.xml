@@ -3,7 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FrameWorkPro.iml" filepath="$PROJECT_DIR$/FrameWorkPro.iml" group="FrameWorkPro" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FrameWorkPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FrameWorkPro-app.iml" group="FrameWorkPro/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro-thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro-thirdLib.iml" group="FrameWorkPro/thirdLib" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FrameWorkPro/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shen-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/shen-FrameWorkPro.iml" group="FrameWorkPro" />
       <module fileurl="file://$PROJECT_DIR$/thirdLib/thirdLib.iml" filepath="$PROJECT_DIR$/thirdLib/thirdLib.iml" group="FrameWorkPro/thirdLib" />
     </modules>
   </component>

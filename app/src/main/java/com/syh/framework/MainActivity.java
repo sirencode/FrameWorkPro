@@ -148,6 +148,7 @@ public class MainActivity extends BaseActivity {
 
         findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DirectAct.class)));
         findViewById(R.id.btn_defense).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DefenseActivity.class)));
+        findViewById(R.id.btn_extend).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExtendAct.class)));
     }
 
     private void showSoLoad() {
