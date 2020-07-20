@@ -18,6 +18,7 @@ import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -330,4 +331,9 @@ public class MainActivity extends BaseActivity {
         text.setText(spannableStringImg);
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        LaunchRecord.Companion.endRecord("onWindowFocusChanged");
+    }
 }

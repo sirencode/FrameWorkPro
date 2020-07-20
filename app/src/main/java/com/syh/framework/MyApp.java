@@ -35,6 +35,12 @@ public class MyApp extends Application {
         instance = this;
     }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        LaunchRecord.Companion.startRecord();
+    }
+
     public static MyApp getApplication() {
         return instance;
     }
