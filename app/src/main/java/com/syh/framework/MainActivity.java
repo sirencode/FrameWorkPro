@@ -27,6 +27,7 @@ import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
 import com.syh.framework.defense.DefenseActivity;
 import com.syh.framework.defense.TestService;
+import com.syh.framework.frame_animation.AnimationActivity;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
@@ -150,6 +151,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DirectAct.class)));
         findViewById(R.id.btn_defense).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DefenseActivity.class)));
         findViewById(R.id.btn_extend).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExtendAct.class)));
+        findViewById(R.id.btn_animation).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AnimationActivity.class)));
     }
 
     private void showSoLoad() {
