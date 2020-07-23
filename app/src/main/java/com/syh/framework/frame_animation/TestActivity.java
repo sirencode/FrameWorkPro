@@ -2,6 +2,7 @@ package com.syh.framework.frame_animation;
 
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -24,7 +25,7 @@ public class TestActivity extends AppCompatActivity {
     private AnimationDrawable animationDrawable;
     private int mode;
     private boolean start = false;
-    AnimationsContainerO.FramesSequenceAnimation animation;
+    AnimationsContainer.FramesSequenceAnimation animation;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class TestActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.title);
         playBtn = (Button) findViewById(R.id.play_btn);
 
-        if(mode == 1){
+        if (mode == 1) {
             textView.setText("普通帧动画");
             playBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -54,26 +55,36 @@ public class TestActivity extends AppCompatActivity {
                 }
             });
 
-        }else {
+        } else {
             textView.setText("优化帧动画");
-            playBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if(animation == null)
-                        animation = AnimationsContainerO.Companion.getInstance().createProgressDialogAnim(imageView);
-
-                    if(!switchBtn()){
-                        animation.start();
-                    }else {
-                        animation.stop();
-                    }
+            playBtn.setOnClickListener(view -> {
+                if (animation == null)
+                    animation = AnimationsContainer.Companion.getINSTANCE().createProgressDialogAnim(imageView, () -> {
+//                            new Handler().postDelayed(() -> {
+//                                finish();
+//                            }, 500);
+                        return null;
+                    });
+                if (!switchBtn()) {
+                    animation.start();
+                } else {
+                    animation.stop();
                 }
             });
+            imageView.postDelayed(() -> {
+                AnimationsContainer.Companion.getINSTANCE().createProgressDialogAnim(imageView, () -> {
+                    new Handler().postDelayed(() -> {
+                        finish();
+                    }, 500);
+                    return null;
+                }).start();
+            }, 500);
         }
 
     }
+
     //控制开关
-    private boolean switchBtn(){
+    private boolean switchBtn() {
         boolean returnV = start;
         start = !start;
 

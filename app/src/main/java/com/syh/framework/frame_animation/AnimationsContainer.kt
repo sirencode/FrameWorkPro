@@ -14,21 +14,21 @@ import java.lang.ref.SoftReference
 /**
  * Created by shenyonghe on 2020/7/22.
  */
-class AnimationsContainerO(var fps: Int = 58, var resId: Int = R.array.loading_anim) {
+class AnimationsContainer(private var fps: Int = 58, private var resId: Int = R.array.loading_anim) {
     companion object {
-        val instance: AnimationsContainerO by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            AnimationsContainerO()
+        open val INSTANCE: AnimationsContainer by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
+            AnimationsContainer()
         }
     }
 
-    fun createProgressDialogAnim(imageView: ImageView):FramesSequenceAnimation{
-        return  FramesSequenceAnimation(imageView,getData(),fps)
+    fun createProgressDialogAnim(imageView: ImageView, listener: () -> Unit): FramesSequenceAnimation {
+        return FramesSequenceAnimation(imageView, getData(), fps, listener)
     }
 
     var mBitmap: Bitmap? = null
     lateinit var mBitmapOptions: BitmapFactory.Options
 
-    inner class FramesSequenceAnimation(var imageView: ImageView, var frame: IntArray, var fps: Int) {
+    inner class FramesSequenceAnimation(imageView: ImageView, var frame: IntArray, fps: Int, val listener: () -> Unit) {
         var handler = Handler()
         var index = 0
         var softImg = SoftReference<ImageView>(imageView)
@@ -36,7 +36,6 @@ class AnimationsContainerO(var fps: Int = 58, var resId: Int = R.array.loading_a
         var running = false
         var loop = false
         var delayMillis = 1000 / fps
-        var stoppedListener: OnAnimationStoppedListener? = null
 
         init {
             imageView.setImageResource(frame[0])
@@ -59,6 +58,7 @@ class AnimationsContainerO(var fps: Int = 58, var resId: Int = R.array.loading_a
         fun getNext(): Int {
             index += 1
             if (index >= frame.size) index = 0
+            println("===>$index")
             return frame[index]
         }
 
@@ -73,9 +73,7 @@ class AnimationsContainerO(var fps: Int = 58, var resId: Int = R.array.loading_a
                     var imageView: ImageView? = softImg.get()
                     if (!shouldRun || imageView == null || (!loop && (index == frame.size - 1))) {
                         running = false
-                        stoppedListener?.let {
-                            it.onAnimationStopped()
-                        }
+                        listener()
                         return
                     }
                     running = true
@@ -84,18 +82,17 @@ class AnimationsContainerO(var fps: Int = 58, var resId: Int = R.array.loading_a
                     if (imageView.isShown) {
                         val imageRes = getNext()
                         if (mBitmap != null) { // so Build.VERSION.SDK_INT >= 11
-                            var bitmap: Bitmap? = null
                             try {
-                                bitmap = BitmapFactory.decodeResource(imageView.resources, imageRes, mBitmapOptions)
+                                var bitmap = BitmapFactory.decodeResource(imageView.resources, imageRes, mBitmapOptions)
+                                if (bitmap != null) {
+                                    imageView.setImageBitmap(bitmap)
+                                } else {
+                                    imageView.setImageResource(imageRes)
+                                    mBitmap?.recycle()
+                                    mBitmap = null
+                                }
                             } catch (e: Exception) {
                                 e.printStackTrace()
-                            }
-                            if (bitmap != null) {
-                                imageView.setImageBitmap(bitmap)
-                            } else {
-                                imageView.setImageResource(imageRes)
-                                mBitmap?.recycle()
-                                mBitmap = null
                             }
                         } else {
                             imageView.setImageResource(imageRes)
@@ -107,13 +104,10 @@ class AnimationsContainerO(var fps: Int = 58, var resId: Int = R.array.loading_a
             handler.post(runnable)
         }
 
-        @Synchronized fun stop() {
+        @Synchronized
+        fun stop() {
             running = false
         }
-    }
-
-    interface OnAnimationStoppedListener {
-        fun onAnimationStopped()
     }
 
     private fun getData(): IntArray {
