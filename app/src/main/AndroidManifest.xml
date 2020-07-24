@@ -24,6 +24,8 @@
     <!-- 允许程序访问Wi-Fi网络状态信息 -->
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="true"
@@ -137,5 +139,7 @@
             android:name=".frame_animation.AnimationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
+
+        <service android:name=".view.FloatingLogViewService"/>
     </application>
 </manifest>

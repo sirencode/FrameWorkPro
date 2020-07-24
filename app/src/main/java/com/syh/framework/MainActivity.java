@@ -7,10 +7,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -56,6 +59,8 @@ import com.syh.framework.util.StringUtil;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.toast.ToastFactory;
+import com.syh.framework.view.FloatingLogViewService;
+import com.syh.framework.view.state_layout.StateLayoutManager;
 import com.syh.framework.web.WebViewActivity;
 
 import java.util.ArrayList;
@@ -72,6 +77,7 @@ public class MainActivity extends BaseActivity {
     private ToneGenerator toneGenerator;
     private TextView textView;
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -147,11 +153,38 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_drop).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DropdownAct.class)));
         findViewById(R.id.btn_check_nolive).setOnClickListener(v -> checkLive());
         findViewById(R.id.btn_load_so).setOnClickListener(v -> showSoLoad());
+        findViewById(R.id.btn_float_window).setOnClickListener(v -> showFW());
 
         findViewById(R.id.btn_direction).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DirectAct.class)));
         findViewById(R.id.btn_defense).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DefenseActivity.class)));
         findViewById(R.id.btn_extend).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExtendAct.class)));
         findViewById(R.id.btn_animation).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AnimationActivity.class)));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    private void showFW() {
+        if (FloatingLogViewService.isStarted) {
+            return;
+        }
+        if (!Settings.canDrawOverlays(this)) {
+            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
+            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 1);
+        } else {
+            startService(new Intent(MainActivity.this, FloatingLogViewService.class));
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
+                startService(new Intent(MainActivity.this, FloatingLogViewService.class));
+            }
+        }
     }
 
     private void showSoLoad() {
@@ -338,4 +371,5 @@ public class MainActivity extends BaseActivity {
         super.onWindowFocusChanged(hasFocus);
         LaunchRecord.Companion.endRecord("onWindowFocusChanged");
     }
+
 }

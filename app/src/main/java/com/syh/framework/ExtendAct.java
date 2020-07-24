@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.syh.framework.view.ExpandLayout;
+import com.syh.framework.view.FloatingViewManager;
 
 /**
  * created by 申永鹤(shenyonghe@theduapp.com) on 2020/7/6
@@ -30,10 +31,12 @@ public class ExtendAct extends Activity {
         LinearLayout container1 = findViewById(R.id.lay_extend_container1);
 
         findViewById(R.id.button).setOnClickListener(view2 -> {
+            FloatingViewManager.INSTANCE.updateLogMsg("btn_extend");
             view.toggleExpand();
         });
 
         findViewById(R.id.btn_extend1).setOnClickListener(view2 -> {
+            FloatingViewManager.INSTANCE.updateLogMsg("http://112.124.194.76:8080/mock/132/api_goods/skuDetail/v1.0?token={token}&timestamp={timestamp}");
             view1.toggleExpand();
         });
 

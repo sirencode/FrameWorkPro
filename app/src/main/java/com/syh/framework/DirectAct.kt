@@ -7,6 +7,7 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import com.syh.framework.view.state_layout.StateLayoutManager
 import kotlinx.android.synthetic.main.activity_direction.*
 
 /**
@@ -20,6 +21,9 @@ class DirectAct : Activity(), SensorEventListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_direction)
+        with(StateLayoutManager(R.layout.activity_direction),{
+            loadLayId = R.layout.view_base_load
+        })
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION)
     }
