@@ -13,7 +13,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
 import com.syh.framework.R
-import com.syh.framework.util.UIParameter
+import com.syh.framework.expand.screenWidth
 
 /**
  * Created by shenyonghe on 2020/7/24.
@@ -48,7 +48,7 @@ class FloatingLogViewService : Service() {
         layoutParams.format = PixelFormat.RGBA_8888
         layoutParams.gravity = Gravity.LEFT or Gravity.TOP
         layoutParams.flags = WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL or WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
-        layoutParams.width = UIParameter.getWidth(this) - 200
+        layoutParams.width = screenWidth - 200
         layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
         layoutParams.x = 100
         layoutParams.y = 300

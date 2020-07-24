@@ -19,40 +19,25 @@ fun Context.start(source: Class<out Activity>) {
     this.startActivity(intent)
 }
 
-fun Context.getScreenWidth(): Int {
-    if (ScreenUtil.width == 0) {
-        ScreenUtil.width = this.resources.displayMetrics.widthPixels
-    }
-    return ScreenUtil.width
-}
 
-fun Context.getScreenHeight(): Int {
-    if (ScreenUtil.height == 0) {
-        ScreenUtil.height = this.resources.displayMetrics.heightPixels
-    }
-    return ScreenUtil.height
-}
+val Context.screenWidth: Int
+    get() = if (ScreenUtil.width == 0) this.resources.displayMetrics.widthPixels else ScreenUtil.width
 
-fun Context.getDensity(): Float {
-    if (ScreenUtil.density == 0f) {
-        ScreenUtil.density = this.resources.displayMetrics.density
-    }
-    return ScreenUtil.density
-}
+val Context.screenHeight: Int
+    get() = if (ScreenUtil.height == 0) this.resources.displayMetrics.heightPixels else ScreenUtil.height
 
-fun Context.dp2px(dp: Int): Int {
-    return (getDensity() * dp + 0.5f).toInt()
-}
+val Context.density: Float
+    get() = if (ScreenUtil.density == 0f) this.resources.displayMetrics.density else ScreenUtil.density
 
 fun Context.isWifi(): Boolean {
-    var connectivityManager : ConnectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    var connectivityManager: ConnectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     return connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI).isConnected
 }
 
 class ScreenUtil {
     companion object {
-        var width = 0;
-        var height = 0;
-        var density = 0f;
+        var width = 0
+        var height = 0
+        var density = 0f
     }
 }

@@ -60,6 +60,7 @@ import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.toast.ToastFactory;
 import com.syh.framework.view.FloatingLogViewService;
+import com.syh.framework.view.FloatingViewManager;
 import com.syh.framework.view.state_layout.StateLayoutManager;
 import com.syh.framework.web.WebViewActivity;
 
@@ -163,15 +164,16 @@ public class MainActivity extends BaseActivity {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void showFW() {
-        if (FloatingLogViewService.isStarted) {
-            return;
-        }
-        if (!Settings.canDrawOverlays(this)) {
-            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
-            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 1);
-        } else {
-            startService(new Intent(MainActivity.this, FloatingLogViewService.class));
-        }
+//        if (FloatingLogViewService.isStarted) {
+//            return;
+//        }
+//        if (!Settings.canDrawOverlays(this)) {
+//            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
+//            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 1);
+//        } else {
+//            startService(new Intent(MainActivity.this, FloatingLogViewService.class));
+//        }
+        FloatingViewManager.INSTANCE.start(this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

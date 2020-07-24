@@ -3,9 +3,8 @@ package com.syh.framework.img
 import android.support.annotation.DrawableRes
 import android.widget.ImageView
 import com.bumptech.glide.request.target.Target
-import com.syh.framework.expand.dp2px
-import com.syh.framework.MyApp
 import com.syh.framework.R
+import com.syh.framework.expand.dp
 
 /**
  * Created by shenyonghe on 2020/6/17.
@@ -24,7 +23,7 @@ class ImageConfig(builder: Builder) {
                 .loadingRes(R.mipmap.a)
                 .failedRes(R.mipmap.a)
                 .emptyRes(R.mipmap.a)
-                .size(MyApp.getApplication().dp2px(100),MyApp.getApplication().dp2px(200))
+                .size(100.dp,200.dp)
                 .scaleType(ImageView.ScaleType.FIT_XY)
         )
     }
