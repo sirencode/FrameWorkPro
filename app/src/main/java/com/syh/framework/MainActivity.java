@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,11 +16,9 @@ import android.support.annotation.RequiresApi;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.Spanned;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,7 +26,6 @@ import android.widget.Toast;
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
 import com.syh.framework.defense.DefenseActivity;
-import com.syh.framework.defense.TestService;
 import com.syh.framework.frame_animation.AnimationActivity;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
@@ -61,7 +57,7 @@ import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.toast.ToastFactory;
 import com.syh.framework.view.FloatingLogViewService;
 import com.syh.framework.view.FloatingViewManager;
-import com.syh.framework.view.state_layout.StateLayoutManager;
+import com.syh.framework.view.state_layout.StateLayActivity;
 import com.syh.framework.web.WebViewActivity;
 
 import java.util.ArrayList;
@@ -82,7 +78,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         textView = findViewById(R.id.tv_msg);
         imageView1 = findViewById(R.id.image1);
         imageView1.setOnClickListener(v -> {
@@ -160,6 +158,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_defense).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, DefenseActivity.class)));
         findViewById(R.id.btn_extend).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExtendAct.class)));
         findViewById(R.id.btn_animation).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AnimationActivity.class)));
+        findViewById(R.id.btn_state_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StateLayActivity.class)));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
