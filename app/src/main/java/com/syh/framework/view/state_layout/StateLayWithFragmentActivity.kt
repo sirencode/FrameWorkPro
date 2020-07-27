@@ -9,11 +9,11 @@ import kotlinx.android.synthetic.main.activity_state_layout.*
 /**
  * Created by shenyonghe on 2020/7/26.
  */
-class StateLayActivity : BaseActivity() {
+class StateLayWithFragmentActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        stateLayoutManager = StateLayoutManager(null,this, R.layout.activity_state_layout)
+        stateLayoutManager = StateLayoutManager(findViewById(android.R.id.content),this, R.layout.activity_state_layout)
         with(stateLayoutManager, {
             emptyClick = object : StateLayoutManager.OnEmptyClick {
                 override fun onEmptyClick() {
@@ -26,7 +26,6 @@ class StateLayActivity : BaseActivity() {
                 }
             }
         })
-        setContentView(stateLayoutManager.getRootView())
         initView()
     }
 
@@ -39,13 +38,17 @@ class StateLayActivity : BaseActivity() {
         }
         btn_show_load.setOnClickListener {
             showLoading()
-            showLateContent()
+            showLaterContent()
         }
+        val fm = supportFragmentManager
+        val ft = fm.beginTransaction()
+        ft.add(R.id.lay_frame, StateFragment())
+        ft.commitAllowingStateLoss()
     }
 
-    private fun showLateContent() {
+    private fun showLaterContent() {
         Handler().postDelayed({
-            showContent()
+            stateLayoutManager.showContent()
         }, 2000)
     }
 }

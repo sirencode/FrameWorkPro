@@ -1,6 +1,5 @@
 package com.syh.framework.util;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -17,17 +16,19 @@ import android.view.Choreographer;
 
 import com.syh.framework.ui.MyFrameCallback;
 import com.syh.framework.util.net.NetChangeListener;
+import com.syh.framework.view.state_layout.StateLayoutManager;
 
 /**
  * Created bg shenyonghe on 2018/6/4.
  */
-public class BaseActivity extends Activity {
+public class BaseActivity extends FragmentActivity {
 
     private MyFrameCallback callback;
 
     ConnectivityManager networkManager;
     ConnectivityManager.NetworkCallback networkCallback;
     NetChangeListener netChangeListener;
+    public StateLayoutManager stateLayoutManager;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -40,6 +41,30 @@ public class BaseActivity extends Activity {
             }
         } else {
             register();
+        }
+    }
+
+    public void showLoading() {
+        if (stateLayoutManager != null) {
+            stateLayoutManager.showLoading();
+        }
+    }
+
+    public void showContent() {
+        if (stateLayoutManager != null) {
+            stateLayoutManager.showContent();
+        }
+    }
+
+    public void showEmpty() {
+        if (stateLayoutManager != null) {
+            stateLayoutManager.showEmpty();
+        }
+    }
+
+    public void showError() {
+        if (stateLayoutManager != null) {
+            stateLayoutManager.showError();
         }
     }
 

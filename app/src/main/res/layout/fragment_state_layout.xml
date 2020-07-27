@@ -26,11 +26,5 @@
         android:layout_margin="10dp"
         android:text="error" />
 
-    <FrameLayout
-        android:layout_weight="1"
-        android:id="@+id/lay_frame"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
-
 
 </LinearLayout>

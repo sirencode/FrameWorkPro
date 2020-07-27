@@ -145,6 +145,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
+        <activity
+            android:name=".view.state_layout.StateLayWithFragmentActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
         <service android:name=".view.FloatingLogViewService"/>
     </application>
 </manifest>

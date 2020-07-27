@@ -58,6 +58,7 @@ import com.syh.framework.util.toast.ToastFactory;
 import com.syh.framework.view.FloatingLogViewService;
 import com.syh.framework.view.FloatingViewManager;
 import com.syh.framework.view.state_layout.StateLayActivity;
+import com.syh.framework.view.state_layout.StateLayWithFragmentActivity;
 import com.syh.framework.web.WebViewActivity;
 
 import java.util.ArrayList;
@@ -159,6 +160,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_extend).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ExtendAct.class)));
         findViewById(R.id.btn_animation).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, AnimationActivity.class)));
         findViewById(R.id.btn_state_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StateLayActivity.class)));
+        findViewById(R.id.btn_state_one_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StateLayWithFragmentActivity.class)));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -7,7 +7,6 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
-import com.syh.framework.view.state_layout.StateLayoutManager
 import kotlinx.android.synthetic.main.activity_direction.*
 
 /**
