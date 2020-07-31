@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'MyPlugin'
+//apply plugin: 'MyPlugin'
 apply plugin: 'LifecyclePlugin'
 def globalConfiguration = rootProject.ext
 

@@ -7,8 +7,7 @@ dependencies {
     //groovy sdk
     implementation localGroovy()
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.tools.build:gradle:3.3.1'
-    implementation group: 'org.javassist', name: 'javassist', version: '3.22.0-GA'
+    implementation 'com.android.tools.build:gradle:4.0.1'
 }
 
 uploadArchives {
@@ -16,7 +15,7 @@ uploadArchives {
         mavenDeployer {
             //设置插件的GAV参数
             pom.groupId = 'cn.syh.plugin'
-            pom.version = '1.0.3'
+            pom.version = '1.1.0'
             //文件发布到下面目录
             repository(url: uri('../repo/'))
         }
