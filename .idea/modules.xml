@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Users-shenyonghe-FrameWorkPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Users-shenyonghe-FrameWorkPro-app.iml" group="FrameWorkPro/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/Users-shenyonghe-FrameWorkPro-thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/Users-shenyonghe-FrameWorkPro-thirdLib.iml" group="FrameWorkPro/thirdLib" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FrameWorkPro/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle_plugin/gradle_plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle_plugin/gradle_plugin.iml" group="FrameWorkPro/gradle_plugin" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shen-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/shen-FrameWorkPro.iml" group="FrameWorkPro" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shenyonghe-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/shenyonghe-FrameWorkPro.iml" group="FrameWorkPro" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/shenyonghe-FrameWorkPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/shenyonghe-FrameWorkPro-app.iml" group="FrameWorkPro/app" />

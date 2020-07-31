@@ -29,6 +29,9 @@ ext {
             retrofit_adapter  : "com.squareup.retrofit2:adapter-rxjava2:2.4.0",
             filedownloader    : "com.liulishuo.filedownloader:library:1.7.2",
             fastjson          : 'com.alibaba:fastjson:1.2.47',
+            asm               : 'org.ow2.asm:asm:8.0.1',
+            asm_util          : 'org.ow2.asm:asm-util:8.0.1',
+            asm_commons       : 'org.ow2.asm:asm-commons:8.0.1',
     ]
 
     appDps = [
@@ -50,5 +53,8 @@ ext {
             retrofit_adapter  : "implementation",
             filedownloader    : "implementation",
             fastjson          : "implementation",
+            asm               : "implementation",
+            asm_util          : "implementation",
+            asm_commons       : "implementation",
     ]
 }
