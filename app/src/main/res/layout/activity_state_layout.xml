@@ -13,6 +13,13 @@
         android:text="loading" />
 
     <Button
+        android:id="@+id/btn_show_default"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Default" />
+
+    <Button
         android:id="@+id/btn_show_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -25,6 +32,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="error" />
+
+    <Button
+        android:id="@+id/btn_show_no_net"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="No Net" />
 
     <FrameLayout
         android:layout_weight="1"

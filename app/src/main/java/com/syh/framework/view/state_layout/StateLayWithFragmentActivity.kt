@@ -13,8 +13,7 @@ class StateLayWithFragmentActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        stateLayoutManager = StateLayoutManager(findViewById(android.R.id.content),this, R.layout.activity_state_layout)
-        with(stateLayoutManager, {
+        stateLayoutManager = StateLayoutManager(this, R.layout.activity_state_layout).apply {
             emptyClick = object : StateLayoutManager.OnEmptyClick {
                 override fun onEmptyClick() {
                     showContent()
@@ -25,7 +24,8 @@ class StateLayWithFragmentActivity : BaseActivity() {
                     showContent()
                 }
             }
-        })
+        }
+        stateLayoutManager.init(findViewById(android.R.id.content))
         initView()
     }
 
@@ -38,6 +38,10 @@ class StateLayWithFragmentActivity : BaseActivity() {
         }
         btn_show_load.setOnClickListener {
             showLoading()
+            showLaterContent()
+        }
+        btn_show_no_net.setOnClickListener {
+            showNoNet()
             showLaterContent()
         }
         val fm = supportFragmentManager

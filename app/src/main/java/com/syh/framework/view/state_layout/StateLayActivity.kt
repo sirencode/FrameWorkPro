@@ -13,8 +13,7 @@ class StateLayActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        stateLayoutManager = StateLayoutManager(null,this, R.layout.activity_state_layout)
-        with(stateLayoutManager, {
+        stateLayoutManager = StateLayoutManager(this, R.layout.activity_state_layout).apply {
             emptyClick = object : StateLayoutManager.OnEmptyClick {
                 override fun onEmptyClick() {
                     showContent()
@@ -25,8 +24,8 @@ class StateLayActivity : BaseActivity() {
                     showContent()
                 }
             }
-        })
-        setContentView(stateLayoutManager.getRootView())
+        }
+        stateLayoutManager.init(findViewById(android.R.id.content))
         initView()
     }
 
@@ -39,6 +38,15 @@ class StateLayActivity : BaseActivity() {
         }
         btn_show_load.setOnClickListener {
             showLoading()
+            showLateContent()
+        }
+
+        btn_show_default.setOnClickListener {
+            showDefault()
+            showLateContent()
+        }
+        btn_show_no_net.setOnClickListener {
+            showNoNet()
             showLateContent()
         }
     }

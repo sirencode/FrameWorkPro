@@ -50,6 +50,12 @@ public class BaseActivity extends FragmentActivity {
         }
     }
 
+    public void showDefault() {
+        if (stateLayoutManager != null) {
+            stateLayoutManager.showDefaultRequestView();
+        }
+    }
+
     public void showContent() {
         if (stateLayoutManager != null) {
             stateLayoutManager.showContent();
@@ -65,6 +71,12 @@ public class BaseActivity extends FragmentActivity {
     public void showError() {
         if (stateLayoutManager != null) {
             stateLayoutManager.showError();
+        }
+    }
+
+    public void showNoNet() {
+        if (stateLayoutManager != null) {
+            stateLayoutManager.showNoNetView();
         }
     }
 

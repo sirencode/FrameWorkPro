@@ -15,28 +15,44 @@ import com.syh.framework.expand.visible
 /**
  * Created by shenyonghe on 2020/7/23.
  */
-class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Context,
-                         @LayoutRes var contentLayId: Int, @LayoutRes var emptyLayId: Int = R.layout.view_common_empty,
-                         @LayoutRes var errorLayId: Int = R.layout.view_common_error, @LayoutRes var loadLayId: Int = R.layout.view_base_load) {
+class StateLayoutManager(var context: Context, @LayoutRes var contentLayId: Int) {
 
-    companion object {
-        const val LAYOUT_LOADING_ID = 1
-        const val LAYOUT_CONTENT_ID = 2
-        const val LAYOUT_ERROR_ID = 3
-        const val LAYOUT_EMPTY_ID = 4
-    }
+    @LayoutRes
+    var emptyLayId: Int = R.layout.view_common_empty
 
+    @LayoutRes
+    var errorLayId: Int = R.layout.view_common_error
+
+    @LayoutRes
+    var loadLayId: Int = R.layout.view_base_load
+
+    @LayoutRes
+    var noNetLayId: Int = R.layout.view_no_net_error
+
+    @LayoutRes
+    var defaultRequestLayId: Int = R.layout.view_base_load
+    private var rootFrameLay: FrameLayout? = null
     private var layoutSparseArray = SparseArray<View>()
     private var emptyView: View? = null
     private var errorView: View? = null
     private var loadView: View? = null
+    private var noNetView: View? = null
+    private var defaultRequestView: View? = null
+
+    private val contentLayKey = 1
+    private val loadLayKey = 2
+    private val errorLayKey = 3
+    private val emptyLayKey = 4
+    private val noNetWorkLayKey = 5
+    private val defaultRequestLayKey = 6
 
     var showViewListener: OnShowViewListener? = null
     var emptyClick: OnEmptyClick? = null
     var errorClick: OnErrorClick? = null
     var loading: Boolean = false
 
-    init {
+    fun init(layout: FrameLayout?) {
+        rootFrameLay = layout
         if (rootFrameLay == null) {
             var layParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
             rootFrameLay = FrameLayout(context)
@@ -44,7 +60,7 @@ class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Co
             rootFrameLay?.setBackgroundColor(Color.WHITE)
         }
         var content = LayoutInflater.from(context).inflate(contentLayId, rootFrameLay, false)
-        layoutSparseArray.put(LAYOUT_CONTENT_ID, content)
+        layoutSparseArray.put(contentLayKey, content)
         rootFrameLay!!.addView(content)
     }
 
@@ -53,19 +69,27 @@ class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Co
     }
 
     fun showLoading() {
-        if (loadLayId != 0 && !isLoading()) showById(LAYOUT_LOADING_ID)
+        if (loadLayId != 0 && !isLoading()) showById(loadLayKey)
     }
 
     fun showContent() {
-        showById(LAYOUT_CONTENT_ID)
+        showById(contentLayKey)
     }
 
     fun showEmpty() {
-        if (emptyLayId != 0) showById(LAYOUT_EMPTY_ID)
+        if (emptyLayId != 0) showById(emptyLayKey)
     }
 
     fun showError() {
-        if (errorLayId != 0) showById(LAYOUT_ERROR_ID)
+        if (errorLayId != 0) showById(errorLayKey)
+    }
+
+    fun showNoNetView() {
+        if (noNetLayId != 0) showById(noNetWorkLayKey)
+    }
+
+    fun showDefaultRequestView() {
+        if (defaultRequestLayId != 0) showById(defaultRequestLayKey)
     }
 
     fun getRootView(): View {
@@ -75,7 +99,7 @@ class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Co
     private fun showById(id: Int) {
         if (layoutSparseArray.get(id) == null) {
             when (id) {
-                LAYOUT_EMPTY_ID -> {
+                emptyLayKey -> {
                     if (emptyView == null) {
                         emptyView = LayoutInflater.from(context).inflate(emptyLayId, rootFrameLay, false)
                         emptyView!!.setOnClickListener {
@@ -88,7 +112,7 @@ class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Co
                     rootFrameLay?.addView(emptyView)
                 }
 
-                LAYOUT_ERROR_ID -> {
+                errorLayKey -> {
                     if (errorView == null) {
                         errorView = LayoutInflater.from(context).inflate(errorLayId, rootFrameLay, false)
                         errorView!!.setOnClickListener {
@@ -101,12 +125,38 @@ class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Co
                     rootFrameLay?.addView(errorView)
                 }
 
-                LAYOUT_LOADING_ID -> {
+                noNetWorkLayKey -> {
+                    if (noNetView == null) {
+                        noNetView = LayoutInflater.from(context).inflate(noNetLayId, rootFrameLay, false)
+                        noNetView!!.setOnClickListener {
+                            errorClick?.let {
+                                it.onErrorClick()
+                            }
+                        }
+                    }
+                    layoutSparseArray.put(id, noNetView)
+                    rootFrameLay?.addView(noNetView)
+                }
+
+                loadLayKey -> {
                     if (loadView == null) {
                         loadView = LayoutInflater.from(context).inflate(loadLayId, rootFrameLay, false)
                     }
                     layoutSparseArray.put(id, loadView)
                     rootFrameLay?.addView(loadView)
+                }
+
+                defaultRequestLayKey -> {
+                    if (defaultRequestView == null) {
+                        defaultRequestView = LayoutInflater.from(context).inflate(defaultRequestLayId, rootFrameLay, false)
+                        defaultRequestView!!.setOnClickListener {
+                            emptyClick?.let {
+                                it.onEmptyClick()
+                            }
+                        }
+                    }
+                    layoutSparseArray.put(id, defaultRequestView)
+                    rootFrameLay?.addView(defaultRequestView)
                 }
             }
         }
@@ -117,34 +167,22 @@ class StateLayoutManager(private var rootFrameLay: FrameLayout?, var context: Co
         for (index in 0 until layoutSparseArray.size()) {
             var key = layoutSparseArray.keyAt(index)
             var view = layoutSparseArray.valueAt(index)
-            if (key == id || key == LAYOUT_CONTENT_ID) {
+            if (key == id || key == contentLayKey) {
                 view.visible()
             } else {
                 view.gone()
             }
-            loading = (id == LAYOUT_LOADING_ID)
+            loading = (id == loadLayKey || id == defaultRequestLayKey)
             showViewListener?.onShowView(view, id)
         }
 
         when (id) {
-            LAYOUT_LOADING_ID -> {
-                removeViewById(LAYOUT_ERROR_ID)
-                removeViewById(LAYOUT_EMPTY_ID)
-            }
-            LAYOUT_CONTENT_ID -> {
-                removeViewById(LAYOUT_ERROR_ID)
-                removeViewById(LAYOUT_EMPTY_ID)
-                removeViewById(LAYOUT_LOADING_ID)
-            }
-
-            LAYOUT_ERROR_ID -> {
-                removeViewById(LAYOUT_EMPTY_ID)
-                removeViewById(LAYOUT_LOADING_ID)
-            }
-
-            LAYOUT_EMPTY_ID -> {
-                removeViewById(LAYOUT_ERROR_ID)
-                removeViewById(LAYOUT_LOADING_ID)
+            contentLayKey -> {
+                removeViewById(loadLayKey)
+                removeViewById(errorLayKey)
+                removeViewById(emptyLayKey)
+                removeViewById(noNetWorkLayKey)
+                removeViewById(defaultRequestLayKey)
             }
         }
     }

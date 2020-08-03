@@ -15,7 +15,7 @@ class StateFragment : BaseLazyFragment() {
     lateinit var rootView: View
     lateinit var stateLayoutManager: StateLayoutManager
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        stateLayoutManager = StateLayoutManager(null, context!!, R.layout.fragment_state_layout)
+        stateLayoutManager = StateLayoutManager(context!!, R.layout.fragment_state_layout)
         with(stateLayoutManager, {
             emptyClick = object : StateLayoutManager.OnEmptyClick {
                 override fun onEmptyClick() {
@@ -28,6 +28,7 @@ class StateFragment : BaseLazyFragment() {
                 }
             }
         })
+        stateLayoutManager.init(null)
         rootView = stateLayoutManager.getRootView()
         initView()
         return rootView
