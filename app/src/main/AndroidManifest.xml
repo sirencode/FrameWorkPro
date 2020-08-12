@@ -150,6 +150,11 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
+        <activity android:name="com.syh.framework.web_p_error.ActivityOne"/>
+        <activity
+            android:name="com.syh.framework.web_p_error.ActivityTwo"
+            android:process=":two" />
+
         <service android:name=".view.FloatingLogViewService"/>
     </application>
 </manifest>

@@ -1,16 +1,15 @@
 package com.syh.framework;
 
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
+import android.os.Build;
+import android.webkit.WebView;
 
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
-import com.liulishuo.filedownloader.util.FileDownloadUtils;
-import com.syh.framework.util.CrashHandler;
 import com.syh.framework.util.LogUtil;
-import com.syh.framework.util.NativeLoadePathUtil;
 
 
 /**
@@ -19,6 +18,8 @@ import com.syh.framework.util.NativeLoadePathUtil;
 public class MyApp extends Application {
 
     private static MyApp instance;
+    private static final String PROCESS = "com.syh.framework";
+
 
     @Override
     public void onCreate() {
@@ -33,6 +34,35 @@ public class MyApp extends Application {
                 ))
                 .commit();
         instance = this;
+        initPieWebView();
+    }
+
+    private void initPieWebView() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            String processName = getProcessName(this);
+            if (!PROCESS.equals(processName)) {
+                WebView.setDataDirectorySuffix(getString(processName, "jiuwu"));
+            }
+        }
+    }
+
+    public String getProcessName(Context context) {
+        if (context == null) return null;
+        ActivityManager manager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningAppProcessInfo processInfo : manager.getRunningAppProcesses()) {
+            if (processInfo.pid == android.os.Process.myPid()) {
+                return processInfo.processName;
+            }
+        }
+        return null;
+    }
+
+    public String getString(String s, String defValue) {
+        return isEmpty(s) ? defValue : s;
+    }
+
+    public boolean isEmpty(String s) {
+        return s == null || s.trim().length() == 0;
     }
 
     @Override

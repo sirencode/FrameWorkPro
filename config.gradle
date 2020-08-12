@@ -1,9 +1,9 @@
 ext {
     android = [
-            compileSdkVersion: 27,
+            compileSdkVersion: 28,
             applicationId    : 'com.syh.framework',
             minSdkVersion    : 19,
-            targetSdkVersion : 23
+            targetSdkVersion : 28
     ]
 
     allDependencies = [
