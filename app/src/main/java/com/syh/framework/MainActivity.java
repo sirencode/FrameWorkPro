@@ -163,6 +163,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_state_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StateLayActivity.class)));
         findViewById(R.id.btn_state_one_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StateLayWithFragmentActivity.class)));
         findViewById(R.id.btn_activity_one).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ActivityOne.class)));
+        findViewById(R.id.btn_activity_stick_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StickLayActivity.class)));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

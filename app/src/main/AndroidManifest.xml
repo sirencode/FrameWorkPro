@@ -155,6 +155,7 @@
             android:name="com.syh.framework.web_p_error.ActivityTwo"
             android:process=":two" />
 
+        <activity android:name=".StickLayActivity"/>
         <service android:name=".view.FloatingLogViewService"/>
     </application>
 </manifest>
