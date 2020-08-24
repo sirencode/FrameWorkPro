@@ -164,6 +164,8 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_state_one_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StateLayWithFragmentActivity.class)));
         findViewById(R.id.btn_activity_one).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ActivityOne.class)));
         findViewById(R.id.btn_activity_stick_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StickLayActivity.class)));
+        findViewById(R.id.btn_activity_scroll_menu).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollMenuActivity.class)));
+        findViewById(R.id.btn_activity_clean_screen).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ClearScreenActivity.class)));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

@@ -36,6 +36,12 @@ class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
             } else if ("onDestroy".equals(name)) {
                 //处理onDestroy
                 return new LifecycleOnDestroyMethodVisitor(mv);
+            } else if ("onStart".equals(name)) {
+                //处理onDestroy
+                return new LifecycleOnStartMethodVisitor(mv);
+            } else if ("onStop".equals(name)) {
+                //处理onDestroy
+                return new LifecycleOnStopMethodVisitor(mv);
             }
         }
         return mv;

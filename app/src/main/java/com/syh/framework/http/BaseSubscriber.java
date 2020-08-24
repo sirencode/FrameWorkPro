@@ -18,9 +18,9 @@ public abstract class BaseSubscriber<T> extends DisposableObserver<T> {
         }
 
         try {
-//            if (t instanceof HttpBaseResult) {
-//                DataCheckManager.checkValue(((HttpBaseResult) t).getData(),((HttpBaseResult) t).getRequest());
-//            }
+            if (t instanceof HttpBaseResult) {
+                DataCheckManager.checkValue(((HttpBaseResult) t).getData(),((HttpBaseResult) t).getRequest());
+            }
             onSuccess(t);
         } catch (Throwable e) {
             Exceptions.throwIfFatal(e);

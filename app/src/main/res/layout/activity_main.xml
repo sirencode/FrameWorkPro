@@ -288,6 +288,24 @@
             android:text="Stick Lay"
             android:textSize="14dp" />
 
+        <Button
+            android:id="@+id/btn_activity_scroll_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Scroll Menu"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_activity_clean_screen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Clear Screen"
+            android:textSize="14dp" />
+
     </LinearLayout>
 
 </ScrollView>

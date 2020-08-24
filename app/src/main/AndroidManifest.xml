@@ -157,5 +157,7 @@
 
         <activity android:name=".StickLayActivity"/>
         <service android:name=".view.FloatingLogViewService"/>
+        <activity android:name=".ScrollMenuActivity"/>
+        <activity android:name=".ClearScreenActivity"/>
     </application>
 </manifest>

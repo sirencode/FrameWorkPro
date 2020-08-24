@@ -1,5 +1,7 @@
 package com.syh.framework.http;
 
+import com.syh.framework.http.net_check.DataCheckInterceptor;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -82,6 +84,7 @@ public class ApiFactory {
     private List<Interceptor> getDefaultInterceptors(){
         List<Interceptor> list = new ArrayList<>();
         list.add(new LogInterceptor());
+        list.add(new DataCheckInterceptor());
         return list;
     }
 

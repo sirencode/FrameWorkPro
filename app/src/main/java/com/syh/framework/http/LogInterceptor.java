@@ -45,6 +45,7 @@ public class LogInterceptor implements Interceptor {
         Gson gson = new Gson();
         HttpBaseResult result = gson.fromJson(content,HttpBaseResult.class);
         result.setRequest(request.toString());
+        LogUtil.d(TAG, "| Response:" + result);
         return response.newBuilder()
                 .body(okhttp3.ResponseBody.create(mediaType, gson.toJson(result)))
                 .build();
