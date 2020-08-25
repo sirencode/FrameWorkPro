@@ -4,10 +4,15 @@ import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by shenyonghe on 2020/7/31.
  */
 class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
+
+    public static List<String> lifeRecords = new ArrayList<>();
 
     private String mClassName;
 
