@@ -34,15 +34,17 @@ class LifecycleOnStopMethodVisitor extends MethodVisitor {
         mv.visitVarInsn(LSTORE, 2);
         mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
         mv.visitInsn(DUP);
-        mv.visitLdcInsn("-------> onStop : ");
+        mv.visitLdcInsn("2");
         mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "(Ljava/lang/String;)V", false);
-        mv.visitVarInsn(ALOAD, 1);
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-        mv.visitLdcInsn(",time=");
+        mv.visitLdcInsn(",");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
         mv.visitVarInsn(LLOAD, 2);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
-        mv.visitLdcInsn(",maxMemory=");
+        mv.visitLdcInsn(",");
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+        mv.visitVarInsn(ALOAD, 1);
+        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
+        mv.visitLdcInsn(",");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
         mv.visitMethodInsn(INVOKESTATIC, "java/lang/Runtime", "getRuntime", "()Ljava/lang/Runtime;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Runtime", "maxMemory", "()J", false);
@@ -51,9 +53,7 @@ class LifecycleOnStopMethodVisitor extends MethodVisitor {
         mv.visitLdcInsn(new Long(1024L));
         mv.visitInsn(LDIV);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
-        mv.visitLdcInsn("M");
-        mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
-        mv.visitLdcInsn(",totalMemory=");
+        mv.visitLdcInsn(",");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
         mv.visitMethodInsn(INVOKESTATIC, "java/lang/Runtime", "getRuntime", "()Ljava/lang/Runtime;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/Runtime", "totalMemory", "()J", false);
@@ -62,14 +62,16 @@ class LifecycleOnStopMethodVisitor extends MethodVisitor {
         mv.visitLdcInsn(new Long(1024L));
         mv.visitInsn(LDIV);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(J)Ljava/lang/StringBuilder;", false);
-        mv.visitLdcInsn("M");
+        mv.visitLdcInsn(",");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
         mv.visitVarInsn(ASTORE, 4);
-        mv.visitLdcInsn("LogUtil-TAG");
+        mv.visitLdcInsn("ASM-TAG");
         mv.visitVarInsn(ALOAD, 4);
         mv.visitMethodInsn(INVOKESTATIC, "com/syh/framework/util/LogUtil", "i", "(Ljava/lang/String;Ljava/lang/String;)I", false);
         mv.visitInsn(POP);
+        mv.visitVarInsn(ALOAD, 4);
+        mv.visitMethodInsn(INVOKESTATIC, "com/syh/framework/asm/ASMPathManager", "add", "(Ljava/lang/String;)V", false);
         super.visitCode();
         //方法执行后插入
     }

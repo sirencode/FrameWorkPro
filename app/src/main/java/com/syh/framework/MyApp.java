@@ -9,6 +9,8 @@ import android.webkit.WebView;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
+import com.syh.framework.asm.ASMPathManager;
+import com.syh.framework.util.AppFrontBackHelper;
 import com.syh.framework.util.LogUtil;
 
 
@@ -35,6 +37,21 @@ public class MyApp extends Application {
                 .commit();
         instance = this;
         initPieWebView();
+
+        AppFrontBackHelper helper = new AppFrontBackHelper();
+        helper.register(MyApp.this, new AppFrontBackHelper.OnAppStatusListener() {
+            @Override
+            public void onFront() {
+                //应用切到前台处理
+            }
+
+            @Override
+            public void onBack() {
+                //应用切到后台处理
+                LogUtil.e("ASM-TAG", ASMPathManager.list.toString());
+            }
+        });
+
     }
 
     private void initPieWebView() {
