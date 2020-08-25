@@ -28,8 +28,9 @@ public class LogUtil {
         log(LogType.LogE, tag, msg);
     }
 
-    public static void i(String tag, String msg) {
+    public static int i(String tag, String msg) {
         log(LogType.LogI, tag, msg);
+        return 0;
     }
 
     public static void w(String tag, String msg) {

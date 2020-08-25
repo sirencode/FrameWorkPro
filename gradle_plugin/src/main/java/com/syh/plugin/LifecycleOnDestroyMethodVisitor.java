@@ -9,7 +9,7 @@ import org.objectweb.asm.Opcodes;
 class LifecycleOnDestroyMethodVisitor extends MethodVisitor {
 
     public LifecycleOnDestroyMethodVisitor(MethodVisitor mv) {
-        super(Opcodes.ASM4, mv);
+        super(Opcodes.ASM5, mv);
     }
 
     @Override

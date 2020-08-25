@@ -18,7 +18,7 @@ import static org.objectweb.asm.Opcodes.POP;
  */
 class LifecycleOnStartMethodVisitor extends MethodVisitor {
     public LifecycleOnStartMethodVisitor(MethodVisitor mv) {
-        super(Opcodes.ASM4, mv);
+        super(Opcodes.ASM5, mv);
     }
 
     @Override

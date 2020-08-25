@@ -15,6 +15,7 @@ class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
     public static List<String> lifeRecords = new ArrayList<>();
 
     private String mClassName;
+    private String superName;
 
     public LifecycleClassVisitor(ClassVisitor classVisitor) {
         super(Opcodes.ASM5, classVisitor);
@@ -25,6 +26,7 @@ class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
                       String superName, String[] interfaces) {
         System.out.println("LifecycleClassVisitor : visit -----> started ：" + name);
         this.mClassName = name;
+        this.superName = superName;
         super.visit(version, access, name, signature, superName, interfaces);
     }
 
@@ -34,7 +36,7 @@ class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
         System.out.println("LifecycleClassVisitor : visitMethod : " + name);
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
         //匹配FragmentActivity
-        if ("android/support/v4/app/FragmentActivity".equals(this.mClassName)) {
+        if (superName.contains("FragmentActivity")) {
             if ("onCreate".equals(name) ) {
                 //处理onCreate
                 return new LifecycleOnCreateMethodVisitor(mv);
