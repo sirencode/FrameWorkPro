@@ -1,6 +1,6 @@
 package com.syh.plugin
 
-import com.android.annotations.NonNull
+
 import com.android.build.api.transform.*
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.internal.pipeline.TransformManager

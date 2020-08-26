@@ -37,21 +37,7 @@ public class MyApp extends Application {
                 .commit();
         instance = this;
         initPieWebView();
-
-        AppFrontBackHelper helper = new AppFrontBackHelper();
-        helper.register(MyApp.this, new AppFrontBackHelper.OnAppStatusListener() {
-            @Override
-            public void onFront() {
-                //应用切到前台处理
-            }
-
-            @Override
-            public void onBack() {
-                //应用切到后台处理
-                LogUtil.e("ASM-TAG", ASMPathManager.list.toString());
-            }
-        });
-
+        ASMPathManager.init(this);
     }
 
     private void initPieWebView() {

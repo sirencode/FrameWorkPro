@@ -61,6 +61,7 @@ import com.syh.framework.view.state_layout.StateLayActivity;
 import com.syh.framework.view.state_layout.StateLayWithFragmentActivity;
 import com.syh.framework.web.WebViewActivity;
 import com.syh.framework.web_p_error.ActivityOne;
+import com.syh.plugin.annotation.Cost;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +82,6 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         textView = findViewById(R.id.tv_msg);
         imageView1 = findViewById(R.id.image1);
         imageView1.setOnClickListener(v -> {
@@ -261,6 +261,13 @@ public class MainActivity extends BaseActivity {
         });
     }
 
+    @Cost
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Cost
     private void bindLife2() {
         LifeCycleManager.bindLife(this, new LifeListener() {
             @Override
