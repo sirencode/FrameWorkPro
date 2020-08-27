@@ -1,4 +1,4 @@
-package com.syh.framework.asm;
+package com.syh.asm;
 
 /**
  * Created by shenyonghe on 2020/8/25.

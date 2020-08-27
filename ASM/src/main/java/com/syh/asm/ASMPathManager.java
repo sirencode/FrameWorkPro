@@ -1,9 +1,7 @@
-package com.syh.framework.asm;
+package com.syh.asm;
 
 import android.app.Application;
-
-import com.syh.framework.util.AppFrontBackHelper;
-import com.syh.framework.util.LogUtil;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +19,8 @@ public class ASMPathManager {
         }
     }
 
-    public static void init(Application application) {
+    public static void init(Application application,boolean open) {
+        if (!open) return;
         AppFrontBackHelper helper = new AppFrontBackHelper();
         helper.register(application, new AppFrontBackHelper.OnAppStatusListener() {
             @Override
@@ -32,7 +31,7 @@ public class ASMPathManager {
             @Override
             public void onBack() {
                 //应用切到后台处理
-                LogUtil.e("ASM-TAG", ASMPathManager.list.toString());
+                Log.e("ASM-TAG", ASMPathManager.list.toString());
             }
         });
     }

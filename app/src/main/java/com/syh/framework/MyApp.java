@@ -9,8 +9,7 @@ import android.webkit.WebView;
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
-import com.syh.framework.asm.ASMPathManager;
-import com.syh.framework.util.AppFrontBackHelper;
+import com.syh.asm.ASMPathManager;
 import com.syh.framework.util.LogUtil;
 
 
@@ -37,7 +36,7 @@ public class MyApp extends Application {
                 .commit();
         instance = this;
         initPieWebView();
-        ASMPathManager.init(this);
+        ASMPathManager.init(this, BuildConfig.DEBUG);
     }
 
     private void initPieWebView() {

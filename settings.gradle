@@ -1,2 +1,3 @@
+include ':ASM'
 include ':gradle_plugin'
 include ':app', ':thirdLib'

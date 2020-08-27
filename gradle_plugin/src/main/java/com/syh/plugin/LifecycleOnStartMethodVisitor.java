@@ -13,7 +13,6 @@ import static org.objectweb.asm.Opcodes.LDIV;
 import static org.objectweb.asm.Opcodes.LLOAD;
 import static org.objectweb.asm.Opcodes.LSTORE;
 import static org.objectweb.asm.Opcodes.NEW;
-import static org.objectweb.asm.Opcodes.POP;
 
 /**
  * Created by shenyonghe on 2020/7/31.
@@ -65,13 +64,8 @@ class LifecycleOnStartMethodVisitor extends MethodVisitor {
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
         mv.visitVarInsn(ASTORE, 4);
-        mv.visitLdcInsn("ASM-TAG");
         mv.visitVarInsn(ALOAD, 4);
-        mv.visitMethodInsn(INVOKESTATIC, "com/syh/framework/util/LogUtil", "i", "(Ljava/lang/String;Ljava/lang/String;)I", false);
-        mv.visitInsn(POP);
-        mv.visitVarInsn(ALOAD, 4);
-        mv.visitMethodInsn(INVOKESTATIC, "com/syh/framework/asm/ASMPathManager", "add", "(Ljava/lang/String;)V", false);
-        super.visitCode();
+        mv.visitMethodInsn(INVOKESTATIC, "com/syh/asm/ASMPathManager", "add", "(Ljava/lang/String;)V", false);
     }
 
     @Override

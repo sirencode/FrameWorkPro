@@ -66,12 +66,8 @@ class LifecycleOnStopMethodVisitor extends MethodVisitor {
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "toString", "()Ljava/lang/String;", false);
         mv.visitVarInsn(ASTORE, 4);
-        mv.visitLdcInsn("ASM-TAG");
         mv.visitVarInsn(ALOAD, 4);
-        mv.visitMethodInsn(INVOKESTATIC, "com/syh/framework/util/LogUtil", "i", "(Ljava/lang/String;Ljava/lang/String;)I", false);
-        mv.visitInsn(POP);
-        mv.visitVarInsn(ALOAD, 4);
-        mv.visitMethodInsn(INVOKESTATIC, "com/syh/framework/asm/ASMPathManager", "add", "(Ljava/lang/String;)V", false);
+        mv.visitMethodInsn(INVOKESTATIC, "com/syh/asm/ASMPathManager", "add", "(Ljava/lang/String;)V", false);
         super.visitCode();
         //方法执行后插入
     }
