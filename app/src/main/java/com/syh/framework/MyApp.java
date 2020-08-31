@@ -25,7 +25,7 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        LogUtil.setCanLog(BuildConfig.DEBUG);
+        LogUtil.setCanLog(true);
         FileDownloadLog.NEED_LOG = true;
         FileDownloader.setupOnApplicationOnCreate(this)
                 .connectionCreator(new FileDownloadUrlConnection
@@ -36,7 +36,7 @@ public class MyApp extends Application {
                 .commit();
         instance = this;
         initPieWebView();
-        ASMPathManager.init(this, BuildConfig.DEBUG);
+        ASMPathManager.init(this, true);
     }
 
     private void initPieWebView() {

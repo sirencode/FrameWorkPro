@@ -1,7 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
-apply plugin: 'MethodPlugin'
+if (!isReleaseBuildType()) {
+    apply plugin: 'MethodPlugin'
+}
 apply plugin: 'LifecyclePlugin'
 def globalConfiguration = rootProject.ext
 
@@ -13,27 +15,37 @@ android {
         targetSdkVersion globalConfiguration.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
-        flavorDimensions ("versionCode")
+        flavorDimensions("versionCode")
         multiDexEnabled true
     }
+
+    signingConfigs {
+        release {
+            keyAlias 'syh'
+            keyPassword 'syh1991'
+            storeFile file('/Users/shenyonghe/FrameWorkPro/syh.keystore')
+            storePassword 'syh1991'
+        }
+    }
+
     buildTypes {
         debug {
             minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
 
         release {
             minifyEnabled false
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
     }
-//    dataBinding {
-//        enabled = true
-//    }
 
     buildFeatures {
         dataBinding = true

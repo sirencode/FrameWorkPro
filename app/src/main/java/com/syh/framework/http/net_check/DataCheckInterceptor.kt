@@ -6,6 +6,7 @@ import okhttp3.FormBody
 import okhttp3.Interceptor
 import okhttp3.Request
 import okhttp3.Response
+import java.nio.charset.Charset
 
 /**
  * Created by shenyonghe on 2020/8/23.
@@ -15,7 +16,9 @@ class DataCheckInterceptor : Interceptor {
         var request = chain.request()
         var response = chain.proceed(request)
         response.body()?.let {
-            var content = it.string()
+            var source = it.source()
+            source.request(Long.MAX_VALUE)
+            var content = source.buffer().clone().readString(Charset.forName("UTF-8"))
             val mediaType = it.contentType()
             val gson = Gson()
             val result: HttpResultBean?

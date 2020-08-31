@@ -77,7 +77,6 @@ public class MainActivity extends BaseActivity {
     private ToneGenerator toneGenerator;
     private TextView textView;
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -167,7 +166,6 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_activity_clean_screen).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ClearScreenActivity.class)));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     private void showFW() {
 //        if (FloatingLogViewService.isStarted) {
 //            return;
