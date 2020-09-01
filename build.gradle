@@ -7,7 +7,7 @@ buildscript {
         google()
         jcenter()
         maven {
-            url uri('./repo/')
+            url rootProject.file('repo')
         }
     }
     dependencies {
@@ -27,6 +27,9 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            url rootProject.file('repo')
+        }
     }
 }
 

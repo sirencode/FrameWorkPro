@@ -1,4 +1,5 @@
 apply plugin: 'com.android.library'
+apply plugin: 'maven'
 
 def globalConfiguration = rootProject.ext
 android {
@@ -18,6 +19,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            //文件发布到下面目录
+            repository(url: uri('../repo/'))
+            //设置插件的GAV参数
+            pom.groupId = 'cn.syh.asm'
+            pom.version = '1.0.0'
+            pom.artifactId = 'SyhAsm'
         }
     }
 }
