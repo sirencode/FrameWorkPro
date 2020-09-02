@@ -1,6 +1,6 @@
 package com.syh.framework.http.model;
 
-import com.syh.framework.annotions.NeedCheck;
+import com.syh.framework.http.net_check.annotions.NeedCheck;
 
 public class HttpBaseResult<T> implements NeedCheck {
     private String requesrt;

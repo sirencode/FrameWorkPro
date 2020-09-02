@@ -1,4 +1,4 @@
-package com.syh.framework.annotions;
+package com.syh.framework.http.net_check.annotions;
 
 /**
  * create by shenyonghe on 2019/3/7

@@ -1,7 +1,7 @@
 package com.syh.framework.http.model;
 
-import com.syh.framework.annotions.ChekNull;
-import com.syh.framework.annotions.NeedCheck;
+import com.syh.framework.http.net_check.annotions.CheckNull;
+import com.syh.framework.http.net_check.annotions.NeedCheck;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class DataDemo implements NeedCheck {
     private String ischeck;
     private String condition;
     private String com;
-    @ChekNull
+    @CheckNull
     private String shenTest;
 
     private int anInt;
@@ -34,10 +34,10 @@ public class DataDemo implements NeedCheck {
 //    @ChekNull
     private List<String> shenTestss;
 
-    @ChekNull
+    @CheckNull
     private List<User> users;
 
-    @ChekNull
+    @CheckNull
     private AAA aaa;
 
 //    @ChekNull
@@ -152,13 +152,13 @@ public class DataDemo implements NeedCheck {
     }
 
     public static class AAA implements NeedCheck{
-        @ChekNull
+        @CheckNull
         String name;
 
-        @ChekNull
+        @CheckNull
         String age;
 
-        @ChekNull
+        @CheckNull
         User users;
 
         public User getUsers() {

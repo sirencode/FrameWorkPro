@@ -1,4 +1,4 @@
-package com.syh.framework.annotions;
+package com.syh.framework.http.net_check.annotions;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -10,4 +10,4 @@ import java.lang.annotation.Target;
  **/
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ChekNull { }
+public @interface CheckNull { }

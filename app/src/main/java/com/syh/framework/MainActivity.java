@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.fastjson.JSONObject;
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
 import com.syh.framework.defense.DefenseActivity;
@@ -35,17 +36,19 @@ import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
 import com.syh.framework.http.model.HttpBaseResult;
 import com.syh.framework.http.model.User;
+import com.syh.framework.http.net_check.NetCheckForNetManager;
+import com.syh.framework.http.net_check.model.NetCheckBean;
 import com.syh.framework.img.ImageConfig;
 import com.syh.framework.img.ImageLoaderHelp;
 import com.syh.framework.largeImage.LargeImageViewActivity;
 import com.syh.framework.list.ListActivity;
+import com.syh.framework.http.net_check.NetCheckManager;
 import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
 import com.syh.framework.util.ClickProxy;
-import com.syh.framework.annotions.DataCheckManager;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
 import com.syh.framework.util.LogUtil;
@@ -62,6 +65,8 @@ import com.syh.framework.view.state_layout.StateLayWithFragmentActivity;
 import com.syh.framework.web.WebViewActivity;
 import com.syh.framework.web_p_error.ActivityOne;
 import com.syh.plugin.annotation.Cost;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -108,8 +113,9 @@ public class MainActivity extends BaseActivity {
                                 dataDemo.setAaa(aaa);
                                 s.getData().add(dataDemo);
                             }
-                            DataCheckManager.checkValue(s.getData(), s.getRequest());
-                            DataCheckManager.checkValue(s.getData().get(0), s.getRequest());
+
+                            NetCheckManager.INSTANCE.checkValue(s.getData(), s.getRequest());
+                            NetCheckManager.INSTANCE.checkValue(s.getData().get(0), s.getRequest());
                         }
 
                         @Override
@@ -164,6 +170,37 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_activity_stick_lay).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, StickLayActivity.class)));
         findViewById(R.id.btn_activity_scroll_menu).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollMenuActivity.class)));
         findViewById(R.id.btn_activity_clean_screen).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ClearScreenActivity.class)));
+        findViewById(R.id.btn_activity_net_check).setOnClickListener(v -> checkNet());
+    }
+
+    private void checkNet() {
+        DataDemo dataDemo = new DataDemo();
+        dataDemo.setCom("com");
+        dataDemo.setNu("nu");
+        dataDemo.setMessage("");
+        DataDemo.AAA aaa = new DataDemo.AAA();
+        aaa.setName("name");
+        User user = new User();
+        user.setAge(12);
+        List<User> users = new ArrayList<>();
+        users.add(user);
+        dataDemo.setUsers(users);
+        dataDemo.setAaa(aaa);
+        String jsonStr = JSONObject.toJSONString(dataDemo);
+        try {
+            org.json.JSONObject object = new org.json.JSONObject(jsonStr);
+            NetCheckBean checkBean = new NetCheckBean();
+            checkBean.setRequestUrl("/api/sku_detail");
+            List<String> list = new ArrayList<>();
+            list.add("com");
+            list.add("message");
+            list.add("aaa.age");
+            list.add("users.phoneNum");
+            checkBean.setParams(list);
+            NetCheckForNetManager.INSTANCE.checkValue(object,"/api/sku_detail",checkBean);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     private void showFW() {

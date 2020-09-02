@@ -1,14 +1,14 @@
 package com.syh.framework.http.model;
 
-import com.syh.framework.annotions.ChekNull;
-import com.syh.framework.annotions.NeedCheck;
+import com.syh.framework.http.net_check.annotions.CheckNull;
+import com.syh.framework.http.net_check.annotions.NeedCheck;
 
 public class User implements NeedCheck {
-    @ChekNull
+    @CheckNull
     String phoneNum;
     int age;
 
-    @ChekNull
+    @CheckNull
     DataDemo.AAA aaa;
 
     public DataDemo.AAA getAaa() {

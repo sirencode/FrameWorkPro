@@ -5,9 +5,8 @@ import android.support.v4.util.SimpleArrayMap
 import android.text.TextUtils
 import android.util.*
 import com.syh.framework.BuildConfig
-import com.syh.framework.annotions.ChekNull
-import com.syh.framework.annotions.NeedCheck
-import com.syh.framework.util.LogUtil
+import com.syh.framework.http.net_check.annotions.CheckNull
+import com.syh.framework.http.net_check.annotions.NeedCheck
 import java.lang.reflect.Array
 import java.util.*
 import java.util.concurrent.*
@@ -31,7 +30,7 @@ object NetCheckManager {
     private val mCount = AtomicInteger(1)
 
     private val sThreadFactory = ThreadFactory { r ->
-        val thread: Thread = Thread(r, "dataCheck:" + mCount.getAndIncrement())
+        val thread = Thread(r, "dataCheck:" + mCount.getAndIncrement())
         thread.priority = Thread.MIN_PRIORITY
         thread
     }
@@ -98,7 +97,7 @@ object NetCheckManager {
         val oClass: Class<*> = o.javaClass
         val declaredFields = oClass.declaredFields
         for (declaredField in declaredFields) {
-            if (declaredField.isAnnotationPresent(ChekNull::class.java)) {
+            if (declaredField.isAnnotationPresent(CheckNull::class.java)) {
                 declaredField.isAccessible = true
                 val paramClass = declaredField.type
                 var value: Any?
@@ -109,8 +108,7 @@ object NetCheckManager {
                         if (!TextUtils.isEmpty(checkMessage)) {
                             checkMessage.append(",")
                         }
-                        checkMessage.append(o.javaClass.simpleName).append(".").append(paramName)
-                            .append("->$value").toString()
+                        checkMessage.append(paramName).append("->空").toString()
                     }
                     if (value != null && !paramClass.isPrimitive && value is NeedCheck) {
                         if (!TextUtils.isEmpty(checkMessage)) {
@@ -134,8 +132,8 @@ object NetCheckManager {
             singleES!!.execute {
                 try {
                     val map: MutableMap<String, String> = HashMap()
-                    if (o.javaClass.isArray && !o.javaClass.isPrimitive
-                        && Array.getLength(o) > 0 && Array.get(o, 0) is NeedCheck
+                    if (o.javaClass.isArray && !o.javaClass.isPrimitive && Array.getLength(o) > 0
+                        && Array.get(o, 0) is NeedCheck
                     ) {
                         for (i in 0 until Array.getLength(o)) {
                             val result = check(Array.get(o, i))
@@ -160,12 +158,14 @@ object NetCheckManager {
                         }
                     }
                     if (map.isNotEmpty()) {
-                        if(BuildConfig.DEBUG) {
+                        if (BuildConfig.DEBUG) {
                             NetCheckViewManager.updateLogMsg(request, map.toString())
                         }
                         // todo 上报
                         map["request"] = request
-                        LogUtil.d(TAG,map.toString())
+//                        NFLog.postCheckDataLog(map.toString())
+
+//                        Timber.tag(TAG).d(map.toString())
                     }
                 } catch (e: java.lang.Exception) {
                     e.printStackTrace()

@@ -1,5 +1,6 @@
 package com.syh.framework.http;
 
+import com.syh.framework.http.gson.BaseGsonConverterFactory;
 import com.syh.framework.http.net_check.DataCheckInterceptor;
 
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class ApiFactory {
                     .withDomain(DomainUtil.getDomain().get(serverDomainType))
                     .withDebug(enableLog)
                     .withInterceptors(getDefaultInterceptors())
-                    .withConvertFactory(converterFactory)
+                    .withConvertFactory(BaseGsonConverterFactory.create())
                     .build();
 
             api = retrofit.create(tClass);

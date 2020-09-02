@@ -1,7 +1,7 @@
 package com.syh.framework.http;
 
-import com.syh.framework.annotions.DataCheckManager;
 import com.syh.framework.http.model.HttpBaseResult;
+import com.syh.framework.http.net_check.NetCheckManager;
 
 import io.reactivex.exceptions.Exceptions;
 import io.reactivex.observers.DisposableObserver;
@@ -19,7 +19,7 @@ public abstract class BaseSubscriber<T> extends DisposableObserver<T> {
 
         try {
             if (t instanceof HttpBaseResult) {
-                DataCheckManager.checkValue(((HttpBaseResult) t).getData(),((HttpBaseResult) t).getRequest());
+                NetCheckManager.INSTANCE.checkValue(((HttpBaseResult) t).getData(),((HttpBaseResult) t).getRequest());
             }
             onSuccess(t);
         } catch (Throwable e) {
