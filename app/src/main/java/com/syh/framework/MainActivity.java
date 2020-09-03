@@ -196,23 +196,15 @@ public class MainActivity extends BaseActivity {
             list.add("message");
             list.add("aaa.age");
             list.add("users.phoneNum");
+            list.add("users.age");
             checkBean.setParams(list);
-            NetCheckForNetManager.INSTANCE.checkValue(object,"/api/sku_detail",checkBean);
+            NetCheckForNetManager.INSTANCE.checkValue(object,"http://www.95fenapp.com/api_goods/skuDetail/v1.0?goods_id=YKp8k2NKJ&sn=HomeThreeCList&timestamp=1599037009824&token=1bc6e18a4ef672acc78c8237b6d7c716",checkBean);
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
     private void showFW() {
-//        if (FloatingLogViewService.isStarted) {
-//            return;
-//        }
-//        if (!Settings.canDrawOverlays(this)) {
-//            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
-//            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 1);
-//        } else {
-//            startService(new Intent(MainActivity.this, FloatingLogViewService.class));
-//        }
         FloatingViewManager.INSTANCE.start(this);
     }
 
