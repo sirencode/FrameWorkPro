@@ -13,6 +13,7 @@ import android.view.View
 import android.view.ViewTreeObserver
 import com.google.common.collect.MapMaker
 import com.syh.framework.R
+import com.syh.framework.util.LogUtil
 import java.util.concurrent.ConcurrentMap
 
 /**
@@ -22,9 +23,6 @@ import java.util.concurrent.ConcurrentMap
  * Description: 曝光  门面
  **/
 object ExposeManager {
-
-//    private var recorder: IRecorder? = null
-//    private var reporter: IReporter? = null
 
     /**
      * 上报间隔时间
@@ -41,31 +39,49 @@ object ExposeManager {
 
     @Volatile
     private var isReporting = false
-    private var failCount = 0
 
     private val timerHandler = Handler(Looper.getMainLooper())
-//    private var stateCallback: StateCallback = object : StateCallback {
-//
-//        override fun success(exposeKeys: String) {
-//            recorder?.clearAll(exposeKeys)
-//            isReporting = false
-//        }
-//
-//        override fun failure() {
-//            failCount++
-//            isReporting = false
-//        }
-//    }
 
-    /**
-     * 初始化
-     * @param context 上下文
-     * @param reporter 负责上报的对象
-     * @param maxTempSize 最多缓存的key数量，否则上报
-     */
-//    fun init(context: Application, reporter: IReporter, maxTempSize: Int, diffTime: Long) {
-//        init(context, null, reporter, maxTempSize, diffTime)
-//    }
+    private val keysSet: HashSet<String> = HashSet()
+
+    @Synchronized
+    fun getCount(): Int {
+        return keysSet.size
+    }
+
+    @Synchronized
+    fun getExposeKeys(): String {
+        val builder = StringBuilder()
+        for (item in keysSet) {
+            builder.append(item).append("#")
+        }
+        if (builder.isNotEmpty()) {
+            builder.deleteCharAt(builder.length - 1)
+        }
+        return builder.toString()
+    }
+
+    @Synchronized
+    fun addExposeKey(key: String) {
+        keysSet.add(key)
+
+    }
+
+    @Synchronized
+    fun clearAll(exposeKeys: String) {
+        if (exposeKeys.contains("#")) {
+            val keys = exposeKeys.split("#")
+            //1. 删除内存中数据
+            val iterator = keysSet.iterator()
+            iterator.forEach {
+                if (keys.contains(it)) {
+                    iterator.remove()
+                }
+            }
+        } else {
+            keysSet.clear()
+        }
+    }
 
     /**
      * 初始化
@@ -114,11 +130,12 @@ object ExposeManager {
      * 记录曝光点，超过缓存条数，自动上报
      */
     fun recordExpose(context: Context?, key: String) {
-//        var exposeKey = key + "@" + System.currentTimeMillis()
-//        recorder?.addExposeKey(exposeKey)
-//        if (recorder?.getCount() ?: 0 >= tempCount) {
-//            report(context)
-//        }
+        var exposeKey = key + "@" + System.currentTimeMillis()
+        LogUtil.d("Exposed","--->Exposed ${exposeKey}")
+        addExposeKey(exposeKey)
+        if (getCount() ?: 0 >= tempCount) {
+            report(context)
+        }
     }
 
 
@@ -133,15 +150,15 @@ object ExposeManager {
         ) {
             return
         }
-//        if (recorder?.getCount() ?: 0 <= 0) {
-//            return
-//        }
-//        val str = recorder?.getExposeKeys()
-//        if (!TextUtils.isEmpty(str)) {
-//            isReporting = true
-//            lastReportTime = System.currentTimeMillis()
-//            reporter?.report(context, str ?: "", stateCallback)
-//        }
+        if (getCount() ?: 0 <= 0) {
+            return
+        }
+        val str = getExposeKeys()
+        if (!TextUtils.isEmpty(str)) {
+            isReporting = true
+            lastReportTime = System.currentTimeMillis()
+            // todo 上报数据
+        }
     }
 
     /**
@@ -268,7 +285,6 @@ fun handlePaused(activity: Activity?) {
  * 监听滑动
  */
 private class DefaultViewScrollChangeListener : ViewTreeObserver.OnScrollChangedListener {
-
     /**
      * 主线程handler
      */

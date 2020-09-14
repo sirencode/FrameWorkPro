@@ -10,6 +10,7 @@ import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
 import com.syh.asm.ASMPathManager;
+import com.syh.framework.expose.ExposeManager;
 import com.syh.framework.util.LogUtil;
 
 
@@ -37,7 +38,10 @@ public class MyApp extends Application {
         instance = this;
         initPieWebView();
         ASMPathManager.init(this, true);
+
+        ExposeManager.INSTANCE.init(this,  10, 8 * 1000);
     }
+
 
     private void initPieWebView() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {

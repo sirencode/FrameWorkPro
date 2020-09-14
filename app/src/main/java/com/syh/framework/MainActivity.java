@@ -44,6 +44,7 @@ import com.syh.framework.img.ImageLoaderHelp;
 import com.syh.framework.largeImage.LargeImageViewActivity;
 import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
+import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
@@ -69,8 +70,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -365,15 +364,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void startSpAct() {
-//        startActivity(new Intent(this, SPActivity.class));
-        Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-
-            @Override
-            public void run() {
-               LogUtil.a("tag","time--->"+System.currentTimeMillis());
-            }
-        }, 0, 5000);
+        startActivity(new Intent(this, SPActivity.class));
     }
 
     private void startListAct() {
