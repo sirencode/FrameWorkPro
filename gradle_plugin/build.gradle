@@ -17,7 +17,7 @@ uploadArchives {
             pom.groupId = 'cn.syh.plugin'
             pom.version = '1.2.26'
             //文件发布到下面目录
-            repository(url: uri('../repo/'))
+            repository(url: rootProject.file('repo'))
         }
     }
 }

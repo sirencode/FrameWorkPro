@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <item name="nf_expose_id" type="id" />
+    <item name="nf_last_visiable" type="bool" />
+</resources>

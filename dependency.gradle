@@ -21,6 +21,9 @@ void executeDds(obj, type, library, key) {
     } else if (type == 'implementation') {
         //equal old compile
         obj.implementation library
+    } else if (type == 'api') {
+        //equal old compile
+        obj.api library
     } else if (type == 'compileOnly') {
         //equal old provided
         obj.compileOnly library

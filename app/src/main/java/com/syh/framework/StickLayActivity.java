@@ -22,10 +22,9 @@ public class StickLayActivity extends FragmentActivity {
             Intent intent = new Intent(StickLayActivity.this, MainActivity.class);
             startActivity(intent);
         });
-
         RecyclerView mHeadRecyclerView = findViewById(R.id.head_home_recyclerview);
         LinearLayoutManager layoutManager2 = new LinearLayoutManager(this);
-        layoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager2.setOrientation(LinearLayoutManager.VERTICAL);
         mHeadRecyclerView.setLayoutManager(layoutManager2);
         HomeAdapters mHomeAdapter = new HomeAdapters();
         mHeadRecyclerView.setAdapter(mHomeAdapter);

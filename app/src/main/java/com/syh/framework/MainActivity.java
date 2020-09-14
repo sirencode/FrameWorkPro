@@ -31,20 +31,19 @@ import com.syh.framework.frame_animation.AnimationActivity;
 import com.syh.framework.http.Api.HomeApi;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
-import com.syh.framework.http.model.DataDemo;
 import com.syh.framework.http.RetrofitException;
 import com.syh.framework.http.ServerDomainType;
+import com.syh.framework.http.model.DataDemo;
 import com.syh.framework.http.model.HttpBaseResult;
 import com.syh.framework.http.model.User;
 import com.syh.framework.http.net_check.NetCheckForNetManager;
+import com.syh.framework.http.net_check.NetCheckManager;
 import com.syh.framework.http.net_check.model.NetCheckBean;
 import com.syh.framework.img.ImageConfig;
 import com.syh.framework.img.ImageLoaderHelp;
 import com.syh.framework.largeImage.LargeImageViewActivity;
 import com.syh.framework.list.ListActivity;
-import com.syh.framework.http.net_check.NetCheckManager;
 import com.syh.framework.test.LiveDataBusDemo;
-import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
@@ -70,6 +69,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -364,7 +365,15 @@ public class MainActivity extends BaseActivity {
     }
 
     private void startSpAct() {
-        startActivity(new Intent(this, SPActivity.class));
+//        startActivity(new Intent(this, SPActivity.class));
+        Timer timer = new Timer();
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+               LogUtil.a("tag","time--->"+System.currentTimeMillis());
+            }
+        }, 0, 5000);
     }
 
     private void startListAct() {

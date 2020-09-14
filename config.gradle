@@ -32,6 +32,7 @@ ext {
             asm               : 'org.ow2.asm:asm:8.0.1',
             asm_util          : 'org.ow2.asm:asm-util:8.0.1',
             asm_commons       : 'org.ow2.asm:asm-commons:8.0.1',
+            guava             : 'com.google.guava:guava:29.0-android'
     ]
 
     appDps = [
@@ -56,5 +57,6 @@ ext {
             asm               : "implementation",
             asm_util          : "implementation",
             asm_commons       : "implementation",
+            guava             : "implementation"
     ]
 }

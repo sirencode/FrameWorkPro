@@ -16,19 +16,18 @@ class DataCheckInterceptor : Interceptor {
         var request = chain.request()
         var response = chain.proceed(request)
         response.body()?.let {
-            var source = it.source()
-            source.request(Long.MAX_VALUE)
-            var content = source.buffer().clone().readString(Charset.forName("UTF-8"))
-            val mediaType = it.contentType()
-            val gson = Gson()
-            val result: HttpResultBean?
             try {
-                result = gson.fromJson(content, HttpResultBean::class.java)
+                var source = it.source()
+                source.request(Long.MAX_VALUE)
+                var content = source.buffer().clone().readString(Charset.forName("UTF-8"))
+                val mediaType = it.contentType()
+                val gson = Gson()
+                val result: HttpResultBean =  gson.fromJson(content, HttpResultBean::class.java)
                 result.request = buildRequestString(request)
                 return response.newBuilder()
-                    .body(okhttp3.ResponseBody.create(mediaType, gson.toJson(result))).build()
+                        .body(okhttp3.ResponseBody.create(mediaType, gson.toJson(result))).build()
             } catch (e: Exception) {
-
+                chain.proceed(chain.request())
             }
         }
         return response

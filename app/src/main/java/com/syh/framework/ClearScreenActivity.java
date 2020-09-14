@@ -10,6 +10,7 @@ import com.syh.framework.view.ClearScreenLayout;
 public class ClearScreenActivity extends AppCompatActivity implements View.OnClickListener {
     private ClearScreenLayout layoutClear;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
