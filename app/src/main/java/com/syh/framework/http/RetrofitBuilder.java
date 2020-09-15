@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Dispatcher;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -122,6 +121,7 @@ public class RetrofitBuilder {
     private OkHttpClient createHttpClient() {
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
                 .connectTimeout(this.connectTimeout, TimeUnit.SECONDS)
+                .eventListenerFactory(OkHttpEventListener.Companion.getFACTORY())
                 .readTimeout(readTimeout, TimeUnit.SECONDS);
 
         if (writeTimeout > 0) {

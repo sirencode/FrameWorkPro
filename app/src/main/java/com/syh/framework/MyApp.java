@@ -39,7 +39,7 @@ public class MyApp extends Application {
         initPieWebView();
         ASMPathManager.init(this, true);
 
-        ExposeManager.INSTANCE.init(this,  10, 8 * 1000);
+        ExposeManager.INSTANCE.init(this);
     }
 
 

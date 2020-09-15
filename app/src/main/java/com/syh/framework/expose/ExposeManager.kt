@@ -16,12 +16,6 @@ import com.syh.framework.R
 import com.syh.framework.util.LogUtil
 import java.util.concurrent.ConcurrentMap
 
-/**
- * Author: baozhiyuan
- * Time: 2020/9/3
- * Version: 1.6.0
- * Description: 曝光  门面
- **/
 object ExposeManager {
 
     /**
@@ -86,18 +80,8 @@ object ExposeManager {
     /**
      * 初始化
      * @param context 上下文
-     * @param recorder 曝光点记录对象
-     * @param reporter 负责上报的对象
-     * @param maxTempSize 最大缓存条数
-     * @param diffTime 最大缓存时间
      */
-    fun init(
-            context: Application,
-            maxTempSize: Int,
-            diffTime: Long
-    ) {
-        resetCacheNum(maxTempSize)
-        resetDiffTime(diffTime)
+    fun init(context: Application) {
         context.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
             override fun onActivityDestroyed(activity: Activity) {
                 detachExpose(activity)
@@ -161,20 +145,6 @@ object ExposeManager {
         }
     }
 
-    /**
-     * 重新设置缓存条数
-     */
-    fun resetCacheNum(tempCount: Int) {
-        ExposeManager.tempCount = if (tempCount > 0) tempCount else 100
-    }
-
-    /**
-     * 重新设置上报间隔
-     */
-    fun resetDiffTime(diffTime: Long) {
-        ExposeManager.diffTime = if (diffTime > 1000L) diffTime else 60 * 1000L
-        triggerLoop()
-    }
 
     /**
      * 定时检查上报
