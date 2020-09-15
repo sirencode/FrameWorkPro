@@ -14,6 +14,7 @@ import android.view.*
 import android.widget.TextView
 import com.syh.framework.R
 import com.syh.framework.expand.screenWidth
+import com.syh.framework.util.UIThreadUtil
 
 /**
  * Created by shenyonghe on 2020/7/24.
@@ -24,6 +25,7 @@ class FloatingLogViewService : Service() {
         @kotlin.jvm.JvmField
         var isStarted: Boolean = false
     }
+
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
@@ -80,14 +82,7 @@ class FloatingLogViewService : Service() {
         }
     }
 
-    inner class LogViewAdapter(var list:MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
-//        fun add(item:String) {
-//            list.add(0,item)
-//            notifyDataSetChanged()
-//            recycler.requestFocus()
-//            recycler.scrollToPosition(0)
-//        }
+    inner class LogViewAdapter(var list: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             var item = LayoutInflater.from(parent.context).inflate(R.layout.item_log_view, parent, false) as TextView
@@ -99,21 +94,21 @@ class FloatingLogViewService : Service() {
         }
 
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-            var textView:TextView = holder.itemView as TextView
+            var textView: TextView = holder.itemView as TextView
             textView.text = list[position]
         }
 
     }
 
-    inner class TextViewHolder(itemView:TextView) : RecyclerView.ViewHolder(itemView)
+    inner class TextViewHolder(itemView: TextView) : RecyclerView.ViewHolder(itemView)
 
-    fun update(msg:String) {
-        adapter?.let {
-            it.list.add(0,msg)
-            it.notifyDataSetChanged()
-            displayView.requestFocus()
-            recycler.smoothScrollToPosition(0)
-        }
+    fun update(msg: String) {
+        UIThreadUtil.runOnUiThread(Runnable {
+            adapter?.let {
+                it.list.add(0, msg)
+                it.notifyDataSetChanged()
+            }
+        })
     }
 
     override fun onDestroy() {
@@ -123,8 +118,8 @@ class FloatingLogViewService : Service() {
 
     inner class FloatingOnTouchListener : View.OnTouchListener {
 
-        var x:Int = 0
-        var y:Int = 0
+        var x: Int = 0
+        var y: Int = 0
 
         override fun onTouch(v: View?, event: MotionEvent?): Boolean {
             when (event!!.action) {

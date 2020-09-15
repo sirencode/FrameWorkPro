@@ -8,8 +8,7 @@ import android.view.View
 abstract class ClickProxy : View.OnClickListener {
     private var lastClickTime: Long = 0
 
-    constructor() {}
-    constructor(time: Int) {
+    constructor(time: Int = MIN_CLICK_DELAY_TIME) {
         MIN_CLICK_DELAY_TIME = time
     }
 
