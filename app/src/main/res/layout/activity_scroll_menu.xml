@@ -16,14 +16,14 @@
             android:background="@android:color/holo_blue_light"
             android:text="sdjaflkjsdlakfjlk\nsdfjsadljfldsjaf\nsdfjfd\nfdsafsj" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvVertical"
             android:layout_width="100dp"
             android:layout_height="260dp"
             android:layout_below="@id/tv"
             android:background="@android:color/holo_green_light" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHorizontal"
             android:layout_width="260dp"
             android:layout_height="100dp"

@@ -1,9 +1,6 @@
 package com.syh.framework;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,12 +9,16 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.syh.framework.util.BaseActivity;
 import com.syh.framework.view.ScrollMenu;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScrollMenuActivity extends AppCompatActivity {
+public class ScrollMenuActivity extends BaseActivity {
     private RecyclerView rvVertical, rvHorizontal;
     private ScrollView scrollView;
     private List<String> datas;

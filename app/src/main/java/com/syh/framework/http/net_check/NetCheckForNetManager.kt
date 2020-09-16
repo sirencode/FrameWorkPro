@@ -1,7 +1,7 @@
 package com.syh.framework.http.net_check
 
 import android.os.Build
-import android.support.v4.util.SimpleArrayMap
+import androidx.collection.SimpleArrayMap
 import android.util.*
 import com.syh.framework.http.net_check.model.NetCheckBean
 import org.json.JSONArray
@@ -53,7 +53,7 @@ object NetCheckForNetManager {
         if (obj is Map<*, *> && obj.isEmpty()) {
             return true
         }
-        if (obj is SimpleArrayMap<*, *> && obj.isEmpty) {
+        if (obj is androidx.collection.SimpleArrayMap<*, *> && obj.isEmpty) {
             return true
         }
         if (obj is SparseArray<*> && obj.size() == 0) {

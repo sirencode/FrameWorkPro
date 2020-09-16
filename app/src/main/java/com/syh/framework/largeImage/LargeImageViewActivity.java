@@ -1,7 +1,7 @@
 package com.syh.framework.largeImage;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.syh.framework.R;
 import com.syh.framework.largeImage.view.LargeImageView;

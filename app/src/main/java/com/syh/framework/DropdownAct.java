@@ -1,7 +1,7 @@
 package com.syh.framework;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.view.DropdownLayout;

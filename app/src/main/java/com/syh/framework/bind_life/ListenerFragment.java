@@ -2,7 +2,7 @@ package com.syh.framework.bind_life;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 public class ListenerFragment extends Fragment {
     private LifeListener mlistener;

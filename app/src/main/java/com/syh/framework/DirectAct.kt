@@ -1,18 +1,18 @@
 package com.syh.framework
 
-import android.app.Activity
 import android.content.Context
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import com.syh.framework.util.BaseActivity
 import kotlinx.android.synthetic.main.activity_direction.*
 
 /**
  * Created by shenyonghe on 2020/4/9.
  */
-class DirectAct : Activity(), SensorEventListener {
+class DirectAct : BaseActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null

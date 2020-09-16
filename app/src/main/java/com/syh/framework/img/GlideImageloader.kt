@@ -2,7 +2,7 @@ package com.syh.framework.img
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.annotation.Nullable
+import androidx.annotation.Nullable
 import android.text.TextUtils
 import android.widget.ImageView
 import com.bumptech.glide.Glide

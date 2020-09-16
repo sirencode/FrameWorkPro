@@ -3,8 +3,9 @@ package com.syh.framework;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
 
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.ShadowDrawable;

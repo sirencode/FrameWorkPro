@@ -1,7 +1,7 @@
 package com.syh.framework.util.toast;
 
 import android.content.Context;
-import android.support.v4.app.NotificationManagerCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 public class ToastFactory {
     private volatile static ToastFactory sToastFactory;

@@ -1,14 +1,14 @@
 package com.syh.framework.view
 
 import android.content.Context
-import android.support.v7.widget.LinearSmoothScroller
+import androidx.recyclerview.widget.LinearSmoothScroller
 import android.view.View
 
 /**
  * Created by shenyonghe on 2020/8/12.
  */
 class TopSmoothScroller constructor(context: Context) :
-    LinearSmoothScroller(context) {
+    androidx.recyclerview.widget.LinearSmoothScroller(context) {
     var positionOffset = 0
 
     override fun getHorizontalSnapPreference(): Int {

@@ -6,7 +6,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
@@ -24,10 +24,6 @@ import android.widget.ProgressBar;
 
 import com.syh.framework.R;
 import com.syh.framework.util.BaseActivity;
-import com.syh.framework.util.LogUtil;
-
-import java.util.List;
-import java.util.Map;
 
 
 /**

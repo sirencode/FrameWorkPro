@@ -2,10 +2,10 @@ package com.syh.framework.view
 
 import android.content.Context
 import android.graphics.Color
-import android.support.v4.view.NestedScrollingParent
-import android.support.v4.view.NestedScrollingParentHelper
-import android.support.v4.view.ViewCompat
-import android.support.v7.widget.RecyclerView
+import androidx.core.view.NestedScrollingParent
+import androidx.core.view.NestedScrollingParentHelper
+import androidx.core.view.ViewCompat
+import androidx.recyclerview.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.View.OnTouchListener
@@ -22,7 +22,7 @@ class StickyNavLayout : LinearLayout, NestedScrollingParent {
 
     lateinit var headerView: View
     lateinit var footerView: AnimatorView
-    lateinit var childView: RecyclerView
+    lateinit var childView: androidx.recyclerview.widget.RecyclerView
     var isRunAnim: Boolean = false
     lateinit var parentHelper: NestedScrollingParentHelper
     var mLinster: OnStartActivityListener? = null
@@ -64,8 +64,8 @@ class StickyNavLayout : LinearLayout, NestedScrollingParent {
     override fun onFinishInflate() {
         super.onFinishInflate()
         orientation = HORIZONTAL
-        if (getChildAt(0) is RecyclerView) {
-            childView = getChildAt(0) as RecyclerView
+        if (getChildAt(0) is androidx.recyclerview.widget.RecyclerView) {
+            childView = getChildAt(0) as androidx.recyclerview.widget.RecyclerView
             val layoutParams = LayoutParams(maxWidth, LayoutParams.MATCH_PARENT)
             addView(headerView, 0, layoutParams)
             addView(footerView, childCount, layoutParams)
@@ -110,7 +110,7 @@ class StickyNavLayout : LinearLayout, NestedScrollingParent {
     }
 
     override fun onStartNestedScroll(child: View, target: View, axes: Int): Boolean {
-        return target is RecyclerView && !isRunAnim
+        return target is androidx.recyclerview.widget.RecyclerView && !isRunAnim
     }
 
     override fun onNestedFling(target: View, velocityX: Float, velocityY: Float, consumed: Boolean): Boolean {

@@ -1,6 +1,6 @@
 package com.syh.framework.img
 
-import android.support.annotation.DrawableRes
+import androidx.annotation.DrawableRes
 import android.widget.ImageView
 import com.bumptech.glide.request.target.Target
 import com.syh.framework.R

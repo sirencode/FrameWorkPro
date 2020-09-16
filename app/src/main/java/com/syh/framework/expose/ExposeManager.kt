@@ -7,7 +7,7 @@ import android.content.ContextWrapper
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.text.TextUtils
 import android.view.View
 import android.view.ViewTreeObserver
@@ -175,7 +175,7 @@ fun View.attachExposeKey(key: String?) {
     addOnAttachStateChangeListener(attachListener)
 }
 
-fun RecyclerView.collectExpose() {
+fun androidx.recyclerview.widget.RecyclerView.collectExpose() {
     scrollListener.triggerDellayedCollect(false)
 }
 

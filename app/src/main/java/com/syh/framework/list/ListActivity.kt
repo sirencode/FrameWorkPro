@@ -1,8 +1,9 @@
 package com.syh.framework.list
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener
-import android.support.v7.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+
+
 import com.syh.framework.R
 import com.syh.framework.expose.ExposeManager
 import com.syh.framework.util.BaseActivity
@@ -24,8 +25,8 @@ class ListActivity : BaseActivity() {
 
     @Cost
     private fun initRV() {
-        refreshLay.setOnRefreshListener(OnRefreshListener { refreshList() })
-        recycler_view.layoutManager = LinearLayoutManager(this)
+        refreshLay.setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener { refreshList() })
+        recycler_view.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
         adapter = MyQuickAdapter(data)
         recycler_view.adapter = adapter
     }

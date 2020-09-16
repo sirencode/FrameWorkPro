@@ -1,8 +1,9 @@
 package com.syh.framework;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.widget.EditText;
+
+import androidx.annotation.Nullable;
 
 import com.syh.framework.algorithm.TimeWheel;
 import com.syh.framework.util.BaseActivity;

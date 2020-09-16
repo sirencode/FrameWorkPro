@@ -2,7 +2,7 @@ package com.syh.framework.view.state_layout
 
 import android.content.Context
 import android.graphics.Color
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View

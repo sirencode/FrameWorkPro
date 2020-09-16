@@ -7,9 +7,9 @@ import android.graphics.PixelFormat
 import android.os.Build
 import android.os.IBinder
 import android.provider.Settings
-import android.support.annotation.RequiresApi
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.annotation.RequiresApi
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
 import com.syh.framework.R
@@ -33,7 +33,7 @@ class FloatingLogViewService : Service() {
     lateinit var windowManager: WindowManager
     lateinit var layoutParams: WindowManager.LayoutParams
     lateinit var displayView: View
-    lateinit var recycler: RecyclerView
+    lateinit var recycler: androidx.recyclerview.widget.RecyclerView
     lateinit var adapter: LogViewAdapter
 
     override fun onCreate() {
@@ -74,7 +74,7 @@ class FloatingLogViewService : Service() {
                 stopSelf()
             }
 
-            recycler.layoutManager = LinearLayoutManager(this)
+            recycler.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
             adapter = LogViewAdapter(mutableListOf())
             recycler.adapter = adapter
             displayView.setOnTouchListener(FloatingOnTouchListener())
@@ -82,9 +82,9 @@ class FloatingLogViewService : Service() {
         }
     }
 
-    inner class LogViewAdapter(var list: MutableList<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+    inner class LogViewAdapter(var list: MutableList<String>) : androidx.recyclerview.widget.RecyclerView.Adapter<androidx.recyclerview.widget.RecyclerView.ViewHolder>() {
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): androidx.recyclerview.widget.RecyclerView.ViewHolder {
             var item = LayoutInflater.from(parent.context).inflate(R.layout.item_log_view, parent, false) as TextView
             return TextViewHolder(item)
         }
@@ -93,14 +93,14 @@ class FloatingLogViewService : Service() {
             return list.size
         }
 
-        override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        override fun onBindViewHolder(holder: androidx.recyclerview.widget.RecyclerView.ViewHolder, position: Int) {
             var textView: TextView = holder.itemView as TextView
             textView.text = list[position]
         }
 
     }
 
-    inner class TextViewHolder(itemView: TextView) : RecyclerView.ViewHolder(itemView)
+    inner class TextViewHolder(itemView: TextView) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView)
 
     fun update(msg: String) {
         UIThreadUtil.runOnUiThread(Runnable {

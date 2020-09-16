@@ -3,7 +3,7 @@ package com.syh.framework.bind_life;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.support.v4.app.FragmentActivity;
+import androidx.fragment.app.FragmentActivity;
 
 public class LifeCycleManager {
     public static void bindLife (Object mContext, LifeListener mListener) {
@@ -18,7 +18,7 @@ public class LifeCycleManager {
                 mListener = fragment.getLifeListener();
             }
         } else if (mContext instanceof FragmentActivity) {
-            android.support.v4.app.FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager ();
+            androidx.fragment.app.FragmentManager manager = ((FragmentActivity) mContext).getSupportFragmentManager ();
             ListenerFragmentV4 listenerFragment = (ListenerFragmentV4) manager.findFragmentByTag(ListenerFragmentV4.ListenerFragmentTag);
             if (listenerFragment == null) {
                 listenerFragment = new ListenerFragmentV4 ();
@@ -37,8 +37,8 @@ public class LifeCycleManager {
             } else {
                 mListener = fragment.getLifeListener();
             }
-        } else if (mContext instanceof android.support.v4.app.Fragment) {
-            android.support.v4.app.FragmentManager manager = ((android.support.v4.app.Fragment) mContext).getFragmentManager ();
+        } else if (mContext instanceof androidx.fragment.app.Fragment) {
+            androidx.fragment.app.FragmentManager manager = ((androidx.fragment.app.Fragment) mContext).getFragmentManager ();
             ListenerFragmentV4 listenerFragment = (ListenerFragmentV4) manager.findFragmentByTag(ListenerFragmentV4.ListenerFragmentTag);
             if (listenerFragment == null) {
                 listenerFragment = new ListenerFragmentV4 ();

@@ -1,13 +1,13 @@
 package com.syh.framework;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.syh.framework.util.BaseActivity;
 import com.syh.framework.view.ClearScreenLayout;
 
 
-public class ClearScreenActivity extends AppCompatActivity implements View.OnClickListener {
+public class ClearScreenActivity extends BaseActivity implements View.OnClickListener {
     private ClearScreenLayout layoutClear;
 
 

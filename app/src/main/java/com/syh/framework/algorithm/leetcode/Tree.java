@@ -1,7 +1,7 @@
 package com.syh.framework.algorithm.leetcode;
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.RequiresApi;
 
 import java.util.ArrayList;
 import java.util.HashMap;
