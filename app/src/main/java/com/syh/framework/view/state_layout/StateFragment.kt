@@ -5,7 +5,7 @@ import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.syh.framework.BaseLazyFragment
+import com.syh.asm.BaseLazyFragment
 import com.syh.framework.R
 
 /**

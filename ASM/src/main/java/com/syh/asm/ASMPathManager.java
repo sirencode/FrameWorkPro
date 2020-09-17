@@ -11,15 +11,21 @@ import java.util.List;
  */
 public class ASMPathManager {
     public static List<PathRecord> list = new ArrayList<>();
+    private static LifecycleListener listener;
 
     public static void add(String result) {
         String[] strings = result.split(",");
-        if (strings.length == 5) {
-            list.add(new PathRecord(strings[0], Long.valueOf(strings[1]), strings[2], Long.valueOf(strings[3]), Long.valueOf(strings[4])));
+        if (strings.length >= 2) {
+            PathRecord record = new PathRecord(strings[0], System.currentTimeMillis(), strings[1]);
+            list.add(record);
+            if (listener != null) {
+                listener.add(record);
+            }
         }
     }
 
-    public static void init(Application application,boolean open) {
+    public static void init(Application application, boolean open, LifecycleListener lifecycleListener) {
+        listener = lifecycleListener;
         if (!open) return;
         AppFrontBackHelper helper = new AppFrontBackHelper();
         helper.register(application, new AppFrontBackHelper.OnAppStatusListener() {
@@ -34,5 +40,9 @@ public class ASMPathManager {
                 Log.e("ASM-TAG", ASMPathManager.list.toString());
             }
         });
+    }
+
+    public void clear() {
+        list.clear();
     }
 }

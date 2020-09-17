@@ -10,8 +10,12 @@ import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
 import com.syh.asm.ASMPathManager;
+import com.syh.asm.LifecycleListener;
+import com.syh.asm.PathRecord;
 import com.syh.framework.expose.ExposeManager;
 import com.syh.framework.util.LogUtil;
+
+import java.util.List;
 
 
 /**
@@ -37,7 +41,17 @@ public class MyApp extends Application {
                 .commit();
         instance = this;
         initPieWebView();
-        ASMPathManager.init(this, true);
+        ASMPathManager.init(this, true, new LifecycleListener() {
+            @Override
+            public void add(PathRecord record) {
+                LogUtil.i("ASMPathManager", "ASMPathManager--->" + record.toString());
+            }
+
+            @Override
+            public List<PathRecord> getAll() {
+                return ASMPathManager.list;
+            }
+        });
 
         ExposeManager.INSTANCE.init(this);
     }

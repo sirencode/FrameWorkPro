@@ -36,8 +36,8 @@ class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
         System.out.println("LifecycleClassVisitor : visitMethod : " + name);
         MethodVisitor mv = cv.visitMethod(access, name, desc, signature, exceptions);
         //匹配FragmentActivity
-        if (superName.contains("ComponentActivity")) {
-            if ("onCreate".equals(name) ) {
+        if (mClassName.equals("androidx/fragment/app/FragmentActivity")) {
+            if ("onCreate".equals(name)) {
                 //处理onCreate
                 return new LifecycleOnCreateMethodVisitor(mv);
             } else if ("onDestroy".equals(name)) {
@@ -49,6 +49,11 @@ class LifecycleClassVisitor extends ClassVisitor implements Opcodes {
             } else if ("onStop".equals(name)) {
                 //处理onDestroy
                 return new LifecycleOnStopMethodVisitor(mv);
+            }
+        } else if (mClassName.equals("com/syh/asm/BaseLazyFragment")) {
+            if ("notifyFragmentVisibleListeners".equals(name)) {
+                //处理onCreate
+                return new LifecycleFragmentVisibleMethodVisitor(mv, access, name, desc);
             }
         }
         return mv;
