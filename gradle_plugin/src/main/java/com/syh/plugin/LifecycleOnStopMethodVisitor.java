@@ -24,7 +24,7 @@ class LifecycleOnStopMethodVisitor extends MethodVisitor {
         super.visitCode();
         mv.visitTypeInsn(NEW, "java/lang/StringBuilder");
         mv.visitInsn(DUP);
-        mv.visitLdcInsn("2");
+        mv.visitLdcInsn("exit");
         mv.visitMethodInsn(INVOKESPECIAL, "java/lang/StringBuilder", "<init>", "(Ljava/lang/String;)V", false);
         mv.visitLdcInsn(",");
         mv.visitMethodInsn(INVOKEVIRTUAL, "java/lang/StringBuilder", "append", "(Ljava/lang/String;)Ljava/lang/StringBuilder;", false);

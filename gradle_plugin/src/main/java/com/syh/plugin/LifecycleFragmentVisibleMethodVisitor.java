@@ -35,11 +35,11 @@ class LifecycleFragmentVisibleMethodVisitor extends AdviceAdapter {
         mv.visitVarInsn(ILOAD, 1);
         Label label0 = new Label();
         mv.visitJumpInsn(IFEQ, label0);
-        mv.visitLdcInsn("1");
+        mv.visitLdcInsn("enter");
         Label label1 = new Label();
         mv.visitJumpInsn(GOTO, label1);
         mv.visitLabel(label0);
-        mv.visitLdcInsn("2");
+        mv.visitLdcInsn("exit");
         mv.visitLabel(label1);
         mv.visitVarInsn(ASTORE, 2);
         mv.visitTypeInsn(NEW, "java/lang/StringBuilder");

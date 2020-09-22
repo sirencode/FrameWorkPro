@@ -4,16 +4,19 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 import android.webkit.WebView;
 
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
 import com.syh.asm.ASMPathManager;
+import com.syh.asm.AppFrontBackHelper;
 import com.syh.asm.LifecycleListener;
 import com.syh.asm.PathRecord;
 import com.syh.framework.expose.ExposeManager;
 import com.syh.framework.util.LogUtil;
+import com.syh.framework.util.PageConfig;
 
 import java.util.List;
 
@@ -41,7 +44,7 @@ public class MyApp extends Application {
                 .commit();
         instance = this;
         initPieWebView();
-        ASMPathManager.init(this, true, new LifecycleListener() {
+        ASMPathManager.init(new LifecycleListener() {
             @Override
             public void add(PathRecord record) {
                 LogUtil.i("ASMPathManager", "ASMPathManager--->" + record.toString());
@@ -50,6 +53,20 @@ public class MyApp extends Application {
             @Override
             public List<PathRecord> getAll() {
                 return ASMPathManager.list;
+            }
+        });
+
+        AppFrontBackHelper helper = new AppFrontBackHelper();
+        helper.register(this, new AppFrontBackHelper.OnAppStatusListener() {
+            @Override
+            public void onFront() {
+                //应用切到前台处理
+            }
+
+            @Override
+            public void onBack() {
+                // todo 采集到的的数据进行上报
+                Log.e("ASM-TAG", PageConfig.INSTANCE.matchRecord(ASMPathManager.list).toString());
             }
         });
 
