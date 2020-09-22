@@ -172,6 +172,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_activity_scroll_menu).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollMenuActivity.class)));
         findViewById(R.id.btn_activity_clean_screen).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ClearScreenActivity.class)));
         findViewById(R.id.btn_activity_net_check).setOnClickListener(v -> checkNet());
+        findViewById(R.id.btn_activity_gson).setOnClickListener(v -> testGson());
     }
 
     private void checkNet() {
@@ -212,6 +213,7 @@ public class MainActivity extends BaseActivity {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             if (!Settings.canDrawOverlays(this)) {
                 Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
@@ -293,6 +295,16 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+    }
+
+    @Cost
+    private void testGson() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(new ExposeBean(
+                    "8C6BA11C-A792-9D1A-0C34-1FDE90DF30C5.goodsDetail.shoeHome.listGoodsItem.1..E4KgDZr9W.3.1.695_1159.1.12",
+                    "8C6BA11C-A792-9D1A-0C34-1FDE90DF30C5.goodsDetail.shoeHome.listGoodsItem.1..E4KgDZr9W.3.1.695_1159.1.12"
+            ).toString());
+        }
     }
 
     @Cost

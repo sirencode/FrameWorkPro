@@ -1,11 +1,10 @@
 package com.syh.framework.test;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.syh.framework.R;
-import com.syh.framework.util.SPHelper;
+import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.spwithtime.SPData;
 import com.syh.framework.util.spwithtime.SpTimeHelper;
 
@@ -13,7 +12,7 @@ import com.syh.framework.util.spwithtime.SpTimeHelper;
 /**
  * Created bg shenyonghe on 2018/6/7.
  */
-public class SPActivity extends Activity {
+public class SPActivity extends BaseActivity {
 
     private TextView infoView;
     private SpTimeHelper helper;
