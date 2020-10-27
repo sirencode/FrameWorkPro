@@ -30,6 +30,7 @@ public class ApiFactory {
     }
 
     private Map<String, Object> apis;
+    private Map<String, Retrofit> retrofitMap;
     private Interceptor[] interceptors;
     private Map<ServerDomainType, Interceptor[]> interceptorMap;
     private Converter.Factory converterFactory = GsonConverterFactory.create();
@@ -37,6 +38,7 @@ public class ApiFactory {
 
     private ApiFactory() {
         apis = new HashMap<>();
+        retrofitMap = new HashMap<>();
     }
 
     public void clearCache() {
@@ -65,16 +67,27 @@ public class ApiFactory {
         this.enableLog = enableLog;
     }
 
-    public <T> T create(ServerDomainType serverDomainType, Class<T> tClass, Converter.Factory converterFactory) {
+    public <T> T create(ServerDomainType serverDomainType, Class<T> tClass) {
         String key = getKey(serverDomainType, tClass);
         T api = (T) apis.get(key);
         if (api == null) {
-            Retrofit retrofit = new RetrofitBuilder()
-                    .withDomain(DomainUtil.getDomain().get(serverDomainType))
-                    .withDebug(enableLog)
-                    .withInterceptors(getDefaultInterceptors())
-                    .withConvertFactory(BaseGsonConverterFactory.create())
-                    .build();
+//
+//            Retrofit retrofit = new RetrofitBuilder()
+//                    .withDomain(DomainUtil.getDomain().get(serverDomainType))
+//                    .withDebug(enableLog)
+//                    .withInterceptors(getDefaultInterceptors())
+//                    .withConvertFactory(BaseGsonConverterFactory.create())
+//                    .build();
+            Retrofit retrofit = retrofitMap.get(serverDomainType.getName());
+            if (retrofit == null) {
+                retrofit = new RetrofitBuilder()
+                        .withDomain(DomainUtil.getDomain().get(serverDomainType))
+                        .withDebug(enableLog)
+                        .withInterceptors(getDefaultInterceptors())
+                        .withConvertFactory(BaseGsonConverterFactory.create())
+                        .build();
+                retrofitMap.put(serverDomainType.getName(), retrofit);
+            }
 
             api = retrofit.create(tClass);
             apis.put(key, api);
@@ -82,7 +95,7 @@ public class ApiFactory {
         return api;
     }
 
-    private List<Interceptor> getDefaultInterceptors(){
+    private List<Interceptor> getDefaultInterceptors() {
         List<Interceptor> list = new ArrayList<>();
         list.add(new LogInterceptor());
         list.add(new DataCheckInterceptor());
@@ -109,7 +122,7 @@ public class ApiFactory {
         return res;
     }
 
-    public <T> T create(ServerDomainType serverDomainType, Class<T> tClass) {
-        return create(serverDomainType, tClass, converterFactory);
-    }
+//    public <T> T create(ServerDomainType serverDomainType, Class<T> tClass) {
+//        return create(serverDomainType, tClass, converterFactory);
+//    }
 }

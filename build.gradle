@@ -38,6 +38,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+//不使用缓存，使用仓库中最新的包
+configurations.all {
+    resolutionStrategy.cacheDynamicVersionsFor 0, 'seconds' // 动态版本 x.x.+
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'//  变化版本 x.x.x
+}
+
 boolean isReleaseBuildType(){
     for(String s : gradle.startParameter.taskNames) {
         if (s.contains("Release") | s.contains("release")) {

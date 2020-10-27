@@ -29,7 +29,7 @@ import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
 import com.syh.framework.defense.DefenseActivity;
 import com.syh.framework.frame_animation.AnimationActivity;
-import com.syh.framework.http.Api.HomeApi;
+import com.syh.framework.http.Api.HomeV2Api;
 import com.syh.framework.http.ApiFactory;
 import com.syh.framework.http.BaseSubscriber;
 import com.syh.framework.http.RetrofitException;
@@ -39,6 +39,7 @@ import com.syh.framework.http.model.HttpBaseResult;
 import com.syh.framework.http.model.User;
 import com.syh.framework.http.net_check.NetCheckForNetManager;
 import com.syh.framework.http.net_check.NetCheckManager;
+import com.syh.framework.http.net_check.gson_adapter.test.GsonTest;
 import com.syh.framework.http.net_check.model.NetCheckBean;
 import com.syh.framework.img.ImageConfig;
 import com.syh.framework.img.ImageLoaderHelp;
@@ -90,7 +91,7 @@ public class MainActivity extends BaseActivity {
         textView = findViewById(R.id.tv_msg);
         imageView1 = findViewById(R.id.image1);
         imageView1.setOnClickListener(v -> {
-            ApiFactory.getInstance().create(ServerDomainType.Home, HomeApi.class)
+            ApiFactory.getInstance().create(ServerDomainType.Home, HomeV2Api.class)
                     .getTest("yuantong", "11111111111")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -299,6 +300,7 @@ public class MainActivity extends BaseActivity {
 
     @Cost
     private void testGson() {
+        GsonTest.gsonTest();
         for (int i = 0; i < 100; i++) {
             System.out.println(new ExposeBean(
                     "8C6BA11C-A792-9D1A-0C34-1FDE90DF30C5.goodsDetail.shoeHome.listGoodsItem.1..E4KgDZr9W.3.1.695_1159.1.12",

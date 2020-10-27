@@ -2,21 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-Users-shenyonghe-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/-Users-shenyonghe-FrameWorkPro.iml" group="FrameWorkPro" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ASM/ASM.iml" filepath="$PROJECT_DIR$/.idea/modules/ASM/ASM.iml" group="FrameWorkPro/ASM" />
-      <module fileurl="file://$PROJECT_DIR$/FrameWorkPro.iml" filepath="$PROJECT_DIR$/FrameWorkPro.iml" group="FrameWorkPro" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FrameWorkPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FrameWorkPro-app.iml" group="FrameWorkPro/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro-thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro-thirdLib.iml" group="FrameWorkPro/thirdLib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ASM/FrameWorkPro.ASM.iml" filepath="$PROJECT_DIR$/.idea/modules/ASM/FrameWorkPro.ASM.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/FrameWorkPro.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/FrameWorkPro.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle_plugin/FrameWorkPro.gradle_plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle_plugin/FrameWorkPro.gradle_plugin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro.thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro.thirdLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Users-shenyonghe-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/Users-shenyonghe-FrameWorkPro.iml" group="FrameWorkPro" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/Users-shenyonghe-FrameWorkPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/Users-shenyonghe-FrameWorkPro-app.iml" group="FrameWorkPro/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/Users-shenyonghe-FrameWorkPro-thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/Users-shenyonghe-FrameWorkPro-thirdLib.iml" group="FrameWorkPro/thirdLib" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="FrameWorkPro/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/gradle_plugin/gradle_plugin.iml" filepath="$PROJECT_DIR$/.idea/modules/gradle_plugin/gradle_plugin.iml" group="FrameWorkPro/gradle_plugin" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shen-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/shen-FrameWorkPro.iml" group="FrameWorkPro" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shenyonghe-FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/shenyonghe-FrameWorkPro.iml" group="FrameWorkPro" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/shenyonghe-FrameWorkPro-app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/shenyonghe-FrameWorkPro-app.iml" group="FrameWorkPro/app" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/shenyonghe-FrameWorkPro-thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/shenyonghe-FrameWorkPro-thirdLib.iml" group="FrameWorkPro/thirdLib" />
-      <module fileurl="file://$PROJECT_DIR$/thirdLib/thirdLib.iml" filepath="$PROJECT_DIR$/thirdLib/thirdLib.iml" group="FrameWorkPro/thirdLib" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shenyonghe.FrameWorkPro.iml" filepath="$PROJECT_DIR$/.idea/modules/shenyonghe.FrameWorkPro.iml" />
     </modules>
   </component>
 </project>
