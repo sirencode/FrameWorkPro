@@ -159,5 +159,6 @@
         <service android:name=".view.FloatingLogViewService"/>
         <activity android:name=".ScrollMenuActivity"/>
         <activity android:name=".ClearScreenActivity"/>
+        <activity android:name=".ShapeActivity"/>
     </application>
 </manifest>
