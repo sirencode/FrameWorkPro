@@ -12,7 +12,7 @@ public class ClearScreenActivity extends BaseActivity implements View.OnClickLis
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clear_screen);
         init();

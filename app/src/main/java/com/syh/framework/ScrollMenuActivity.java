@@ -26,7 +26,7 @@ public class ScrollMenuActivity extends BaseActivity {
     private MyAdapter adapter;
     private CheckedTextView ctvH, ctvV;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroll_menu);
         init();

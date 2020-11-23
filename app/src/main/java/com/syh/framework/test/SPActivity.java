@@ -19,7 +19,7 @@ public class SPActivity extends BaseActivity {
     public static final String KEY = "test_key";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sp);
         initView();

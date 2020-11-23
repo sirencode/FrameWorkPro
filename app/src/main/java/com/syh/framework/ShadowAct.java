@@ -16,7 +16,7 @@ import com.syh.framework.util.ShadowDrawable;
  */
 public class ShadowAct extends BaseActivity {
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shadow);
         TextView textView1 = findViewById(R.id.text1);

@@ -14,7 +14,7 @@ public class ScrollerActivity extends BaseActivity {
 
     @Cost
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroll);
     }

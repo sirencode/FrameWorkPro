@@ -17,6 +17,7 @@ import com.syh.asm.PathRecord;
 import com.syh.framework.expose.ExposeManager;
 import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.PageConfig;
+import com.syh.framework.util.net.NetworkMonitorManager;
 
 import java.util.List;
 
@@ -71,6 +72,7 @@ public class MyApp extends Application {
         });
 
         ExposeManager.INSTANCE.init(this);
+        NetworkMonitorManager.getInstance().init(this);
     }
 
 

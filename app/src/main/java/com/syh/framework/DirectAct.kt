@@ -6,7 +6,12 @@ import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import com.syh.framework.util.BaseActivity
+import com.syh.framework.util.net.NetworkMonitorManager
+import com.syh.framework.util.net.enums.NetworkState
+import com.syh.framework.util.net.interfaces.NetworkMonitor
 import kotlinx.android.synthetic.main.activity_direction.*
 
 /**
@@ -19,6 +24,7 @@ class DirectAct : BaseActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        NetworkMonitorManager.getInstance().register(this)
         setContentView(R.layout.activity_direction)
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ORIENTATION)
@@ -46,6 +52,27 @@ class DirectAct : BaseActivity(), SensorEventListener {
             tv_Y.text = event.values[1].toString()
             tv_Z.text = event.values[2].toString()
         }
+    }
+
+    @NetworkMonitor
+    fun netWorkStateChange(networkState: NetworkState) {
+        Log.i("onNetWorkStateChange", "onNetWorkStateChange  networkState = $networkState")
+        when (networkState) {
+            NetworkState.NONE -> {
+                Toast.makeText(applicationContext, "暂无网络", Toast.LENGTH_SHORT).show()
+            }
+            NetworkState.WIFI -> {
+                Toast.makeText(applicationContext, "WIFI网络", Toast.LENGTH_SHORT).show()
+            }
+            NetworkState.CELLULAR -> {
+                Toast.makeText(applicationContext, "蜂窝网络", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        NetworkMonitorManager.getInstance().unregister(this)
     }
 
 }

@@ -10,7 +10,7 @@ import cn.mtjsoft.www.shapeview.ShapeTextView;
 public class ShapeActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.shape_activity_main);
 

@@ -3,8 +3,9 @@ package com.syh.framework.web;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
 import android.util.Log;
+
+import androidx.annotation.Nullable;
 
 import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.LogUtil;
@@ -14,7 +15,7 @@ public class RouterActivity extends BaseActivity {
     public static final String WEB_PATH = "/common/webview_activity";
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         try {
             if (getIntent() != null && getIntent().getData() != null) {

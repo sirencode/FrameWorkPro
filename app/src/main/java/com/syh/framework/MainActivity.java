@@ -85,7 +85,7 @@ public class MainActivity extends BaseActivity {
     private TextView textView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.tv_msg);
@@ -429,4 +429,8 @@ public class MainActivity extends BaseActivity {
         LaunchRecord.Companion.endRecord("onWindowFocusChanged");
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }

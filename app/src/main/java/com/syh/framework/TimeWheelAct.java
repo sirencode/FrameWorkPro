@@ -17,7 +17,7 @@ public class TimeWheelAct extends BaseActivity {
     private TimeWheel timeWheel;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_time_wheel);
         timeWheel = new TimeWheel(1, 10);
