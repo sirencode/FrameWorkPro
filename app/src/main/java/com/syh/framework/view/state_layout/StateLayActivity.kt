@@ -9,7 +9,7 @@ import kotlinx.android.synthetic.main.activity_state_layout.*
 /**
  * Created by shenyonghe on 2020/7/26.
  */
-class StateLayActivity : BaseActivity() {
+open class StateLayActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

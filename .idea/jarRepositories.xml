@@ -12,6 +12,11 @@
       <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
     </remote-repository>
     <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="file:$PROJECT_DIR$/repo/" />
+    </remote-repository>
+    <remote-repository>
       <option name="id" value="BintrayJCenter" />
       <option name="name" value="BintrayJCenter" />
       <option name="url" value="https://jcenter.bintray.com/" />
@@ -22,74 +27,9 @@
       <option name="url" value="https://dl.google.com/dl/android/maven2/" />
     </remote-repository>
     <remote-repository>
-      <option name="id" value="$PROJECT_DIR$/../sdk/extras/m2repository" />
-      <option name="name" value="$PROJECT_DIR$/../sdk/extras/m2repository" />
-      <option name="url" value="file:$PROJECT_DIR$/../sdk/extras/m2repository/" />
-    </remote-repository>
-    <remote-repository>
       <option name="id" value="MavenRepo" />
       <option name="name" value="MavenRepo" />
       <option name="url" value="https://repo.maven.apache.org/maven2/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="$PROJECT_DIR$/../sdk/extras/google/m2repository" />
-      <option name="name" value="$PROJECT_DIR$/../sdk/extras/google/m2repository" />
-      <option name="url" value="file:$PROJECT_DIR$/../sdk/extras/google/m2repository/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="$PROJECT_DIR$/../sdk/extras/android/m2repository" />
-      <option name="name" value="$PROJECT_DIR$/../sdk/extras/android/m2repository" />
-      <option name="url" value="file:$PROJECT_DIR$/../sdk/extras/android/m2repository/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="$PROJECT_DIR$/../Library/Android/sdk/extras/android/m2repository" />
-      <option name="name" value="$PROJECT_DIR$/../Library/Android/sdk/extras/android/m2repository" />
-      <option name="url" value="file:$PROJECT_DIR$/../Library/Android/sdk/extras/android/m2repository" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="$PROJECT_DIR$/../Library/Android/sdk/extras/google/m2repository" />
-      <option name="name" value="$PROJECT_DIR$/../Library/Android/sdk/extras/google/m2repository" />
-      <option name="url" value="file:$PROJECT_DIR$/../Library/Android/sdk/extras/google/m2repository" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="$PROJECT_DIR$/../Library/Android/sdk/extras/m2repository" />
-      <option name="name" value="$PROJECT_DIR$/../Library/Android/sdk/extras/m2repository" />
-      <option name="url" value="file:$PROJECT_DIR$/../Library/Android/sdk/extras/m2repository" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="file:$PROJECT_DIR$/repo/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="MavenLocal" />
-      <option name="name" value="MavenLocal" />
-      <option name="url" value="file:$PROJECT_DIR$/../apache-maven-3.6.3/repository/" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="file:$PROJECT_DIR$/gradle_plugin/repo" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="file:$PROJECT_DIR$/ASM/repo" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="file:$PROJECT_DIR$/thirdLib/repo" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="file:$PROJECT_DIR$/app/repo" />
-    </remote-repository>
-    <remote-repository>
-      <option name="id" value="maven" />
-      <option name="name" value="maven" />
-      <option name="url" value="file:$PROJECT_DIR$/repo" />
     </remote-repository>
   </component>
 </project>

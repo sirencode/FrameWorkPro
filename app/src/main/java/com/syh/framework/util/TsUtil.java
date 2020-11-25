@@ -6,8 +6,8 @@ package com.syh.framework.util;
 public class TsUtil {
     public static void main(String[] args) {
       listName(
-              "https://hls3-l3.xvideos-cdn.com/189f08226ff13597c668b84c376e0756c9c332f0-1585030073/videos/hls/e7/a6/5f/e7a65ffad1b88df44b02dd15c5e8605d/hls-1080p-ad76d"
-              ,44);
+              "https://hls2-l3.xvideos-cdn.com/db7692aaa9283eba36c968e900fe45460abfc7be-1601122221/videos/hls/9f/8b/ac/9f8bac35d902b597367bd9ee3321970f/hls-1080p-616ff"
+              ,67);
     }
 
     private static void listName(String path,int num) {
