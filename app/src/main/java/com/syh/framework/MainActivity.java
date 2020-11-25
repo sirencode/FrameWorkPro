@@ -173,6 +173,7 @@ public class MainActivity extends BaseActivity {
         findViewById(R.id.btn_activity_scroll_menu).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ScrollMenuActivity.class)));
         findViewById(R.id.btn_activity_clean_screen).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ClearScreenActivity.class)));
         findViewById(R.id.btn_activity_shape).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShapeActivity.class)));
+        findViewById(R.id.btn_activity_shape1).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShapeAct.class)));
         findViewById(R.id.btn_activity_net_check).setOnClickListener(v -> checkNet());
         findViewById(R.id.btn_activity_gson).setOnClickListener(v -> testGson());
     }

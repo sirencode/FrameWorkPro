@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="不用再写xml来定义样式啦\n\n支持填充色、描边颜色、宽度，圆角、渐变属性" />
+
+    <com.syh.framework.view.shape.ShapeButton
+        android:id="@+id/btn"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="click"
+        android:textColor="@color/WhiteColor"
+        app:baseCorner="5dp"
+        app:baseSolidColor="@color/brokerOrangeColor" />
+
+    <com.syh.framework.view.shape.ShapeButton
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="渐变的按钮"
+        android:textColor="@color/WhiteColor"
+        app:baseGradientEndColor="#0000ff"
+        app:baseGradientStartColor="#ff0000" />
+
+    <com.syh.framework.view.shape.ShapeTextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="textview"
+        android:textColor="@color/WhiteColor"
+        app:baseCorner="5dp"
+        app:baseSolidColor="@color/brokerOrangeColor"
+        app:baseStrokeWidth="1dp" />
+
+    <com.syh.framework.view.shape.ShapeTextView
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:text="textview"
+        android:textColor="@color/brokerBlackColor"
+        app:baseCorner="1dp"
+        app:baseStrokeColor="#8fff4d13"
+        app:baseStrokeWidth="1dp"/>
+
+    <com.syh.framework.view.shape.ShapeFrameLayout
+        android:id="@+id/fl_shape"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        app:baseCorner="10dp"
+        android:layout_margin="20dp"
+        app:baseSolidColor="#11ff0000" />
+
+    <com.syh.framework.view.shape.ShapeFrameLayout
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="20dp"
+        app:baseStrokeDashGap="2dp"
+        app:baseStrokeWidth="1dp"
+        app:baseCorner="10dp"
+        app:baseStrokeDashWidth="10dp"
+        app:baseStrokeColor="#ff0000"
+        app:baseSolidColor="@color/brokerLightGrayColor"/>
+
+</LinearLayout>

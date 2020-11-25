@@ -89,6 +89,11 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ShapeAct"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait" />
+
+        <activity
         android:name=".defense.DefenseActivity"
         android:launchMode="singleTop"
         android:screenOrientation="portrait" />

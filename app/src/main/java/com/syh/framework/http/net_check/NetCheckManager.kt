@@ -1,7 +1,6 @@
 package com.syh.framework.http.net_check
 
 import android.os.Build
-import androidx.collection.SimpleArrayMap
 import android.text.TextUtils
 import android.util.*
 import com.syh.framework.BuildConfig
@@ -21,7 +20,7 @@ object NetCheckManager {
     private var singleES: ExecutorService? = null
     var open = true
 
-    private fun needCheck(o: Any): Boolean {
+    private fun needCheck(o: Any?): Boolean {
         return o != null && open && (o.javaClass.isArray && !o.javaClass.isPrimitive
                 && Array.getLength(o) > 0 && Array.get(o, 0) is NeedCheck
                 || o is Collection<*> && !o.isEmpty() && o.toTypedArray()[0] is NeedCheck || o is NeedCheck)
@@ -38,13 +37,13 @@ object NetCheckManager {
     @Synchronized
     fun newFixedThreadPool(nThreads: Int): ExecutorService {
         return ThreadPoolExecutor(
-            nThreads, nThreads,
-            0L, TimeUnit.MILLISECONDS,
-            LinkedBlockingQueue(), sThreadFactory
+                nThreads, nThreads,
+                0L, TimeUnit.MILLISECONDS,
+                LinkedBlockingQueue(), sThreadFactory
         )
     }
 
-    fun isEmpty(obj: Any): Boolean {
+    fun isEmpty(obj: Any?): Boolean {
         if (obj == null) {
             return true
         }
@@ -84,7 +83,7 @@ object NetCheckManager {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
             if (obj is LongSparseArray<*>
-                && (obj as LongSparseArray<*>).size() == 0
+                    && (obj as LongSparseArray<*>).size() == 0
             ) {
                 return true
             }
@@ -92,32 +91,37 @@ object NetCheckManager {
         return false
     }
 
-    private fun check(o: Any): String {
+    private fun check(o: Any?): String {
         val checkMessage = StringBuilder()
-        val oClass: Class<*> = o.javaClass
-        val declaredFields = oClass.declaredFields
-        for (declaredField in declaredFields) {
-            if (declaredField.isAnnotationPresent(CheckNull::class.java)) {
-                declaredField.isAccessible = true
-                val paramClass = declaredField.type
-                var value: Any?
-                try {
-                    value = declaredField[o]
-                    val paramName = declaredField.name
-                    if (isEmpty(value)) {
-                        if (!TextUtils.isEmpty(checkMessage)) {
-                            checkMessage.append(",")
+        if (o == null) {
+            checkMessage.append("null")
+        }
+        o?.let { o ->
+            val oClass: Class<*> = o.javaClass
+            val declaredFields = oClass.declaredFields
+            for (declaredField in declaredFields) {
+                if (declaredField.isAnnotationPresent(CheckNull::class.java)) {
+                    declaredField.isAccessible = true
+                    val paramClass = declaredField.type
+                    var value: Any?
+                    try {
+                        value = declaredField[o]
+                        val paramName = declaredField.name
+                        if (isEmpty(value)) {
+                            if (!TextUtils.isEmpty(checkMessage)) {
+                                checkMessage.append(",")
+                            }
+                            checkMessage.append(paramName).append("->空").toString()
                         }
-                        checkMessage.append(paramName).append("->空").toString()
-                    }
-                    if (value != null && !paramClass.isPrimitive && value is NeedCheck) {
-                        if (!TextUtils.isEmpty(checkMessage)) {
-                            checkMessage.append(",")
+                        if (value != null && !paramClass.isPrimitive && value is NeedCheck) {
+                            if (!TextUtils.isEmpty(checkMessage)) {
+                                checkMessage.append(",")
+                            }
+                            checkMessage.append(check(value))
                         }
-                        checkMessage.append(check(value))
+                    } catch (e: Exception) {
+                        e.printStackTrace()
                     }
-                } catch (e: Exception) {
-                    e.printStackTrace()
                 }
             }
         }
@@ -133,7 +137,7 @@ object NetCheckManager {
                 try {
                     val map: MutableMap<String, String> = HashMap()
                     if (o.javaClass.isArray && !o.javaClass.isPrimitive && Array.getLength(o) > 0
-                        && Array.get(o, 0) is NeedCheck
+                            && Array.get(o, 0) is NeedCheck
                     ) {
                         for (i in 0 until Array.getLength(o)) {
                             val result = check(Array.get(o, i))
@@ -147,7 +151,7 @@ object NetCheckManager {
                             val result = check(o.toTypedArray()[i]!!)
                             if (!TextUtils.isEmpty(result)) {
                                 map[o.toTypedArray()[i]!!.javaClass.simpleName + "." + (i + 1)] =
-                                    result
+                                        result
                             }
                         }
                     }

@@ -4,4 +4,105 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="white">#FFFFFF</color>
+    <color name="brokerColorPrimaryHighLight">#E57900</color>
+    <color name="brokerColorSecondaryHighLight">#FFF3E5</color>
+    <color name="brokerColorSecondaryTextColorDisabled">#FAFAFA</color>
+
+    <!-- 需要特别突出的标题内容 -->
+    <color name="BrokerDarkBlackColor">#000000</color>
+    <!-- 标题大字、正文内容 -->
+    <color name="BlackColor">#333333</color>
+    <!-- 大标题，筛选标题等 -->
+    <color name="DarkGrayColor">#666666</color>
+    <!-- 小标题，附属说明文字 -->
+    <color name="MediumGrayColor">#999999</color>
+    <!-- 辅助提示文字 -->
+    <color name="LightGrayColor">#CCCCCC</color>
+    <!-- 白色 -->
+    <color name="WhiteColor">#FFFFFF</color>
+    <!-- 经纪人主色 -->
+    <color name="OrangeColor">#FF8700</color>
+    <!-- 经纪人辅色 -->
+    <color name="YellowColor">#FFC700</color>
+    <!-- 经纪人辅色 -->
+    <color name="BlueColor">#3EAAF7</color>
+    <!-- 经纪人辅色 -->
+    <color name="LightGreenColor">#89CC61</color>
+    <!-- 经纪人辅色 -->
+    <color name="GreenColor">#34B97E</color>
+    <!-- 经纪人辅色 -->
+    <color name="RedColor">#F53732</color>
+    <!-- 经纪人辅色 -->
+    <color name="PurpleColor">#CA71DC</color>
+    <!-- 顶部导航栏背景色 -->
+    <color name="BgNavigationColor">#232D3C</color>
+    <!-- 各页面背景色 -->
+    <color name="BgPageColor">#232D3C</color>
+    <!-- 页面和列表的分割线颜色 -->
+    <color name="LineColor">#DCDCE1</color>
+    <!--各页面背景色-->
+    <color name="uiAjkLineColor">#E6E6E6</color>
+    <color name="black_p50">#7f000000</color>
+    <color name="transparent">#00000000</color>
+
+    <color name="single_selection_widget_selected_in">#FFEFE5</color>
+
+    <!-- zeplin -->
+    <color name="brokerDarkBlackColor">#000000</color>
+    <color name="brokerBlackColor">#333333</color>
+    <color name="brokerDarkGrayColor">#666666</color>
+    <color name="brokerMediumGrayColor">#999999</color>
+    <color name="brokerBabyMediumGrayColor">#bbbbbb</color>
+    <color name="brokerLightGrayColor">#cccccc</color>
+    <color name="brokerLightGrayColorWith50Alpa">#80cccccc</color>
+    <color name="brokerBabyLightGrayColor">#fafafa</color>
+    <color name="brokerBgPageColor">#f6f6f6</color>
+    <color name="brokerWhiteColor">#ffffff</color>
+
+
+    <color name="brokerOrangeColor">#ff8700</color>
+    <color name="brokerDarkYellowColor">#ffae2c</color>
+    <color name="brokerYellowColor">#ffc700</color>
+    <color name="brokerBabyLightOrangeColor">#ffdbb2</color>
+    <color name="brokerBabyLightYellowColor">#fff7ef</color>
+    <color name="brokerDarkBlueColor">#3c5f90</color>
+    <color name="brokerBlueColor">#3eaaf7</color>
+    <color name="brokerLightBlueColor">#75b7ff</color>
+
+
+    <color name="brokerGreenColor">#34b97e</color>
+    <color name="brokerMediumGreenColor">#4bcf61</color>
+    <color name="brokerLightGreenColor">#89cc61</color>
+    <color name="brokerRedColor">#f53732</color>
+    <color name="brokerMediumRedColor">#ff4a23</color>
+    <color name="brokerLightRedColor">#ff7954</color>
+    <color name="brokerPurpleColor">#ca71dc</color>
+
+    <color name="brokerTitleTextColor">#000000</color>
+    <color name="brokerNormalTextColor">#333333</color>
+    <color name="brokerMidTextColor">#666666</color>
+    <color name="brokerSubtleTextColor">#999999</color>
+    <color name="brokerGhostTextColor">#cccccc</color>
+    <color name="brokerLine88Color">#e0e0e0</color>
+    <color name="brokerLine94Color">#f0f0f0</color>
+    <color name="brokerPrimaryColor">#ff4d13</color>
+    <color name="brokerPrimaryColorWith20Alpa">#33ff4d13</color>
+    <color name="brokerPrimaryColorWith50Alpa">#80ff4d13</color>
+    <color name="brokerSecondaryOrangeColor">#ff8e08</color>
+    <color name="brokerSecondaryWhiteColor">#ffffff</color>
+    <color name="brokerDropdownBgColor">#423e3b</color>
+    <color name="brokerErrorColor">#ff1226</color>
+    <color name="brokerSuccessColor">#0cb389</color>
+    <color name="brokerWarningColor">#ff8000</color>
+    <color name="brokerLinkColor">#5768a8</color>
+    <color name="brokerWarningBgColor">#fff3e6</color>
+    <color name="brokerErrorBgColor">#ffecee</color>
+    <color name="brokerSuccessBgColor">#e6f7f3</color>
+    <color name="brokerInfoBgColor">#f2f2f2</color>
+    <color name="brokerLine96Color">#f6f6f6</color>
+
+
+    <color name="filterAccentColor">#ff8700</color>
+    <color name="colorDisabled">#979b9e</color>
+
 </resources>
