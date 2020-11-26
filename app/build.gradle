@@ -23,7 +23,7 @@ android {
         release {
             keyAlias 'syh'
             keyPassword 'syh1991'
-            storeFile file('/Users/shen/FrameWorkPro/syh.keystore')
+            storeFile file('../syh.keystore')
             storePassword 'syh1991'
         }
     }

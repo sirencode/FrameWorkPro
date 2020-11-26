@@ -2,9 +2,7 @@ package com.syh.framework.util;
 
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.util.Log;
 import android.view.Choreographer;
 import android.widget.Toast;
@@ -33,13 +31,7 @@ public class BaseActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         UIParameter.setWindowStatusBarColor(this);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            if (Settings.System.canWrite(this)) {
-//                register();
-//            }
-//        } else {
-//            register();
-//        }
+        NetworkMonitorManager.getInstance().register(this);
         tick = () -> System.out.println("startTimer====>" + System.currentTimeMillis());
         MyApp.getApplication().addListener(tick);
     }
