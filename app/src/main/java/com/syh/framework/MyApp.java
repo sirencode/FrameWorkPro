@@ -4,11 +4,11 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
-import android.util.Log;
-import android.webkit.WebView;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.util.Log;
+import android.webkit.WebView;
 
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
@@ -21,8 +21,6 @@ import com.syh.framework.expose.ExposeManager;
 import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.PageConfig;
 import com.syh.framework.util.net.NetworkMonitorManager;
-
-import com.syh.framework.util.LogUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -155,9 +153,5 @@ public class MyApp extends Application {
 
     public static MyApp getApplication() {
         return instance;
-    }
-
-    public interface onSecondTick {
-        void onSecondTick();
     }
 }

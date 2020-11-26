@@ -48,8 +48,8 @@ import com.syh.framework.list.ListActivity;
 import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
-import com.syh.framework.util.BaseActivity;
 import com.syh.framework.util.BaseDialog;
+import com.syh.framework.util.BaseTickActivity;
 import com.syh.framework.util.ClickProxy;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
@@ -57,6 +57,7 @@ import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.NativeLoadePathUtil;
 import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
+import com.syh.framework.util.StringUtilsKt;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.toast.ToastFactory;
@@ -76,19 +77,23 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseTickActivity {
 
     private static final String TAG = "MainActivity";
     private ImageView imageView1;
     private ImageView imageView2;
     private ToneGenerator toneGenerator;
     private TextView textView;
+    private TextView timeView;
+
+    private Long actionTime = 1607702400000L;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = findViewById(R.id.tv_msg);
+        timeView = findViewById(R.id.tv_time);
         imageView1 = findViewById(R.id.image1);
         imageView1.setOnClickListener(v -> {
             ApiFactory.getInstance().create(ServerDomainType.Home, HomeV2Api.class)
@@ -130,7 +135,7 @@ public class MainActivity extends BaseActivity {
         imageView2.setOnClickListener(v -> showDialog());
 //        ImageLoadUtil.loadFixSizeIV(this, "http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png", 100, 100, imageView1);
         ImageLoadUtil.loadImageView(this, "http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png", imageView2);
-        ImageLoaderHelp.Companion.displayImg(imageView1,"http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png",null, ImageConfig.Companion.getImageConfig1());
+        ImageLoaderHelp.Companion.displayImg(imageView1, "http://d.lanrentuku.com/down/png/1712/if_christmass_holidays_celebrate/christmass_santa_slide.png", null, ImageConfig.Companion.getImageConfig1());
 
         TextView textView = findViewById(R.id.tv_msg);
         textView.setOnClickListener(v -> startWebAct());
@@ -203,7 +208,7 @@ public class MainActivity extends BaseActivity {
             list.add("users.phoneNum");
             list.add("users.age");
             checkBean.setParams(list);
-            NetCheckForNetManager.INSTANCE.checkValue(object,"http://www.95fenapp.com/api_goods/skuDetail/v1.0?goods_id=YKp8k2NKJ&sn=HomeThreeCList&timestamp=1599037009824&token=1bc6e18a4ef672acc78c8237b6d7c716",checkBean);
+            NetCheckForNetManager.INSTANCE.checkValue(object, "http://www.95fenapp.com/api_goods/skuDetail/v1.0?goods_id=YKp8k2NKJ&sn=HomeThreeCList&timestamp=1599037009824&token=1bc6e18a4ef672acc78c8237b6d7c716", checkBean);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -434,4 +439,10 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
     }
+
+    @Override
+    public void onTick() {
+        timeView.setText(StringUtilsKt.INSTANCE.dayMillisToString(actionTime - System.currentTimeMillis()));
+    }
+
 }

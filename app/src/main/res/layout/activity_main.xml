@@ -342,6 +342,15 @@
             android:text="ShapeView"
             android:textSize="14dp" />
 
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="00"
+            android:textSize="14dp" />
+
     </LinearLayout>
 
 </ScrollView>

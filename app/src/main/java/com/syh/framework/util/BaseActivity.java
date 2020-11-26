@@ -9,7 +9,6 @@ import android.widget.Toast;
 
 import androidx.fragment.app.FragmentActivity;
 
-import com.syh.framework.MyApp;
 import com.syh.framework.ui.MyFrameCallback;
 import com.syh.framework.util.net.NetworkMonitorManager;
 import com.syh.framework.util.net.enums.NetworkState;
@@ -24,7 +23,7 @@ public class BaseActivity extends FragmentActivity {
     private MyFrameCallback callback;
 
     public StateLayoutManager stateLayoutManager;
-    public MyApp.onSecondTick tick;
+
 
     @Override
 
@@ -32,8 +31,6 @@ public class BaseActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         UIParameter.setWindowStatusBarColor(this);
         NetworkMonitorManager.getInstance().register(this);
-        tick = () -> System.out.println("startTimer====>" + System.currentTimeMillis());
-        MyApp.getApplication().addListener(tick);
     }
 
     public void showLoading() {
@@ -111,9 +108,6 @@ public class BaseActivity extends FragmentActivity {
     protected void onDestroy() {
         NetworkMonitorManager.getInstance().unregister(this);
         super.onDestroy();
-        if (tick != null) {
-            MyApp.getApplication().removeListener(tick);
-        }
     }
 
     @NetworkMonitor
@@ -127,4 +121,5 @@ public class BaseActivity extends FragmentActivity {
             Toast.makeText(this, "蜂窝网络", Toast.LENGTH_SHORT).show();
         }
     }
+
 }

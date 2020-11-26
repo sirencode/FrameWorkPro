@@ -1,7 +1,5 @@
 package com.syh.framework.util;
 
-import android.text.TextUtils;
-
 public class StringUtil {
     public static boolean isChineseCharacter(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
@@ -51,4 +49,5 @@ public class StringUtil {
         }
         return tmp;
     }
+
 }
