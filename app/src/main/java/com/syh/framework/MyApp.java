@@ -4,12 +4,8 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
-import android.os.SystemClock;
 import android.util.Log;
 import android.webkit.WebView;
-
 import com.liulishuo.filedownloader.FileDownloader;
 import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
 import com.liulishuo.filedownloader.util.FileDownloadLog;
@@ -22,7 +18,8 @@ import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.PageConfig;
 import com.syh.framework.util.net.NetworkMonitorManager;
 
-import java.util.ArrayList;
+import com.syh.framework.util.timer.TimerWheelUtil;
+
 import java.util.List;
 
 
@@ -33,15 +30,6 @@ public class MyApp extends Application {
 
     private static MyApp instance;
     private static final String PROCESS = "com.syh.framework";
-
-    private List<onSecondTick> onSecondTicks = new ArrayList<>();
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            startTimer();
-        }
-    };
 
     @Override
     public void onCreate() {
@@ -85,7 +73,7 @@ public class MyApp extends Application {
 
         ExposeManager.INSTANCE.init(this);
         NetworkMonitorManager.getInstance().init(this);
-        startTimer();
+        TimerWheelUtil.INSTANCE.startTimer();
     }
 
 
@@ -116,34 +104,6 @@ public class MyApp extends Application {
     public boolean isEmpty(String s) {
         return s == null || s.trim().length() == 0;
     }
-
-    public void addListener(onSecondTick lis) {
-        onSecondTicks.add(lis);
-    }
-
-    public void removeListener(onSecondTick lis) {
-        if (onSecondTicks.contains(lis)) {
-            onSecondTicks.remove(lis);
-        }
-    }
-
-    private void startTimer() {
-        long now = SystemClock.uptimeMillis();
-        long next = now + (1000 - now % 1000);
-        handler.postAtTime(mTicker, next);
-    }
-
-    private final Runnable mTicker = new Runnable() {
-        public void run() {
-            long now = SystemClock.uptimeMillis();
-            long next = now + (1000 - now % 1000);
-            handler.postAtTime(mTicker, next);
-            for (onSecondTick tick : onSecondTicks) {
-                tick.onSecondTick();
-            }
-        }
-    };
-
 
     @Override
     protected void attachBaseContext(Context base) {

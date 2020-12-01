@@ -13,6 +13,8 @@ import com.syh.framework.ui.MyFrameCallback;
 import com.syh.framework.util.net.NetworkMonitorManager;
 import com.syh.framework.util.net.enums.NetworkState;
 import com.syh.framework.util.net.interfaces.NetworkMonitor;
+import com.syh.framework.util.timer.OnSecondTick;
+import com.syh.framework.util.timer.TimerWheelUtil;
 import com.syh.framework.view.state_layout.StateLayoutManager;
 
 /**
@@ -23,7 +25,6 @@ public class BaseActivity extends FragmentActivity {
     private MyFrameCallback callback;
 
     public StateLayoutManager stateLayoutManager;
-
 
     @Override
 

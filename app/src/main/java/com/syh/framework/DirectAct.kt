@@ -8,7 +8,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import com.syh.framework.util.BaseActivity
+import com.syh.framework.util.BaseTimerActivity
 import com.syh.framework.util.net.NetworkMonitorManager
 import com.syh.framework.util.net.enums.NetworkState
 import com.syh.framework.util.net.interfaces.NetworkMonitor
@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_direction.*
 /**
  * Created by shenyonghe on 2020/4/9.
  */
-class DirectAct : BaseActivity(), SensorEventListener {
+class DirectAct : BaseTimerActivity(), SensorEventListener {
 
     private lateinit var sensorManager: SensorManager
     private var sensor: Sensor? = null
@@ -73,6 +73,10 @@ class DirectAct : BaseActivity(), SensorEventListener {
     override fun onDestroy() {
         super.onDestroy()
         NetworkMonitorManager.getInstance().unregister(this)
+    }
+
+    override fun onTimerSecond() {
+        println(this.javaClass.simpleName + ":" + System.currentTimeMillis())
     }
 
 }

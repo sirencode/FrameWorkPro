@@ -27,11 +27,14 @@ uploadArchives {
     repositories {
         mavenDeployer {
             //文件发布到下面目录
-            repository(url: uri('../repo/'))
+//            repository(url: uri('../repo/'))
+            repository(url: 'http://10.176.53.10:8081/repository/maven-releases/') {
+                authentication(userName: 'admin', password: 'jiuwuniubi')
+            }
             //设置插件的GAV参数
-            pom.groupId = 'cn.syh.asm'
+            pom.groupId = 'com.zhichao.jiuwu'
             pom.version = '1.0.0'
-            pom.artifactId = 'SyhAsm'
+            pom.artifactId = 'asm_time'
         }
     }
 }

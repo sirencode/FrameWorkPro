@@ -49,7 +49,8 @@ import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseDialog;
-import com.syh.framework.util.BaseTickActivity;
+
+import com.syh.framework.util.BaseTimerActivity;
 import com.syh.framework.util.ClickProxy;
 import com.syh.framework.util.DialogBuild;
 import com.syh.framework.util.FrameSpan;
@@ -77,7 +78,8 @@ import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class MainActivity extends BaseTickActivity {
+
+public class MainActivity extends BaseTimerActivity {
 
     private static final String TAG = "MainActivity";
     private ImageView imageView1;
@@ -440,9 +442,7 @@ public class MainActivity extends BaseTickActivity {
         super.onDestroy();
     }
 
-    @Override
-    public void onTick() {
-        timeView.setText(StringUtilsKt.INSTANCE.dayMillisToString(actionTime - System.currentTimeMillis()));
+    public void onTimerSecond() {
+        System.out.println(this.getClass().getSimpleName() + ":" + System.currentTimeMillis());
     }
-
 }
