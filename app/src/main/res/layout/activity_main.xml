@@ -342,6 +342,24 @@
             android:text="ShapeView"
             android:textSize="14dp" />
 
+        <Button
+            android:id="@+id/btn_activity_card_anim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Card Anim"
+            android:textSize="14dp" />
+
+        <Button
+            android:id="@+id/btn_activity_opencv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:padding="15dp"
+            android:text="Open CV"
+            android:textSize="14dp" />
+
         <TextView
             android:id="@+id/tv_time"
             android:layout_width="wrap_content"

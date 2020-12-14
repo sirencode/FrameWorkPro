@@ -17,6 +17,18 @@ android {
         versionName "1.0"
         flavorDimensions("versionCode")
         multiDexEnabled true
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_STL=c++_shared"
+                targets "opencv_jni_shared"
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path (project.projectDir.toString() + '/libcxx_helper/CMakeLists.txt')
+        }
     }
 
     signingConfigs {
@@ -79,4 +91,5 @@ dependencies {
 //    implementation 'com.google.guava:guava:29.0-android'
     implementation project(":ASM")
     implementation project(':shapeview')
+    implementation project(':java')
 }

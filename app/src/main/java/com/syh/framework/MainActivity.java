@@ -25,6 +25,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.alibaba.fastjson.JSONObject;
+import com.syh.framework.anim.CardViewAnimActivity;
 import com.syh.framework.bind_life.LifeCycleManager;
 import com.syh.framework.bind_life.LifeListener;
 import com.syh.framework.defense.DefenseActivity;
@@ -49,7 +50,6 @@ import com.syh.framework.test.LiveDataBusDemo;
 import com.syh.framework.test.SPActivity;
 import com.syh.framework.thirdLib.ImageLoadUtil;
 import com.syh.framework.util.BaseDialog;
-
 import com.syh.framework.util.BaseTimerActivity;
 import com.syh.framework.util.ClickProxy;
 import com.syh.framework.util.DialogBuild;
@@ -58,7 +58,6 @@ import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.NativeLoadePathUtil;
 import com.syh.framework.util.SecurityCheck;
 import com.syh.framework.util.StringUtil;
-import com.syh.framework.util.StringUtilsKt;
 import com.syh.framework.util.ToastUtil;
 import com.syh.framework.util.UIParameter;
 import com.syh.framework.util.toast.ToastFactory;
@@ -181,6 +180,8 @@ public class MainActivity extends BaseTimerActivity {
         findViewById(R.id.btn_activity_clean_screen).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ClearScreenActivity.class)));
         findViewById(R.id.btn_activity_shape).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShapeActivity.class)));
         findViewById(R.id.btn_activity_shape1).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ShapeAct.class)));
+        findViewById(R.id.btn_activity_card_anim).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, CardViewAnimActivity.class)));
+        findViewById(R.id.btn_activity_opencv).setOnClickListener(v -> startActivity(new Intent(MainActivity.this, OpenCVAct.class)));
         findViewById(R.id.btn_activity_net_check).setOnClickListener(v -> checkNet());
         findViewById(R.id.btn_activity_gson).setOnClickListener(v -> testGson());
     }

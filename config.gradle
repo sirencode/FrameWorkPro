@@ -3,7 +3,7 @@ ext {
             compileSdkVersion: 28,
             applicationId    : 'com.syh.framework',
             minSdkVersion    : 19,
-            targetSdkVersion : 28
+            targetSdkVersion : 23
     ]
 
     allDependencies = [
@@ -34,7 +34,8 @@ ext {
             asm_commons       : 'org.ow2.asm:asm-commons:8.0.1',
             guava             : 'com.google.guava:guava:29.0-android',
             arouter           : "com.alibaba:arouter-api:1.4.1",
-            arouter_compiler  : "com.alibaba:arouter-compiler:1.2.2"
+            arouter_compiler  : "com.alibaba:arouter-compiler:1.2.2",
+            rxjava3           : "io.reactivex.rxjava3:rxjava:3.0.4",
     ]
 
     appDps = [
@@ -63,5 +64,6 @@ ext {
             guava             : "implementation",
             arouter           : "api",
             arouter_compiler  : "kapt",
+            rxjava3           : "implementation",
     ]
 }

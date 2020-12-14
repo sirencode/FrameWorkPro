@@ -6,9 +6,7 @@ import android.content.Context;
 import android.os.Build;
 import android.util.Log;
 import android.webkit.WebView;
-import com.liulishuo.filedownloader.FileDownloader;
-import com.liulishuo.filedownloader.connection.FileDownloadUrlConnection;
-import com.liulishuo.filedownloader.util.FileDownloadLog;
+
 import com.syh.asm.ASMPathManager;
 import com.syh.asm.AppFrontBackHelper;
 import com.syh.asm.LifecycleListener;
@@ -17,7 +15,6 @@ import com.syh.framework.expose.ExposeManager;
 import com.syh.framework.util.LogUtil;
 import com.syh.framework.util.PageConfig;
 import com.syh.framework.util.net.NetworkMonitorManager;
-
 import com.syh.framework.util.timer.TimerWheelUtil;
 
 import java.util.List;
@@ -35,14 +32,14 @@ public class MyApp extends Application {
     public void onCreate() {
         super.onCreate();
         LogUtil.setCanLog(true);
-        FileDownloadLog.NEED_LOG = true;
-        FileDownloader.setupOnApplicationOnCreate(this)
-                .connectionCreator(new FileDownloadUrlConnection
-                        .Creator(new FileDownloadUrlConnection.Configuration()
-                        .connectTimeout(15_000) // set connection timeout.
-                        .readTimeout(15_000) // set read timeout.
-                ))
-                .commit();
+//        FileDownloadLog.NEED_LOG = true;
+//        FileDownloader.setupOnApplicationOnCreate(this)
+//                .connectionCreator(new FileDownloadUrlConnection
+//                        .Creator(new FileDownloadUrlConnection.Configuration()
+//                        .connectTimeout(15_000) // set connection timeout.
+//                        .readTimeout(15_000) // set read timeout.
+//                ))
+//                .commit();
         instance = this;
         initPieWebView();
         ASMPathManager.init(new LifecycleListener() {
@@ -74,6 +71,7 @@ public class MyApp extends Application {
         ExposeManager.INSTANCE.init(this);
         NetworkMonitorManager.getInstance().init(this);
         TimerWheelUtil.INSTANCE.startTimer();
+//        OpenCVLoader.initDebug(false);
     }
 
 
