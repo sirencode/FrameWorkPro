@@ -1,7 +1,7 @@
 [
 {
-  "directory": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/release/x86",
-  "command": "/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android19 --gcc-toolchain=/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot    -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/opencv_jni_shared.dir/dummy.cpp.o -c /Users/shenyonghe/FrameWorkPro/app/libcxx_helper/dummy.cpp",
-  "file": "/Users/shenyonghe/FrameWorkPro/app/libcxx_helper/dummy.cpp"
+  "directory": "/Users/shen/FrameWorkPro/app/.cxx/cmake/release/x86",
+  "command": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=i686-none-linux-android19 --gcc-toolchain=/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot    -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC   -o CMakeFiles/opencv_jni_shared.dir/dummy.cpp.o -c /Users/shen/FrameWorkPro/app/libcxx_helper/dummy.cpp",
+  "file": "/Users/shen/FrameWorkPro/app/libcxx_helper/dummy.cpp"
 }
 ]

@@ -9,6 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/java/FrameWorkPro.java.iml" filepath="$PROJECT_DIR$/.idea/modules/java/FrameWorkPro.java.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/shapeview/FrameWorkPro.shapeview.iml" filepath="$PROJECT_DIR$/.idea/modules/shapeview/FrameWorkPro.shapeview.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro.thirdLib.iml" filepath="$PROJECT_DIR$/.idea/modules/thirdLib/FrameWorkPro.thirdLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/java/com.github.mtjsoft.FrameWorkPro.open_cv.iml" filepath="$PROJECT_DIR$/.idea/modules/java/com.github.mtjsoft.FrameWorkPro.open_cv.iml" />
     </modules>
   </component>
 </project>
