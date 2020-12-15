@@ -10,3 +10,7 @@ data class HttpResultBean(
     var msg: String ,
     val data: Any
 )
+
+data class OpenCvImgBean(
+        val img:String,
+        var result:String)

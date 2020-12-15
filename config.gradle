@@ -36,6 +36,8 @@ ext {
             arouter           : "com.alibaba:arouter-api:1.4.1",
             arouter_compiler  : "com.alibaba:arouter-compiler:1.2.2",
             rxjava3           : "io.reactivex.rxjava3:rxjava:3.0.4",
+            multitype         : "com.drakeet.multitype:multitype:4.0.0",
+
     ]
 
     appDps = [
@@ -63,6 +65,7 @@ ext {
             asm_commons       : "implementation",
             guava             : "implementation",
             arouter           : "api",
+            multitype         : "api",
             arouter_compiler  : "kapt",
             rxjava3           : "implementation",
     ]

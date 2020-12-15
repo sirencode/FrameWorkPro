@@ -13,12 +13,10 @@
         android:padding="10dp"
         android:text="开始检测" />
 
-    <TextView
-        android:id="@+id/tv_check_result"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:padding="10dp"
-        android:text="检测结果：" />
+        android:layout_height="match_parent"
+        android:padding="10dp" />
 
 </LinearLayout>

@@ -1,7 +1,7 @@
 package com.syh.framework.img
 
-import androidx.annotation.DrawableRes
 import android.widget.ImageView
+import androidx.annotation.DrawableRes
 import com.bumptech.glide.request.target.Target
 import com.syh.framework.R
 import com.syh.framework.expand.dp
@@ -23,7 +23,7 @@ class ImageConfig(builder: Builder) {
                 .loadingRes(R.mipmap.a)
                 .failedRes(R.mipmap.a)
                 .emptyRes(R.mipmap.a)
-                .size(100.dp,200.dp)
+                .size(100.dp,100.dp)
                 .scaleType(ImageView.ScaleType.FIT_XY)
         )
     }
