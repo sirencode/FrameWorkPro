@@ -1,7 +1,0 @@
-Executable : /Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja
-arguments : 
--C
-/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86
-opencv_jni_shared
-jvmArgs : 
-

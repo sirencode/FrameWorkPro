@@ -5,9 +5,9 @@
     "environmentVariables": []
   },
   "cmake": {
-    "cmakeArtifactsBaseFolder": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86",
-    "cmakeServerLogFile": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86/cmake_server_log.txt",
-    "cmakeWrappingBaseFolder": "/Users/shen/FrameWorkPro/app/.cxx/cxx/debug/x86",
+    "cmakeArtifactsBaseFolder": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86",
+    "cmakeServerLogFile": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86/cmake_server_log.txt",
+    "cmakeWrappingBaseFolder": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cxx/debug/x86",
     "effectiveConfiguration": {
       "name": "traditional-android-studio-cmake-environment",
       "description": "Composite reified CMakeSettings configuration",
@@ -15,13 +15,13 @@
       "inheritEnvironments": [
         "ndk"
       ],
-      "buildRoot": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86",
-      "cmakeToolchain": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
-      "cmakeExecutable": "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake",
+      "buildRoot": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86",
+      "cmakeToolchain": "/Users/shenyonghe/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
+      "cmakeExecutable": "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/cmake",
       "variables": [
         {
           "name": "CMAKE_FIND_ROOT_PATH",
-          "value": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/prefab/x86/prefab"
+          "value": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/prefab/x86/prefab"
         },
         {
           "name": "CMAKE_BUILD_TYPE",
@@ -29,7 +29,7 @@
         },
         {
           "name": "CMAKE_TOOLCHAIN_FILE",
-          "value": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake"
+          "value": "/Users/shenyonghe/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake"
         },
         {
           "name": "ANDROID_ABI",
@@ -37,7 +37,7 @@
         },
         {
           "name": "ANDROID_NDK",
-          "value": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669"
+          "value": "/Users/shenyonghe/sdk/ndk/21.0.6113669"
         },
         {
           "name": "ANDROID_PLATFORM",
@@ -49,7 +49,7 @@
         },
         {
           "name": "CMAKE_ANDROID_NDK",
-          "value": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669"
+          "value": "/Users/shenyonghe/sdk/ndk/21.0.6113669"
         },
         {
           "name": "CMAKE_EXPORT_COMPILE_COMMANDS",
@@ -57,11 +57,11 @@
         },
         {
           "name": "CMAKE_LIBRARY_OUTPUT_DIRECTORY",
-          "value": "/Users/shen/FrameWorkPro/app/build/intermediates/cmake/debug/obj/x86"
+          "value": "/Users/shenyonghe/FrameWorkPro/app/build/intermediates/cmake/debug/obj/x86"
         },
         {
           "name": "CMAKE_MAKE_PROGRAM",
-          "value": "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja"
+          "value": "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja"
         },
         {
           "name": "CMAKE_SYSTEM_NAME",
@@ -78,14 +78,14 @@
       ]
     }
   },
-  "cxxBuildFolder": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86",
+  "cxxBuildFolder": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86",
   "info": {
     "abi": "X86",
     "bitness": 32,
     "deprecated": false,
     "default": true
   },
-  "originalCxxBuildFolder": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86",
+  "originalCxxBuildFolder": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86",
   "variant": {
     "buildSystemArgumentList": [
       "-DANDROID_STL\u003dc++_shared"
@@ -100,24 +100,24 @@
     "module": {
       "buildSystem": "CMAKE",
       "cmake": {
-        "cmakeExe": "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake",
+        "cmakeExe": "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/cmake",
         "minimumCmakeVersion": "3.10.2",
-        "ninjaExe": "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja"
+        "ninjaExe": "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja"
       },
-      "cmakeToolchainFile": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
-      "cxxFolder": "/Users/shen/FrameWorkPro/app/.cxx",
+      "cmakeToolchainFile": "/Users/shenyonghe/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
+      "cxxFolder": "/Users/shenyonghe/FrameWorkPro/app/.cxx",
       "gradleModulePathName": ":app",
-      "intermediatesFolder": "/Users/shen/FrameWorkPro/app/build/intermediates",
-      "makeFile": "/Users/shen/FrameWorkPro/app/libcxx_helper/CMakeLists.txt",
-      "moduleBuildFile": "/Users/shen/FrameWorkPro/app/build.gradle",
-      "moduleRootFolder": "/Users/shen/FrameWorkPro/app",
+      "intermediatesFolder": "/Users/shenyonghe/FrameWorkPro/app/build/intermediates",
+      "makeFile": "/Users/shenyonghe/FrameWorkPro/app/libcxx_helper/CMakeLists.txt",
+      "moduleBuildFile": "/Users/shenyonghe/FrameWorkPro/app/build.gradle",
+      "moduleRootFolder": "/Users/shenyonghe/FrameWorkPro/app",
       "ndkDefaultAbiList": [
         "ARMEABI_V7A",
         "ARM64_V8A",
         "X86",
         "X86_64"
       ],
-      "ndkFolder": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669",
+      "ndkFolder": "/Users/shenyonghe/sdk/ndk/21.0.6113669",
       "ndkMetaAbiList": [
         {
           "abi": "ARMEABI_V7A",
@@ -174,36 +174,38 @@
       "ndkDefaultStl": "LIBCXX_STATIC",
       "ndkVersion": "21.0.6113669",
       "project": {
-        "compilerSettingsCacheFolder": "/Users/shen/FrameWorkPro/.cxx",
-        "cxxFolder": "/Users/shen/FrameWorkPro/.cxx",
-        "ideBuildTargetAbi": "x86",
+        "compilerSettingsCacheFolder": "/Users/shenyonghe/FrameWorkPro/.cxx",
+        "cxxFolder": "/Users/shenyonghe/FrameWorkPro/.cxx",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
-        "rootBuildGradleFolder": "/Users/shen/FrameWorkPro",
-        "sdkFolder": "/Users/shen/Library/Android/sdk",
+        "rootBuildGradleFolder": "/Users/shenyonghe/FrameWorkPro",
+        "sdkFolder": "/Users/shenyonghe/sdk",
         "isPrefabEnabled": false
       },
       "splitsAbiFilterSet": [],
       "stlSharedObjectMap": {
         "LIBCXX_SHARED": {
-          "ARMEABI_V7A": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/libc++_shared.so",
-          "ARM64_V8A": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so",
-          "X86": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/i686-linux-android/libc++_shared.so",
-          "X86_64": "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/x86_64-linux-android/libc++_shared.so"
+          "ARMEABI_V7A": "/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/arm-linux-androideabi/libc++_shared.so",
+          "ARM64_V8A": "/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so",
+          "X86": "/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/i686-linux-android/libc++_shared.so",
+          "X86_64": "/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot/usr/lib/x86_64-linux-android/libc++_shared.so"
         },
         "LIBCXX_STATIC": {},
         "NONE": {},
         "SYSTEM": {}
       }
     },
-    "objFolder": "/Users/shen/FrameWorkPro/app/build/intermediates/cmake/debug/obj",
+    "objFolder": "/Users/shenyonghe/FrameWorkPro/app/build/intermediates/cmake/debug/obj",
     "variantName": "debug",
     "validAbiList": [
-      "X86"
+      "ARMEABI_V7A",
+      "ARM64_V8A",
+      "X86",
+      "X86_64"
     ],
-    "prefabDirectory": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/prefab",
+    "prefabDirectory": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/prefab",
     "prefabPackageDirectoryList": []
   },
-  "prefabFolder": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/prefab/x86"
+  "prefabFolder": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/prefab/x86"
 }

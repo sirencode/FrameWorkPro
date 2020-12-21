@@ -25,7 +25,7 @@ rule CUSTOM_COMMAND
 rule CXX_COMPILER__opencv_jni_shared
   depfile = $DEP_FILE
   deps = gcc
-  command = /Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi19 --gcc-toolchain=/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
+  command = /Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++ --target=armv7-none-linux-androideabi19 --gcc-toolchain=/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  $DEFINES $INCLUDES $FLAGS -MD -MT $out -MF $DEP_FILE -o $out -c $in
   description = Building CXX object $out
 
 
@@ -33,7 +33,7 @@ rule CXX_COMPILER__opencv_jni_shared
 # Rule for linking CXX static library.
 
 rule CXX_STATIC_LIBRARY_LINKER__opencv_jni_shared
-  command = $PRE_LINK && /Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake -E remove $TARGET_FILE && /Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/shen/Library/Android/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ranlib $TARGET_FILE && $POST_BUILD
+  command = $PRE_LINK && /Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/cmake -E remove $TARGET_FILE && /Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ar qc $TARGET_FILE $LINK_FLAGS $in && /Users/shenyonghe/sdk/ndk/21.0.6113669/toolchains/llvm/prebuilt/darwin-x86_64/bin/arm-linux-androideabi-ranlib $TARGET_FILE && $POST_BUILD
   description = Linking CXX static library $TARGET_FILE
   restat = $RESTAT
 
@@ -42,7 +42,7 @@ rule CXX_STATIC_LIBRARY_LINKER__opencv_jni_shared
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = /Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/cmake -H/Users/shen/FrameWorkPro/app/libcxx_helper -B/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/armeabi-v7a
+  command = /Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/cmake -H/Users/shenyonghe/FrameWorkPro/app/libcxx_helper -B/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/armeabi-v7a
   description = Re-running CMake...
   generator = 1
 
@@ -51,7 +51,7 @@ rule RERUN_CMAKE
 # Rule for cleaning all built files.
 
 rule CLEAN
-  command = /Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -t clean
+  command = /Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja -t clean
   description = Cleaning all built files...
 
 
@@ -59,6 +59,6 @@ rule CLEAN
 # Rule for printing all primary targets available.
 
 rule HELP
-  command = /Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -t targets
+  command = /Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja -t targets
   description = All primary targets available:
 

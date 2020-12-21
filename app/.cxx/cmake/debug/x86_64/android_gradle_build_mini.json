@@ -1,19 +1,19 @@
 {
   "buildFiles": [
-    "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
-    "/Users/shen/Library/Android/sdk/ndk/21.0.6113669/build/cmake/platforms.cmake",
-    "/Users/shen/FrameWorkPro/app/libcxx_helper/CMakeLists.txt"
+    "/Users/shenyonghe/sdk/ndk/21.0.6113669/build/cmake/android.toolchain.cmake",
+    "/Users/shenyonghe/FrameWorkPro/app/libcxx_helper/CMakeLists.txt",
+    "/Users/shenyonghe/sdk/ndk/21.0.6113669/build/cmake/platforms.cmake"
   ],
   "cleanCommands": [
-    "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86_64\" clean"
+    "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86_64\" clean"
   ],
-  "buildTargetsCommand": "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
+  "buildTargetsCommand": "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja  -C \"/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86_64\" {LIST_OF_TARGETS_TO_BUILD}",
   "libraries": {
     "opencv_jni_shared-Debug-x86_64": {
       "artifactName": "opencv_jni_shared",
-      "buildCommand": "/Users/shen/Library/Android/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86_64\" opencv_jni_shared",
+      "buildCommand": "/Users/shenyonghe/sdk/cmake/3.10.2.4988404/bin/ninja -C \"/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86_64\" opencv_jni_shared",
       "abi": "x86_64",
-      "output": "/Users/shen/FrameWorkPro/app/.cxx/cmake/debug/x86_64/libopencv_jni_shared.a",
+      "output": "/Users/shenyonghe/FrameWorkPro/app/.cxx/cmake/debug/x86_64/libopencv_jni_shared.a",
       "runtimeFiles": []
     }
   }
