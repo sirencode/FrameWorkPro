@@ -112,4 +112,18 @@ public class MyApp extends Application {
     public static MyApp getApplication() {
         return instance;
     }
+
+    @Override
+    public void onTrimMemory(int level) {
+        super.onTrimMemory(level);
+        if (TRIM_MEMORY_COMPLETE == level) {
+            System.out.println("app进程即将被回收，当前进程=" + getProcessName(this));
+        }
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        System.out.println("app进程被回收完成，当前进程=" + getProcessName(this));
+    }
 }
