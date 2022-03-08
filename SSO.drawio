@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2022-03-08T06:39:39.750Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="Px0l8HEztD-MoxuzsAUr" version="16.6.7" type="github">
+<mxfile host="app.diagrams.net" modified="2022-03-08T07:00:31.259Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="dmlB9H0LqQ2JwQpfj7kV" version="16.6.7" type="github">
   <diagram id="A2F_QJzK0n9aOhYNwKli" name="Page-1">
     <mxGraphModel dx="1298" dy="809" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
       <root>
@@ -27,6 +27,27 @@
         </mxCell>
         <mxCell id="31RVcgSsJOgpwljMJnb2-8" value="" style="shape=singleArrow;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="735" y="297.5" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-9" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="640" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-10" value="login" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="110" y="655" width="70" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-11" value="getIP列表，加密key" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="655" width="145" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-12" value="后续请求数据使用key进行加密传输" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="430" y="650" width="210" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-13" value="Server1" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="575" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-14" value="&lt;br&gt;Server2" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="655" width="125" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-15" value="Server3" style="shape=ext;double=1;rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="710" y="735" width="125" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
