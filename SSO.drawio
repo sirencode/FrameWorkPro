@@ -1,1 +1,34 @@
-<mxfile host="app.diagrams.net" modified="2022-03-08T02:55:59.954Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="BZjobhIt37k_jFyxTgU9" version="16.6.7" type="github"><diagram id="A2F_QJzK0n9aOhYNwKli" name="Page-1">jZJNT4QwEIZ/TY8mQJOFvcqubjS6B0z02tCBNimUlCLgr7fIlI9sNvHU9pmPzrwzhKbV8GxYI940B0WigA+EnkgUhdExccdExpkkwXEGpZEcnVaQyR9AGCDtJId252i1VlY2e5jruobc7hgzRvd7t0Kr/a8NK+EGZDlTt/RTciuwiyhe+QVkKfzP4QH7q5h3xk5awbjuN4ieCU2N1na+VUMKahLP6zLHPd2xLoUZqO1/Alraxt3lI36Rp/ehuhbFV/H6gFm+meqw4Sy7Yr129CIY3dUcpjwhoY+9kBayhuWTtXdjd0zYSqEZM4KxMNwtNVwEcJsDugJrRueCATRBzXBpvIT9OoHQM7FR/4CM4dDLJfOqi7ugNP65juDPtllkev4F</diagram></mxfile>
+<mxfile host="app.diagrams.net" modified="2022-03-08T06:39:39.750Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36" etag="Px0l8HEztD-MoxuzsAUr" version="16.6.7" type="github">
+  <diagram id="A2F_QJzK0n9aOhYNwKli" name="Page-1">
+    <mxGraphModel dx="1298" dy="809" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1200" pageHeight="1920" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="s3s7uHT7JiDNxmOffXfK-1" value="SSO" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="520" y="20" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-1" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="190" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-2" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="280" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-3" value="" style="shape=actor;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="225" y="390" width="40" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-4" value="SSO&amp;nbsp;" style="whiteSpace=wrap;html=1;aspect=fixed;" vertex="1" parent="1">
+          <mxGeometry x="455" y="200" width="250" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-5" value="后端server" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="855" y="200" width="120" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-7" value="" style="shape=singleArrow;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="325" y="297.5" width="100" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="31RVcgSsJOgpwljMJnb2-8" value="" style="shape=singleArrow;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="735" y="297.5" width="100" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
